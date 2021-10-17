@@ -7,7 +7,18 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+
+            <Thickness x:Key="PageMargin">20</Thickness>
+
+            <!-- Colors -->
+            <Color x:Key="Primary">#D36135</Color>
+            <Color x:Key="Background">#233D4D</Color>
+            <Color x:Key="White1">#F8FFF4</Color>
+            <Color x:Key="BlackforText">#35393C</Color>
+            <Color x:Key="Accent1">#481620</Color>
+
+            <!-- Implicit styles -->
+
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -20,13 +31,23 @@
                             </VisualState>
                             <VisualState x:Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Background}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-        </ResourceDictionary>        
+
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource BlackforText}"></Setter>
+                <Setter Property="BackgroundColor" Value="{StaticResource White1}" />
+            </Style>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource White1}"></Setter>
+            </Style>
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
