@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="mcproject.Views.AboutPage"
              xmlns:vm="clr-namespace:mcproject.ViewModels"
              Title="{Binding Title}">
@@ -9,7 +10,16 @@
         <vm:AboutViewModel />
     </ContentPage.BindingContext>
 
-    <Grid>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="Red"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid xct:SafeAreaEffect.SafeArea="true">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -33,10 +43,84 @@
             <StackLayout
                 Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
 
-                <Entry Placeholder="Full Name" />
-                <Entry Placeholder="@Telegram username" />
-                <Entry Placeholder="Email address" />
-                <Entry Placeholder="Password" IsPassword="True"/>
+                <Entry Placeholder="Full Name" >
+                    <Entry.Behaviors>
+                        <xct:CharactersValidationBehavior
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            CharacterType="Alphanumeric"
+                            MaximumCharacterCount="30"/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Entry Placeholder="@Telegram Username" >
+                    <Entry.Behaviors>
+                        <xct:CharactersValidationBehavior
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            CharacterType="Alphanumeric"
+                            MaximumCharacterCount="30"/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <StackLayout Spacing="3">
+                    <Entry Placeholder="Email">
+                        <Entry.Behaviors>
+                            <xct:EmailValidationBehavior
+                                x:Name="EmailValidator"
+                                DecorationFlags="Trim"
+                                InvalidStyle="{StaticResource InvalidEntryStyle}"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Text="Invalid email"
+                        TextColor="Red"
+                        FontSize="10"
+                        IsVisible="{Binding IsNotValid, Source={x:Reference EmailValidator}}"
+                   />
+                </StackLayout>
+                <!--
+                <Entry Placeholder="Password" IsPassword="True">
+                    <Entry.Behaviors>
+                        <xct:CharactersValidationBehavior
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            CharacterType="Any"
+                            MaximumCharacterCount="30"
+                            MinimumCharacterCount="8"/>
+
+                    </Entry.Behaviors>
+                </Entry>-->
+
+                <StackLayout Spacing="3">
+                    <Entry Placeholder="Password" IsPassword="True" x:Name="userPassword">
+
+                        <Entry.Behaviors>
+                            <xct:CharactersValidationBehavior
+                            x:Name="PasswordValidator"
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            CharacterType="Any"
+                            MaximumCharacterCount="30"
+                            MinimumCharacterCount="8"/>
+
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Text="Invalid password. Choose a password from 8 to 30 characters long."
+                        TextColor="Red"
+                        FontSize="10"
+                        IsVisible="{Binding IsNotValid, Source={x:Reference PasswordValidator}}"
+                   />
+                    <Entry Placeholder="Repeat Password" IsPassword="True">
+                        <Entry.Behaviors>
+                            <xct:RequiredStringValidationBehavior RequiredString="toBeImplemented"
+                            x:Name="SecondPasswordValidator"
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"/>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Text="Invalid password. Passwords must match. (validation not implemented yet)"
+                        TextColor="Red"
+                        FontSize="10"
+                        IsVisible="{Binding IsNotValid, Source={x:Reference SecondPasswordValidator}}"
+                   />
+
+                </StackLayout>
 
                 <Button Text="Login"
                         Margin="0,10,0,0"/>
