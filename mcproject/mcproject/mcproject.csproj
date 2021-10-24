@@ -32,4 +32,9 @@
     <None Remove="Refractored.MvvmHelpers" />
     <None Remove="sqlite-net-pcl" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Views\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

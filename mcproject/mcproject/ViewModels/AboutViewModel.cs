@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -9,9 +11,14 @@ namespace mcproject.ViewModels
         public AboutViewModel()
         {
             Title = "About";
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
-        }
+            GoToHomePage = new AsyncCommand(goToHomePage);
+                   }
 
-        public ICommand OpenWebCommand { get; }
+        public AsyncCommand GoToHomePage { get; }
+
+        public async Task goToHomePage()
+        {
+            await Shell.Current.GoToAsync("HomePage");
+        }
     }
 }
