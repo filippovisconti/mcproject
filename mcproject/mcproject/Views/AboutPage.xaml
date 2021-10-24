@@ -86,6 +86,9 @@
                             MinimumCharacterCount="8"/>
 
                     </Entry.Behaviors>
+
+                 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
                 </Entry>-->
 
                 <StackLayout Spacing="3">

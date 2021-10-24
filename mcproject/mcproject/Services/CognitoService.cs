@@ -20,7 +20,7 @@ namespace mcproject.Services
 
         public void testConnection(CognitoAWSCredentials cred)
         {
-            var client = new AmazonRDSClient(cred, );
+            //var client = new AmazonRDSClient(cred, );
         }
     }
 }
