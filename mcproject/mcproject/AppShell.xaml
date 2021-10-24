@@ -37,8 +37,9 @@
     -->
 
     <TabBar>
-        <ShellContent Title="About" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-
+        <ShellContent Title="Manage" Icon="icon_about.png" Route="ManagePage" ContentTemplate="{DataTemplate local:ManagePage}" />
+        <ShellContent Title="Join" Icon="icon_about.png" Route="JoinPage" ContentTemplate="{DataTemplate local:JoinPage}" />
+        <ShellContent Title="Create" Icon="icon_about.png" Route="CreatePage" ContentTemplate="{DataTemplate local:CreatePage}" />
     </TabBar>
 
     <!--
