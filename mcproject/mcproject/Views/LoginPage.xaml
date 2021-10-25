@@ -1,14 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="mcproject.Views.AboutPage"
-             xmlns:vm="clr-namespace:mcproject.ViewModels"
-             Title="{Binding Title}">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:vm="clr-namespace:mcproject.ViewModels"
+    x:DataType="vm:LoginViewModel"
+    x:Class="mcproject.Views.LoginPage"
+    Title="{Binding Title}"
+    Shell.NavBarIsVisible="False"
+    Style="{StaticResource BaseContentPage}">
 
     <ContentPage.BindingContext>
-        <vm:AboutViewModel />
+        <vm:LoginViewModel />
     </ContentPage.BindingContext>
+
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -34,7 +39,8 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Center" VerticalOptions="Center">
 
-                <Label Text="Welcome to FillYourTeam!" TextColor="{StaticResource Accent1}" FontSize="Title"/>
+                <Label Text="Welcome to FillYourTeam!" Style="{StaticResource BaseLabel}" FontSize="Title"
+                       Margin="0,50,0,30"/>
 
             </StackLayout>
         </StackLayout>
@@ -86,6 +92,9 @@
                             MinimumCharacterCount="8"/>
 
                     </Entry.Behaviors>
+
+                 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
                 </Entry>-->
 
                 <StackLayout Spacing="3">
@@ -122,12 +131,14 @@
 
                 </StackLayout>
 
-                <Button Text="Login"
+                <Button Text="Login" Style="{StaticResource BaseButton}"
+                        Command="{Binding LoginCommand}"
                         Margin="0,10,0,0"/>
             </StackLayout>
 
         </ScrollView>
 
     </Grid>
+
 
 </ContentPage>
