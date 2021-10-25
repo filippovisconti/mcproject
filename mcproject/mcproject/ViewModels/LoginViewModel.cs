@@ -1,32 +1,28 @@
-﻿using mcproject.Models;
-using System;
+﻿using System;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using mcproject.Models;
 using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace mcproject.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class LoginViewModel : BaseViewModel
     {
-        public AboutViewModel()
+        public LoginViewModel()
         {
             Title = "Login Page";
             user = new User();
             LoginCommand = new AsyncCommand(LoginMethod);
         }
-        
+
         private async Task LoginMethod()
         {
-            await Shell.Current.Navigation.PopModalAsync();
+            await Shell.Current.GoToAsync("//ManagePage");
 
         }
 
         public User user;
 
-        public AsyncCommand LoginCommand;
-
-       
+        public AsyncCommand LoginCommand { get; }
     }
 }

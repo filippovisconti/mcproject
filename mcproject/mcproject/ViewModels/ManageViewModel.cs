@@ -13,18 +13,12 @@ namespace mcproject.ViewModels
         public ManageViewModel()
         {
             notLoggedIn = true;
-            GoToHomePage = new AsyncCommand(goToHomePage);
 
         }
 
         public bool notLoggedIn { get; set; }
 
-        public AsyncCommand GoToHomePage { get; }
 
-        public async Task goToHomePage()
-        {
-            await Shell.Current.Navigation.PushModalAsync(new AboutPage());
-        }
     }
 
 }

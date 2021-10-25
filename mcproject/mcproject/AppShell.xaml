@@ -2,7 +2,9 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:mcproject.Views"
+       xmlns:mcproject="clr-namespace:mcproject"
        Title="mcproject"
+       x:DataType="mcproject:AppShell"
        x:Class="mcproject.AppShell">
 
     <!--
@@ -16,15 +18,34 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
+
+                <Setter Property="Shell.BackgroundColor"
+                        Value="{AppThemeBinding Dark={StaticResource DarkBackground},
+                                                Light={StaticResource Primary}}" />
+
+                <Setter Property="Shell.ForegroundColor"
+                        Value="{AppThemeBinding Dark={StaticResource WhiteBackground},
+                                                Light={StaticResource DarkBackground}}" />
+
+                <Setter Property="Shell.TitleColor"
+                        Value="{AppThemeBinding Dark={StaticResource WhiteBackground},
+                                                Light={StaticResource DarkBackground}}" />
+
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+
+                <Setter Property="Shell.TabBarUnselectedColor"
+                        Value="{AppThemeBinding Dark=#95FFFFFF, Light=#95000000}" />
+                <Setter Property="Shell.TabBarBackgroundColor"
+                        Value="{AppThemeBinding Dark={StaticResource DarkBackground},
+                                                Light={StaticResource WhiteBackground}}" />
+
+                <Setter Property="Shell.TabBarForegroundColor"
+                        Value="{AppThemeBinding Dark={StaticResource WhiteBackground},
+                                                Light={StaticResource DarkBackground}}" />
+
+                <Setter Property="Shell.TabBarTitleColor"
+                        Value="{AppThemeBinding Dark={StaticResource WhiteBackground},
+                                                Light={StaticResource DarkBackground}}" />
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
@@ -36,6 +57,8 @@
         https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/shell/tabs
     -->
 
+    <ShellContent Route="login" ContentTemplate="{DataTemplate local:LoginPage}"/>
+
     <TabBar>
         <ShellContent Title="Manage" Icon="icon_about.png" Route="ManagePage" ContentTemplate="{DataTemplate local:ManagePage}" />
         <ShellContent Title="Join" Icon="icon_about.png" Route="JoinPage" ContentTemplate="{DataTemplate local:JoinPage}" />
@@ -45,6 +68,19 @@
     <!--
         If you would like to navigate to this content you can do so by calling
         await Shell.Current.GoToAsync("//LoginPage");
+
+    TODO Throw away this:
+    old shell style
+         <Setter Property="Shell.BackgroundColor" Value="" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+
 
     <TabBar>
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
