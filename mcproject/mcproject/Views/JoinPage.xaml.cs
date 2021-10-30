@@ -12,9 +12,11 @@ namespace mcproject.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class JoinPage : ContentPage
     {
+        
         public JoinPage()
         {
             InitializeComponent();
         }
+
     }
 }
