@@ -52,8 +52,8 @@ namespace mcproject.Services
         public static async Task<IEnumerable<Event>> GetItemsAsync(bool forceRefresh = false)
         {
             await Init();
-            var evento = await localDB.Table<Event>().ToListAsync();
-            return evento;
+            List<Event> eventi = await localDB.Table<Event>().ToListAsync();
+            return eventi;
         }
     }
 }

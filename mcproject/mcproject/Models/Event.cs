@@ -12,7 +12,7 @@ namespace mcproject.Models
         public string Sport { get; set; }
         public string City { get; set; }
         public string Level { get; set; }
-        public DateTime dateAndTime { get; set; }
+        public DateTime DateAndTime { get; set; }
         public string Notes { get; set; }
         public string TGUsername { get; set; }
         public Image Icon { get; set; }

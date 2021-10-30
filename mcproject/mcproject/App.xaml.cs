@@ -13,7 +13,6 @@ namespace mcproject
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
