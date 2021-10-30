@@ -1,60 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using mcproject.Models;
+using SQLite;
+using Xamarin.Essentials;
 
 namespace mcproject.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public static class MockDataStore
     {
-        readonly List<Item> items;
+        //static List<Item> items;
+        static SQLiteAsyncConnection localDB;
 
-        public MockDataStore()
+
+        static async Task Init()
         {
-            items = new List<Item>()
-            {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
-            };
+            if (localDB != null) return;
+
+            // absolute path to db file
+            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "LocalDb.db");
+            localDB = new SQLiteAsyncConnection(dbPath);
+            await localDB.CreateTableAsync<Event>();
         }
 
-        public async Task<bool> AddItemAsync(Item item)
+        public static async Task AddItemAsync(Event item)
         {
-            items.Add(item);
+            await Init();
+            await localDB.InsertAsync(item);
 
-            return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateItemAsync(Item item)
+        public static async Task UpdateItemAsync(Event item)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(item);
-
-            return await Task.FromResult(true);
+            await Init();
+            await localDB.UpdateAsync(item);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public static async Task DeleteItemAsync(string id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
-
-            return await Task.FromResult(true);
+            await Init();
+            await localDB.DeleteAsync<Event>(id);
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public static async Task<Event> GetItemAsync(string id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            await Init();
+            var evento = await localDB.GetAsync<Event>(id);
+            return evento;
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public static async Task<IEnumerable<Event>> GetItemsAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(items);
+            await Init();
+            var evento = await localDB.Table<Event>().ToListAsync();
+            return evento;
         }
     }
 }

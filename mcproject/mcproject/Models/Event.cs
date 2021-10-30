@@ -1,18 +1,21 @@
 ﻿using System;
+using SQLite;
 using Xamarin.Forms;
 
 namespace mcproject.Models
 {
     public class Event
     {
-        public string Sport;
-        public string Location;
-        public string Level;
-        public DateTime date;
-        public DateTime time;
-        public string Notes;
-        public string TGUsername;
-        public Image Icon;
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public string Sport { get; set; }
+        public string City { get; set; }
+        public string Level { get; set; }
+        public DateTime dateAndTime { get; set; }
+        public string Notes { get; set; }
+        public string TGUsername { get; set; }
+        public Image Icon { get; set; }
 
     }
 }
