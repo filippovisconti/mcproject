@@ -1,8 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using mcproject.Services;
-using mcproject.Views;
+﻿using Xamarin.Forms;
 
 namespace mcproject
 {
@@ -15,6 +11,7 @@ namespace mcproject
 
             MainPage = new AppShell();
         }
+
 
         protected override void OnStart()
         {
