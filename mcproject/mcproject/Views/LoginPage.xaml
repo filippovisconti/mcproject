@@ -68,7 +68,7 @@
                 </Entry>
 
                 <StackLayout Spacing="3">
-                    <Entry Placeholder="Email">
+                    <Entry Placeholder="Email" x:Name="UserName">
                         <Entry.Behaviors>
                             <xct:EmailValidationBehavior
                                 x:Name="EmailValidator"
@@ -98,7 +98,7 @@
                 </Entry>-->
 
                 <StackLayout Spacing="3">
-                    <Entry Placeholder="Password" IsPassword="True" x:Name="userPassword">
+                    <Entry Placeholder="Password" IsPassword="True" x:Name="UserPassword">
 
                         <Entry.Behaviors>
                             <xct:CharactersValidationBehavior
