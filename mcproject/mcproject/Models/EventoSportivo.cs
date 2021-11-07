@@ -4,8 +4,13 @@ using Xamarin.Forms;
 
 namespace mcproject.Models
 {
-    public class Event
+    public class EventoSportivo
     {
+        public EventoSportivo()
+        {
+           
+        }
+
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public string Owner { get; set; }
@@ -16,6 +21,5 @@ namespace mcproject.Models
         public string Notes { get; set; }
         public string TGUsername { get; set; }
         public Image Icon { get; set; }
-
     }
 }

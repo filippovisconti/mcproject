@@ -20,17 +20,17 @@ namespace mcproject.Services
             // absolute path to db file
             var dbPath = Path.Combine(FileSystem.AppDataDirectory, "LocalDb.db");
             localDB = new SQLiteAsyncConnection(dbPath);
-            await localDB.CreateTableAsync<Event>();
+            await localDB.CreateTableAsync<EventoSportivo>();
         }
 
-        public static async Task AddItemAsync(Event item)
+        public static async Task AddItemAsync(EventoSportivo item)
         {
             await Init();
             await localDB.InsertAsync(item);
 
         }
 
-        public static async Task UpdateItemAsync(Event item)
+        public static async Task UpdateItemAsync(EventoSportivo item)
         {
             await Init();
             await localDB.UpdateAsync(item);
@@ -39,21 +39,21 @@ namespace mcproject.Services
         public static async Task DeleteItemAsync(string id)
         {
             await Init();
-            await localDB.DeleteAsync<Event>(id);
+            await localDB.DeleteAsync<EventoSportivo>(id);
         }
 
-        public static async Task<Event> GetItemAsync(string id)
+        public static async Task<EventoSportivo> GetItemAsync(string id)
         {
             await Init();
-            var evento = await localDB.GetAsync<Event>(id);
-            return evento;
+            var EventoSportivoo = await localDB.GetAsync<EventoSportivo>(id);
+            return EventoSportivoo;
         }
 
-        public static async Task<IEnumerable<Event>> GetItemsAsync(bool forceRefresh = false)
+        public static async Task<IEnumerable<EventoSportivo>> GetItemsAsync(bool forceRefresh = false)
         {
             await Init();
-            List<Event> eventi = await localDB.Table<Event>().ToListAsync();
-            return eventi;
+            List<EventoSportivo> EventoSportivoi = await localDB.Table<EventoSportivo>().ToListAsync();
+            return EventoSportivoi;
         }
     }
 }

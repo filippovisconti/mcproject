@@ -7,13 +7,47 @@
 
     <ContentPage.BindingContext>
         <viewmodels:CreateViewModel/>
-    </ContentPage.BindingContext>
+        </ContentPage.BindingContext>
 
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Create Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+  <Grid VerticalOptions="FillAndExpand"
+          Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Text="Crea un evento"
+             />
+
+        <!--ItemDisplayBinding="{Binding ..}"--> 
+        <Picker Title="Sport"
+                Grid.Row="0"
+                ItemsSource="{Binding CreateSport}"
+                SelectedItem="{Binding SelectedSport}"
+         >   
+        </Picker>
+
+
+        <DatePicker MinimumDate="01/01/2021"
+             MaximumDate="12/31/2031"
+             Date="{Binding SelectedData}"
+             Grid.Row="1"/>
+
+
+        <Picker Title="Livello"
+                Grid.Row="2"
+                ItemsSource="{Binding }"
+                SelectedItem="{Binding }"
+         >   
+        </Picker>
+
+
+
+
+  </Grid>
 </ContentPage>
