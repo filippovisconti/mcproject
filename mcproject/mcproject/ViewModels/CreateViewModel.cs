@@ -46,12 +46,45 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedData, value);
         }
 
+        public ObservableCollection<string> CreateLevel
+        {
+            get => Services.Constants.Livello;
+        }
+
+
+        private string _SelectedLevel;
+        public string SelectedLevel
+        {
+            get => _SelectedLevel;
+            set => SetProperty(ref _SelectedLevel, value);
+        }
+
+
+        private string _SelectedTGusername;
+        public string SelectedTGusername
+        {
+            get => _SelectedTGusername;
+            set => SetProperty(ref _SelectedTGusername, value);
+        }
+
+      
+
+        private string _SelectedNote;
+        public string SelectedNote
+        {
+            get => _SelectedNote;
+            set => SetProperty(ref _SelectedNote, value);
+        }
+
 
         public EventoSportivo CreateEvento;
         public void Create()
         {
             CreateEvento.Sport = SelectedSport;
             CreateEvento.DateAndTime = SelectedData;
+            CreateEvento.Level = SelectedLevel;
+            CreateEvento.TGUsername = SelectedTGusername;
+            CreateEvento.Notes = SelectedNote;
 
         }
 

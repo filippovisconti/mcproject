@@ -41,10 +41,22 @@
 
         <Picker Title="Livello"
                 Grid.Row="2"
-                ItemsSource="{Binding }"
-                SelectedItem="{Binding }"
+                ItemsSource="{Binding CreateLevel}"
+                SelectedItem="{Binding SelectedLevel}"
          >   
         </Picker>
+
+
+        <Entry Keyboard="Email"
+               Placeholder="Enter telegram username"
+               Grid.Row="3"
+               Text="{Binding SelectedTGusername}"
+               />
+
+       <Editor Placeholder = "Enter a note"
+               Grid.Row="4"
+               Text="{Binding SelectedNote}"
+               Margin="10" />
 
 
 
