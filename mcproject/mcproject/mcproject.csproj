@@ -15,18 +15,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="NUnit" Version="3.13.2" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.3.0" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
-    <PackageReference Include="AWSSDK.CognitoIdentity" Version="3.7.0.84" />
-    <PackageReference Include="AWSSDK.RDS" Version="3.7.5.20" />
+    <PackageReference Include="AWSSDK.CognitoIdentity" Version="3.7.0.93" />
+    <PackageReference Include="AWSSDK.RDS" Version="3.7.6.8" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.1" />
-    <PackageReference Include="AWSSDK.Core" Version="3.7.3.24" />
+    <PackageReference Include="AWSSDK.Core" Version="3.7.3.33" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.0" />
+    <PackageReference Include="Amazon.Extensions.CognitoAuthentication" Version="2.2.2" />
+    <PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="3.7.1.65" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.14.1" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Newtonsoft.Json" />
@@ -39,6 +42,11 @@
     <None Remove="AWSSDK.Core" />
     <None Remove="Refractored.MvvmHelpers" />
     <None Remove="sqlite-net-pcl" />
+    <None Remove="Prism.Core" />
+    <None Remove="Xamarin.Essentials.Interfaces" />
+    <None Remove="Amazon.Extensions.CognitoAuthentication" />
+    <None Remove="AWSSDK.CognitoIdentityProvider" />
+    <None Remove="Microsoft.IdentityModel.JsonWebTokens" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\CreatePage.xaml">
@@ -53,5 +61,10 @@
     <EmbeddedResource Update="Views\ManagePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
   </ItemGroup>
 </Project>

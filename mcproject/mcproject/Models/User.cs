@@ -3,11 +3,12 @@ namespace mcproject.Models
 {
     public class User
     {
-        public string Name;
-        public string TGUsername;
-        public string email;
+        public string Name { get; set; }
+        public string Nickname { get; set; }
+        //public string TGUsername { get; set; }
+        public string EmailAddress { get; set; }
         //-----
-        public string IDToken;
-        public string AccessToken;
+        public string IDToken { get; set; }
+        public string AccessToken { get; set; }
     }
 }

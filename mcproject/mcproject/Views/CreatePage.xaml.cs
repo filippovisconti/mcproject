@@ -15,6 +15,7 @@ namespace mcproject.Views
         public CreatePage()
         {
             InitializeComponent();
+
         }
     }
 }
