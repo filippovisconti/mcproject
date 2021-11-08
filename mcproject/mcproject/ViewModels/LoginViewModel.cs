@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
-using Amazon.CognitoIdentityProvider;
-using Amazon.CognitoIdentityProvider.Model;
-using Amazon.Extensions.CognitoAuthentication;
 using mcproject.Models;
-using mcproject.Services;
-using SQLitePCL;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -42,10 +35,11 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _IDToken, value);
         }
 
-        public LoginViewModel(User PassedUser)
+
+        public LoginViewModel()
         {
             Title = "Login Page";
-            user = PassedUser;
+            user = new User();
             LoginCommand = new AsyncCommand(LoginMethod);
         }
 
