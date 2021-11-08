@@ -76,7 +76,7 @@ namespace mcproject.ViewModels
                 //}
                 ////System.Diagnostics.Debug.WriteLine("AT: " + AccessToken);
                 ////System.Diagnostics.Debug.WriteLine("IDT:" + IDToken);
-                await Shell.Current.GoToAsync("//nameofManagePage");
+                await Shell.Current.GoToAsync("//ManagePage");
             }
             catch (TaskCanceledException)
             {
