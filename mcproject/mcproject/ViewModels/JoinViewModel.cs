@@ -1,24 +1,21 @@
-﻿using System;
+﻿using MvvmHelpers;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
 using Xamarin.Forms;
+
 
 namespace mcproject.ViewModels
 {
-    public class JoinViewModel : ContentPage
+    public class JoinViewModel : ViewModelBase
     {
+        public ObservableRangeCollection<Sport> Sport {get; set; }
+        public ObservableRangeCollection<Grouping<string, Sport>> SportGroups { get; }
+        
         public JoinViewModel()
         {
-            Content = new StackLayout
-            {
-                Children = {
-                    new Label { Text = "Welcome to Xamarin.Forms!" }
-                }
-            };
+            Sport = new ObservableRangeCollection<Sport>();
         }
 
-        public DateTimeOffset MaxDate => new DateTime(2100, 12, 31);
     }
 }

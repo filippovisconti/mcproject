@@ -1,13 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:maps="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:maps="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials" 
+             xmlns:vm="clr-namespace:mcproject.ViewModels"
              x:Class="mcproject.Views.JoinPage">
+
+    <ContentPage.BindingContext>
+        <vm:JoinViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
             
-            <Picker  Title="Sport" Style="{StaticResource BaseButton}"
+            <Picker  ItemsSource="{Binding SportGroups}" Title="Sport" Style="{StaticResource BaseButton}"
             TitleColor="White"  HorizontalTextAlignment="Center" Margin="50,90,50,0">
+                
                 <Picker.Items>
+                    
                     <x:String>Beach Volley</x:String>
                     <x:String>Calcio</x:String>
                     <x:String>Padel</x:String>
