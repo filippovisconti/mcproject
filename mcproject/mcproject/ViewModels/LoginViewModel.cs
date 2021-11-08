@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
+using Amazon.CognitoIdentityProvider;
+using Amazon.CognitoIdentityProvider.Model;
+using Amazon.Extensions.CognitoAuthentication;
 using mcproject.Models;
+using mcproject.Services;
+using SQLitePCL;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
-using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
 
 namespace mcproject.ViewModels
@@ -15,8 +21,9 @@ namespace mcproject.ViewModels
 
 #pragma warning disable IDE0090 // Use 'new(...)'
         readonly Uri url =
-            new Uri("https://mcproject.auth.us-east-2.amazoncognito.com/login?client_id=havou4cvj0sbfuuij0ulrocaq&response_type=code&scope=aws.cognito.signin.user.admin+email+openid&redirect_uri=com.yodadev.mcproject://");
-        readonly Uri callbackUrl = new Uri("com.yodadev.mcproject://");
+            new Uri("https://mcproject.auth.us-east-2.amazoncognito.com/login?client_id=havou4cvj0sbfuuij0ulrocaq&response_type=token&scope=email+openid+profile&redirect_uri=com.yodadev.mcproject://");
+        readonly Uri callbackUrl =
+            new Uri("com.yodadev.mcproject://");
 #pragma warning restore IDE0090 // Use 'new(...)'
         WebAuthenticatorResult authResult;
         //private readonly IWebAuthenticator _webAuthenticator;
@@ -28,11 +35,17 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _accessToken, value);
         }
 
-        public LoginViewModel()
+        private string _IDToken;
+        public string IDToken
+        {
+            get => _IDToken;
+            set => SetProperty(ref _IDToken, value);
+        }
+
+        public LoginViewModel(User PassedUser)
         {
             Title = "Login Page";
-            user = new User();
-            //_webAuthenticator = new WebAuthenticator();
+            user = PassedUser;
             LoginCommand = new AsyncCommand(LoginMethod);
         }
 
@@ -46,16 +59,35 @@ namespace mcproject.ViewModels
                     CallbackUrl = callbackUrl,
                     PrefersEphemeralWebBrowserSession = true
                 });
-                var accessToken = authResult?.AccessToken;
-                await Shell.Current.GoToAsync("//ManagePage");
+                AccessToken = authResult?.AccessToken;
+                IDToken = authResult?.IdToken;
+                //GetUserRequest request = new GetUserRequest();
+                //request.AccessToken = AccessToken;
+                //GetUserResponse response = CognitoIdentityProvider;
+                //AuthenticationResultType.
+                //com.yodadev.mcproject://?code=403a919b-eb57-40e0-96f5-e7a49b6e5cba
+                var handler = new Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler();
+                var id = handler.ReadJsonWebToken(IDToken);
+                user.EmailAddress = id.GetClaim("email").Value.ToString();
+                user.Name = id.GetClaim("name").Value.ToString();
+                user.Nickname = id.GetClaim("nickname").Value.ToString();
+                user.AccessToken = AccessToken;
+                user.IDToken = IDToken;
+                //id.GetClaim("email").Value
+                //System.Diagnostics.Debug.WriteLine();
+                //var idArray = id.Claims.AsEnumerable();
+                //foreach (var i in idArray)
+                //{
+                //    System.Diagnostics.Debug.WriteLine(i);
+                //}
+                ////System.Diagnostics.Debug.WriteLine("AT: " + AccessToken);
+                ////System.Diagnostics.Debug.WriteLine("IDT:" + IDToken);
+                await Shell.Current.GoToAsync("//{nameof(ManagePage)}");
             }
-            catch (TaskCanceledException e)
+            catch (TaskCanceledException)
             {
                 AccessToken = "You've cancelled.";
             }
-
         }
-
-
     }
 }
