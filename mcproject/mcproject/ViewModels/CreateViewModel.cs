@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Amazon.RDS.Model;
 using mcproject.Models;
+using MvvmHelpers.Commands;
+using Xamarin.Forms;
 
 namespace mcproject.ViewModels
 {
     public class CreateViewModel : ViewModelBase
     {
+
+        public AsyncCommand CreateCommand { get; }
         public CreateViewModel()
         {
+            Title = "Create a new event";
+            CreateCommand = new AsyncCommand(CreateMethod);
+        }
 
+        private async Task CreateMethod()
+        {
 
+            await Shell.Current.GoToAsync("CreatePage");
         }
 
         public ObservableCollection<string> CreateSport

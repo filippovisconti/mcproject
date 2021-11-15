@@ -3,30 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
              x:DataType="viewmodels:CreateViewModel"
-             x:Class="mcproject.Views.CreatePage">
+             x:Class="mcproject.Views.CreatePage"
+             Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <viewmodels:CreateViewModel/>
         </ContentPage.BindingContext>
 
-  <Grid VerticalOptions="FillAndExpand"
-          Margin="10">
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+  <StackLayout>
 
         <Label Text="Crea un evento"
              />
 
         <!--ItemDisplayBinding="{Binding ..}"--> 
         <Picker Title="Sport"
-                Grid.Row="0"
                 ItemsSource="{Binding CreateSport}"
                 SelectedItem="{Binding SelectedSport}"
          >   
@@ -40,7 +30,6 @@
 
 
         <Picker Title="Livello"
-                Grid.Row="2"
                 ItemsSource="{Binding CreateLevel}"
                 SelectedItem="{Binding SelectedLevel}"
          >   
@@ -49,17 +38,17 @@
 
         <Entry Keyboard="Email"
                Placeholder="Enter telegram username"
-               Grid.Row="3"
                Text="{Binding SelectedTGusername}"
                />
 
        <Editor Placeholder = "Enter a note"
-               Grid.Row="4"
                Text="{Binding SelectedNote}"
                Margin="10" />
 
+        <Button Text="Create the event"
+                Command="{Binding CreateCommand}"
+                 />
 
 
-
-  </Grid>
+  </StackLayout>
 </ContentPage>
