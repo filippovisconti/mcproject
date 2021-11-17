@@ -17,14 +17,9 @@ namespace mcproject.ViewModels
             CreateCommand = new AsyncCommand(CreateMethod);
         }
 
-        private async Task CreateMethod()
-        {
-
-            await Shell.Current.GoToAsync("CreatePage");
-        }
-
         public ObservableCollection<string> CreateSport
         {
+            
             get => Services.Constants.Sport;
         }
 
@@ -34,19 +29,6 @@ namespace mcproject.ViewModels
             get => _SelectedSport;
             set => SetProperty(ref _SelectedSport, value);
         }
-
-        /* public void OnPickerSelectedIndexChanged(object sender, System.EventArgs e)
-         {
-
-             var picker = (Picker)sender;
-             int selectedIndex = picker.SelectedIndex;
-
-             if (selectedIndex != -1)
-             {
-                 SelectedSport = (string)picker.ItemsSource[selectedIndex];
-             }
-         }*/
-
 
         private DateTime _SelectedData;
         public DateTime SelectedData
@@ -86,25 +68,33 @@ namespace mcproject.ViewModels
         }
 
 
-        public EventoSportivo CreateEvento;
-        public void Create()
+       
+        public EventoSportivo Create()
         {
+#pragma warning disable IDE0017 // Simplify object initialization
+#pragma warning disable IDE0090 // Use 'new(...)'
+            EventoSportivo CreateEvento = new EventoSportivo();
+#pragma warning restore IDE0090 // Use 'new(...)'
+#pragma warning restore IDE0017 // Simplify object initialization
             CreateEvento.Sport = SelectedSport;
             CreateEvento.DateAndTime = SelectedData;
             CreateEvento.Level = SelectedLevel;
             CreateEvento.TGUsername = SelectedTGusername;
             CreateEvento.Notes = SelectedNote;
+            return CreateEvento;
 
         }
 
-       
+        public bool InfoComplete => (
+               SelectedSport != null &&
+               SelectedLevel != null &&
+               SelectedTGusername != null);
 
 
-
-
-
-
-
+        private async Task CreateMethod()
+        {
+            //await Shell.Current.GoToAsync(" ");
+        }
 
     }
 
