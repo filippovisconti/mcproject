@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using mcproject.Models;
+using mcproject.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -9,7 +10,7 @@ namespace mcproject.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public User user;
+        public static User user;
         public AsyncCommand LoginCommand { get; }
 
 #pragma warning disable IDE0090 // Use 'new(...)'
@@ -19,7 +20,6 @@ namespace mcproject.ViewModels
             new Uri("com.yodadev.mcproject://");
 #pragma warning restore IDE0090 // Use 'new(...)'
         WebAuthenticatorResult authResult;
-        //private readonly IWebAuthenticator _webAuthenticator;
 
         private string _accessToken;
         public string AccessToken
@@ -55,28 +55,19 @@ namespace mcproject.ViewModels
                 });
                 AccessToken = authResult?.AccessToken;
                 IDToken = authResult?.IdToken;
-                //GetUserRequest request = new GetUserRequest();
-                //request.AccessToken = AccessToken;
-                //GetUserResponse response = CognitoIdentityProvider;
-                //AuthenticationResultType.
-                //com.yodadev.mcproject://?code=403a919b-eb57-40e0-96f5-e7a49b6e5cba
+
                 var handler = new Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler();
                 var id = handler.ReadJsonWebToken(IDToken);
+
                 user.EmailAddress = id.GetClaim("email").Value.ToString();
                 user.Name = id.GetClaim("name").Value.ToString();
                 user.Nickname = id.GetClaim("nickname").Value.ToString();
                 user.AccessToken = AccessToken;
                 user.IDToken = IDToken;
-                //id.GetClaim("email").Value
-                //System.Diagnostics.Debug.WriteLine();
-                //var idArray = id.Claims.AsEnumerable();
-                //foreach (var i in idArray)
-                //{
-                //    System.Diagnostics.Debug.WriteLine(i);
-                //}
-                ////System.Diagnostics.Debug.WriteLine("AT: " + AccessToken);
-                ////System.Diagnostics.Debug.WriteLine("IDT:" + IDToken);
+
                 await Shell.Current.GoToAsync("//ManagePage");
+
+
             }
             catch (TaskCanceledException)
             {
@@ -84,4 +75,16 @@ namespace mcproject.ViewModels
             }
         }
     }
+
+
+    //System.Diagnostics.Debug.WriteLine();
+    //var idArray = id.Claims.AsEnumerable();
+    //foreach (var i in idArray)
+    //{
+    //    System.Diagnostics.Debug.WriteLine(i);
+    //}
+    ////System.Diagnostics.Debug.WriteLine("AT: " + AccessToken);
+    ////System.Diagnostics.Debug.WriteLine("IDT:" + IDToken);
+    //await Shell.Current.GoToAsync("//ManagePage");
+    //await Shell.Current.GoToAsync($"{ nameof(ManagePage)}?user ={ user }");
 }

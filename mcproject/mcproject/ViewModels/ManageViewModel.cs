@@ -1,22 +1,27 @@
-﻿using mcproject.Views;
-using System;
+﻿using mcproject.Models;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.CommunityToolkit.ObjectModel;
+using System.Web;
 using Xamarin.Forms;
 
 namespace mcproject.ViewModels
 {
+
     public class ManageViewModel : ViewModelBase
+
+
     {
+        private User UserFromLogin;
+
+        public bool notLoggedIn { get; set; }
+
         public ManageViewModel()
         {
-            notLoggedIn = true;
+
+            UserFromLogin = LoginViewModel.user;
+            notLoggedIn = UserFromLogin.Equals(null);
 
         }
 
-        public bool notLoggedIn { get; set; }
 
 
     }
