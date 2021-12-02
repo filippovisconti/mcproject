@@ -9,18 +9,18 @@
 
     <ContentPage.BindingContext>
         <viewmodels:CreateViewModel/>
-        </ContentPage.BindingContext>
+    </ContentPage.BindingContext>
 
-  <StackLayout>
+    <StackLayout>
 
-        <Label Text="Crea un evento"
+        <Label Text="Crea un evento AGGIUNGI STATISTICHE"
              />
 
-        <!--ItemDisplayBinding="{Binding ..}"--> 
+        <!--ItemDisplayBinding="{Binding ..}"-->
         <Picker Title="Sport"
                 ItemsSource="{Binding CreateSport}"
                 SelectedItem="{Binding SelectedSport}"
-         >   
+         >
         </Picker>
 
 
@@ -33,7 +33,7 @@
         <Picker Title="Livello"
                 ItemsSource="{Binding CreateLevel}"
                 SelectedItem="{Binding SelectedLevel}"
-         >   
+         >
         </Picker>
 
 
@@ -42,7 +42,7 @@
                Text="{Binding SelectedTGusername}"
                />
 
-       <Editor Placeholder = "Enter a note"
+        <Editor Placeholder = "Enter a note"
                Text="{Binding SelectedNote}"
                Margin="10" />
 
@@ -52,5 +52,5 @@
                  />
 
 
-  </StackLayout>
+    </StackLayout>
 </ContentPage>
