@@ -10,15 +10,11 @@ namespace mcproject.ViewModels
 
 
     {
-        private User UserFromLogin;
-
-        public bool notLoggedIn { get; set; }
 
         public ManageViewModel()
         {
 
-            UserFromLogin = LoginViewModel.user;
-            notLoggedIn = UserFromLogin.Equals(null);
+
 
         }
 

@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Threading.Tasks;
-using mcproject.Models;
-using mcproject.Views;
-using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Windows.Input;
+using Firebase.Auth;
+using mcproject.Services;
 
 namespace mcproject.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
+        /*
         public static User user;
         public AsyncCommand LoginCommand { get; }
 
@@ -74,9 +73,8 @@ namespace mcproject.ViewModels
                 AccessToken = "You've cancelled.";
             }
         }
-    }
 
-
+        
     //System.Diagnostics.Debug.WriteLine();
     //var idArray = id.Claims.AsEnumerable();
     //foreach (var i in idArray)
@@ -87,4 +85,70 @@ namespace mcproject.ViewModels
     ////System.Diagnostics.Debug.WriteLine("IDT:" + IDToken);
     //await Shell.Current.GoToAsync("//ManagePage");
     //await Shell.Current.GoToAsync($"{ nameof(ManagePage)}?user ={ user }");
+        */
+
+        private string password;
+        private string email;
+
+        public LoginViewModel()
+        {
+            SignUpCommand = new Command(OnSignUp);
+            SignInCommand = new Command(OnSignIn);
+            ForgotPasswordCommand = new Command(OnForgotPassword);
+        }
+
+        private async void OnForgotPassword()
+        {
+            await Xamarin.Forms.Shell.Current.GoToAsync("//ForgotPasswordPage");
+        }
+
+        private async void OnSignIn()
+        {
+            try
+            {
+                var authService = DependencyService.Resolve<IAuthService>();
+                var token = await authService.SignIn(Email, Password);
+
+                await Xamarin.Forms.Shell.Current.GoToAsync("//HomePage");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                await Shell.Current
+                    .DisplayAlert("SignIn", "An error occurs", "OK");
+            }
+        }
+
+        private async void OnSignUp()
+            => await Xamarin.Forms.Shell.Current.GoToAsync("//NewUserPage");
+
+
+        #region Properties
+        public string Password
+        {
+            get => password;
+            set => SetProperty(ref password, value);
+        }
+
+        public string Email
+        {
+            get => email;
+            set => SetProperty(ref email, value);
+        }
+        #endregion
+
+        #region Commands
+
+        public ICommand ForgotPasswordCommand { get; }
+
+        public ICommand SignInCommand { get; }
+
+        public ICommand SignUpCommand { get; }
+
+        #endregion
+    }
 }
+
+
+
