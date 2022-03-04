@@ -1,9 +1,9 @@
 ﻿
+using Firebase.Analytics;
 using Foundation;
 using mcproject.Services;
 using UIKit;
 using Xamarin.Forms;
-using XamFormsFirebaseAuth.iOS;
 
 namespace mcproject.iOS
 {
@@ -27,7 +27,7 @@ namespace mcproject.iOS
             Firebase.Core.App.Configure();
 
             DependencyService.Register<IAuthService, FirebaseAuthentication>();
-
+            Analytics.SetAnalyticsCollectionEnabled(true); // FIXME
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

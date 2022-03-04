@@ -139,6 +139,9 @@
     <PackageReference Include="Xamarin.Firebase.Analytics">
       <Version>119.0.1.3</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Installations">
+      <Version>117.0.0.3</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

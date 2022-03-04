@@ -67,6 +67,12 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
             </Style>
 
+            <Style TargetType="Button" x:Key="SecondaryButton" >
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
+                    Light={StaticResource TextColor}}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
             <Style x:Key="BaseEntry" TargetType="Entry">
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
                     Light={StaticResource TextColor}}"></Setter>

@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <!--<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>-->
+    <AssemblyName>FillYourTeam</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

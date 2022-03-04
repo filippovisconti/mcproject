@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using mcproject.Models;
 using MvvmHelpers.Commands;
-using Xamarin.Forms;
 
 namespace mcproject.ViewModels
 {
@@ -19,7 +18,7 @@ namespace mcproject.ViewModels
 
         public ObservableCollection<string> CreateSport
         {
-            
+
             get => Services.Constants.Sport;
         }
 
@@ -58,7 +57,7 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedTGusername, value);
         }
 
-      
+
 
         private string _SelectedNote;
         public string SelectedNote
@@ -68,7 +67,7 @@ namespace mcproject.ViewModels
         }
 
 
-       
+
         public EventoSportivo Create()
         {
 #pragma warning disable IDE0017 // Simplify object initialization
