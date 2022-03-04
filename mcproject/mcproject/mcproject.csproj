@@ -29,9 +29,6 @@
     <PackageReference Include="Amazon.Extensions.CognitoAuthentication" Version="2.2.2" />
     <PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="3.7.1.104" />
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.16.0" />
-    <PackageReference Include="Firebase.Auth" Version="1.0.0" />
-    <PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />
-    <PackageReference Include="FirebaseDatabase.net" Version="4.0.7" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Newtonsoft.Json" />

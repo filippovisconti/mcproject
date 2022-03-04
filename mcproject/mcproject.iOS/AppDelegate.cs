@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿
 using Foundation;
+using mcproject.Services;
 using UIKit;
+using Xamarin.Forms;
+using XamFormsFirebaseAuth.iOS;
 
 namespace mcproject.iOS
 {
@@ -23,6 +23,11 @@ namespace mcproject.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            Firebase.Core.App.Configure();
+
+            DependencyService.Register<IAuthService, FirebaseAuthentication>();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
