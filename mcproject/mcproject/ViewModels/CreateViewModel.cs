@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using mcproject.Models;
 using MvvmHelpers.Commands;
+using Xamarin.Forms;
 
 namespace mcproject.ViewModels
 {
@@ -92,7 +93,7 @@ namespace mcproject.ViewModels
 
         private async Task CreateMethod()
         {
-            //await Shell.Current.GoToAsync(" ");
+            await Shell.Current.GoToAsync("TestPage");
         }
 
     }

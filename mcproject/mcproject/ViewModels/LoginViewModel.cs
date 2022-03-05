@@ -94,11 +94,12 @@ namespace mcproject.ViewModels
             SignUpCommand = new Command(OnSignUp);
             SignInCommand = new Command(OnSignIn);
             ForgotPasswordCommand = new Command(OnForgotPassword);
+            BypassCommand = new Command(OnBypassLogin);
         }
 
         private async void OnForgotPassword()
         {
-            await Xamarin.Forms.Shell.Current.GoToAsync("//ForgotPasswordPage");
+            await Xamarin.Forms.Shell.Current.GoToAsync("//TestPage");
         }
 
         private async void OnSignIn()
@@ -120,8 +121,12 @@ namespace mcproject.ViewModels
         }
 
         private async void OnSignUp()
-            => await Xamarin.Forms.Shell.Current.GoToAsync("//NewUserPage");
+            => await Xamarin.Forms.Shell.Current.GoToAsync("NewUserPage");
 
+        private async void OnBypassLogin() // FIXME to be removed
+        {
+            await Xamarin.Forms.Shell.Current.GoToAsync("//HomePage");
+        }
 
         #region Properties
         public string Password
@@ -145,6 +150,7 @@ namespace mcproject.ViewModels
 
         public ICommand SignUpCommand { get; }
 
+        public ICommand BypassCommand { get; }
         #endregion
     }
 }

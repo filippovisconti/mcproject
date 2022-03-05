@@ -91,6 +91,10 @@
                     Light={StaticResource WhiteBackground }}"></Setter>
             </Style>
 
+            <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="Red"/>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
