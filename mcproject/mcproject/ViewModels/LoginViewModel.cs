@@ -99,7 +99,7 @@ namespace mcproject.ViewModels
 
         private async void OnForgotPassword()
         {
-            await Xamarin.Forms.Shell.Current.GoToAsync("//TestPage");
+            await Shell.Current.GoToAsync("TestPage");
         }
 
         private async void OnSignIn()
@@ -109,7 +109,7 @@ namespace mcproject.ViewModels
                 var authService = DependencyService.Resolve<IAuthService>();
                 var token = await authService.SignIn(Email, Password);
 
-                await Xamarin.Forms.Shell.Current.GoToAsync("//HomePage");
+                await Shell.Current.GoToAsync("//JoinPage");
             }
             catch (Exception ex)
             {
@@ -121,11 +121,11 @@ namespace mcproject.ViewModels
         }
 
         private async void OnSignUp()
-            => await Xamarin.Forms.Shell.Current.GoToAsync("NewUserPage");
+            => await Shell.Current.GoToAsync("NewUserPage");
 
         private async void OnBypassLogin() // FIXME to be removed
         {
-            await Xamarin.Forms.Shell.Current.GoToAsync("//HomePage");
+            await Shell.Current.GoToAsync("//JoinPage");
         }
 
         #region Properties

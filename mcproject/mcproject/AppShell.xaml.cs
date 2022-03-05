@@ -11,7 +11,6 @@ namespace mcproject
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
             Routing.RegisterRoute(nameof(CreatePage), typeof(CreatePage));
             Routing.RegisterRoute(nameof(JoinPage), typeof(JoinPage));
             Routing.RegisterRoute(nameof(ManagePage), typeof(ManagePage));
