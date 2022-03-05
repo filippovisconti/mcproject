@@ -116,7 +116,7 @@ namespace mcproject.ViewModels
                 Console.WriteLine(ex.Message);
 
                 await Shell.Current
-                    .DisplayAlert("SignIn", "An error occurs", "OK");
+                    .DisplayAlert("Sign In", "An error occured: " + ex.Message, "OK");
             }
         }
 
