@@ -67,10 +67,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: filippo.visconti23@gmail.com (4755UABZM9)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
 <MtouchUseLlvm>true</MtouchUseLlvm>
 <MtouchLink>SdkOnly</MtouchLink>
+<CodesignProvision>iOS Team Provisioning Profile: com.yodadev.mcproject</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -78,7 +79,6 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="GoogleService-Info.plist" />
     <Compile Include="FirebaseAuthentication.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +134,7 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
