@@ -4,6 +4,7 @@ using mcproject.Models;
 using mcproject.Services;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Firebase.Auth;
 
 
 [assembly: Xamarin.Forms.Dependency(typeof(FirebaseAuthentication))]
@@ -41,9 +42,29 @@ namespace mcproject.Droid
         public void SignOut()
             => FirebaseAuth.Instance.SignOut();
 
-        User IAuthService.RetrieveUserInfo()
+        public async Task<Models.User> RetrieveUserInfo()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (IsSignedIn())
+                {
+                    var currentUser = Firebase.Auth.Instance;
+                    return new Models.User(currentUser.DisplayName, currentUser.Email);
+
+                }
+                else
+                {
+                    throw new Exception("You are not signed in.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                await Shell.Current
+                    .DisplayAlert("Retrieval of User Info", "An error occured: " + ex.Message, "OK");
+                return null;
+            }
         }
     }
 }

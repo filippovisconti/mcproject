@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Firebase.Auth;
 using mcproject.Services;
+using Xamarin.Forms;
 
 namespace mcproject.iOS
 {
@@ -42,9 +44,29 @@ namespace mcproject.iOS
             Auth.DefaultInstance.SignOut(out _);
         }
 
-        User RetrieveUserInfo()
+        public async Task<Models.User> RetrieveUserInfo()
         {
-            if (IsSignedIn()) ;
+            try
+            {
+                if (IsSignedIn())
+                {
+                    var currentUser = Auth.DefaultInstance.CurrentUser;
+                    return new Models.User(currentUser.DisplayName, currentUser.Email);
+
+                }
+                else
+                {
+                    throw new Exception("You are not signed in.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                await Shell.Current
+                    .DisplayAlert("Retrieval of User Info", "An error occured: " + ex.Message, "OK");
+                return null;
+            }
         }
     }
 }
