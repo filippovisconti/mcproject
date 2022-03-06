@@ -1,5 +1,6 @@
 ﻿using Firebase.Auth;
 using mcproject.Droid;
+using mcproject.Models;
 using mcproject.Services;
 using System;
 using System.Threading.Tasks;
@@ -39,5 +40,10 @@ namespace mcproject.Droid
 
         public void SignOut()
             => FirebaseAuth.Instance.SignOut();
+
+        User IAuthService.RetrieveUserInfo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

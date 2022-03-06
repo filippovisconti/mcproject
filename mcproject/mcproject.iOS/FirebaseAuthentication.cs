@@ -41,5 +41,10 @@ namespace mcproject.iOS
         {
             Auth.DefaultInstance.SignOut(out _);
         }
+
+        User RetrieveUserInfo()
+        {
+            if (IsSignedIn()) ;
+        }
     }
 }
