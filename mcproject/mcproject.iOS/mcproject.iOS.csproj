@@ -51,15 +51,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: filippo.visconti23@gmail.com (4755UABZM9)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
 <DeviceSpecificBuild>false</DeviceSpecificBuild>
 <MtouchSdkVersion>15.2</MtouchSdkVersion>
+<MtouchFloat32>true</MtouchFloat32>
 <CodesignProvision>iOS Team Provisioning Profile: com.yodadev.mcproject</CodesignProvision>
-<MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+<MtouchFastDev>true</MtouchFastDev>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -68,11 +69,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: filippo.visconti23@gmail.com (4755UABZM9)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
 <MtouchUseLlvm>true</MtouchUseLlvm>
 <MtouchLink>SdkOnly</MtouchLink>
-<CodesignProvision>iOS Team Provisioning Profile: com.yodadev.mcproject</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />

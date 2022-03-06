@@ -74,7 +74,7 @@ namespace mcproject.ViewModels
                 var authService = DependencyService.Resolve<IAuthService>();
                 var token = await authService.CreateUser(FirstName + LastName, Email, Password);
 
-                await Xamarin.Forms.Shell.Current.GoToAsync("//HomePage");
+                await Xamarin.Forms.Shell.Current.GoToAsync("//JoinPage");
             }
             catch (Exception ex)
             {
@@ -87,7 +87,7 @@ namespace mcproject.ViewModels
 
         private async void OnBypassLogin() // FIXME to be removed
         {
-            await Xamarin.Forms.Shell.Current.GoToAsync("//HomePage");
+            await Xamarin.Forms.Shell.Current.GoToAsync("//JoinPage");
         }
 
     }
