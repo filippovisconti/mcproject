@@ -73,6 +73,12 @@
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
 
+            <Style TargetType="Picker" x:Key="BasePicker" >
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
+                    Light={StaticResource TextColor}}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+            
             <Style x:Key="BaseEntry" TargetType="Entry">
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
                     Light={StaticResource TextColor}}"></Setter>
