@@ -68,33 +68,52 @@
             </Style>
 
             <Style TargetType="Button" x:Key="SecondaryButton" >
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
-                    Light={StaticResource TextColor}}" />
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                            Dark={StaticResource TextColorDark},
+                            Light={StaticResource TextColor}}" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
 
             <Style TargetType="Picker" x:Key="BasePicker" >
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
-                    Light={StaticResource TextColor}}" />
+                <Setter Property="TitleColor" Value="{AppThemeBinding
+                            Dark={StaticResource TextColorDark},
+                            Light={StaticResource TextColor}}"/>
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                            Dark={StaticResource TextColorDark},
+                            Light={StaticResource TextColor}}" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
-            </Style>
-            
-            <Style x:Key="BaseEntry" TargetType="Entry">
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
-                    Light={StaticResource TextColor}}"></Setter>
 
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource WhiteBackground},
-                    Light={StaticResource DarkBackground}}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="50,90,50,0"/>
+
+            </Style>
+
+            <Style x:Key="BaseEntry" TargetType="Entry">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                            Dark={StaticResource TextColorDark},
+                            Light={StaticResource TextColor}}"/>
+
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                            Dark={StaticResource WhiteBackground},
+                            Light={StaticResource DarkBackground}}"/>
             </Style>
 
             <Style x:Key="BaseLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
-                    Light={StaticResource TextColor}}"></Setter>
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                            Dark={StaticResource TextColorDark},
+                            Light={StaticResource TextColor}}"/>
             </Style>
 
             <Style x:Key="BaseContentPage" TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackground},
-                    Light={StaticResource WhiteBackground }}"></Setter>
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                            Dark={StaticResource DarkBackground},
+                            Light={StaticResource WhiteBackground }}"/>
             </Style>
 
             <Style x:Key="InvalidEntryStyle" TargetType="Entry">

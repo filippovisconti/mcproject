@@ -150,6 +150,9 @@ namespace mcproject.ViewModels
 
         private async void OnBypassLogin() // FIXME to be removed
         {
+            var authService = DependencyService.Resolve<IAuthService>();
+            var token = await authService.SignInAnonymously();
+
             await Shell.Current.GoToAsync("//JoinPage");
         }
 
