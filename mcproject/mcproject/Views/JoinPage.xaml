@@ -11,32 +11,40 @@
     
     <ContentPage.Content>
         <StackLayout>
-            
-            <Picker  ItemsSource="{Binding SportGroups}" Title="Sport" Style="{StaticResource BaseButton}"
-            TitleColor="White"  HorizontalTextAlignment="Center" Margin="50,90,50,0">
-                
-                <Picker.Items>
-                    
-                    <x:String>Beach Volley</x:String>
-                    <x:String>Calcio</x:String>
-                    <x:String>Padel</x:String>
-                    <x:String>Pallavolo</x:String>
-                    <x:String>Tennis</x:String>
-                    <x:String>Non lo so</x:String>
-                </Picker.Items>
-                </Picker>
 
-            <DatePicker HorizontalOptions="FillAndExpand" Style="{StaticResource BaseButton}" MinimumDate="{Binding MinDate}"
+            <Picker  ItemsSource="{Binding AvailableSports}" 
+                     SelectedItem="{Binding SelectedSport}"
+                     Title="Sport" 
+                     TitleColor="White" 
+                     Style="{StaticResource BasePicker}"
+                     HorizontalTextAlignment="Center" Margin="50,90,50,0">
+            </Picker>
+
+            <!--<DatePicker HorizontalOptions="FillAndExpand" Style="{StaticResource BaseButton}" MinimumDate="{Binding MinDate}"
             MaximumDate="{Binding MaxDate}"
             Date="{Binding SelectedDate}" 
-                        Margin="50,90,50,0"/>
-         
-                        
-            <Button Text="Zona" Style="{StaticResource BaseButton}"
-                Command="{Binding MapCommand}"
-                        Margin="50,90,50,0"/>
+                        Margin="50,90,50,0"/>-->
 
-           
+            <Picker  ItemsSource="{Binding Level}" 
+                     SelectedItem="{Binding SelectedLevel}"
+                     Title="Level" 
+                     TitleColor="White" 
+                     Style="{StaticResource BasePicker}"
+                     HorizontalTextAlignment="Center" Margin="50,90,50,0">
+            </Picker>
+
+
+            <Picker  ItemsSource="{Binding City}" 
+                     SelectedItem="{Binding SelectedCity}"
+                     Title="Level" 
+                     TitleColor="White" 
+                     Style="{StaticResource BasePicker}"
+                     HorizontalTextAlignment="Center" Margin="50,90,50,0">
+            </Picker>
+
+            <Button Text="Search" Style="{StaticResource BaseButton}"
+                        Command="{Binding Search}"
+                        Margin="0,10,0,0"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

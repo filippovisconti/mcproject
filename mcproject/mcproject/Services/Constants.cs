@@ -22,6 +22,8 @@ namespace mcproject.Services
             Livello.Add("Principiante");
             Livello.Add("Medio");
             Livello.Add("Avanzato");
+            City.Add("Roma");
+            City.Add("Milano");
         }
     }
 }
