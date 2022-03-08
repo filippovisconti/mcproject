@@ -60,10 +60,10 @@ namespace mcproject.ViewModels
 
 
 
-        /*public ObservableCollection<string> CreateCity
+        public ObservableCollection<string> CreateCity
         {
             get => Services.Constants.City;
-        }*/
+        }
 
 
         private string _SelectedCity;

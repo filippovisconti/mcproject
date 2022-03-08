@@ -42,9 +42,17 @@
                Text="{Binding SelectedTGusername}"
                />
 
+         <Picker Title="City"
+                ItemsSource="{Binding CreateCity}"
+                SelectedItem="{Binding SelectedCity}"
+         >
+        </Picker>
+
+
         <Editor Placeholder = "Enter a note"
                Text="{Binding SelectedNote}"
                Margin="10" />
+
 
         <Button Text="Create the event"
                 IsEnabled="{Binding InfoComplete}"
