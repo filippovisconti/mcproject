@@ -86,8 +86,33 @@ namespace mcproject.ViewModels
     //await Shell.Current.GoToAsync($"{ nameof(ManagePage)}?user ={ user }");
         */
 
+        #region Properties
         private string password;
         private string email;
+
+        public string Password
+        {
+            get => password;
+            set => SetProperty(ref password, value);
+        }
+
+        public string Email
+        {
+            get => email;
+            set => SetProperty(ref email, value);
+        }
+        #endregion
+
+        #region Commands
+
+        public ICommand ForgotPasswordCommand { get; }
+
+        public ICommand SignInCommand { get; }
+
+        public ICommand SignUpCommand { get; }
+
+        public ICommand BypassCommand { get; }
+        #endregion
 
         public LoginViewModel()
         {
@@ -128,30 +153,7 @@ namespace mcproject.ViewModels
             await Shell.Current.GoToAsync("//JoinPage");
         }
 
-        #region Properties
-        public string Password
-        {
-            get => password;
-            set => SetProperty(ref password, value);
-        }
 
-        public string Email
-        {
-            get => email;
-            set => SetProperty(ref email, value);
-        }
-        #endregion
-
-        #region Commands
-
-        public ICommand ForgotPasswordCommand { get; }
-
-        public ICommand SignInCommand { get; }
-
-        public ICommand SignUpCommand { get; }
-
-        public ICommand BypassCommand { get; }
-        #endregion
     }
 }
 

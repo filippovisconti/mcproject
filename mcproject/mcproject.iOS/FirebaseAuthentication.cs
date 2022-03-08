@@ -68,5 +68,13 @@ namespace mcproject.iOS
                 return null;
             }
         }
+
+        public async Task<string> SignInAnonymously()
+        {
+            var authResult = await Auth.DefaultInstance
+                .SignInAnonymouslyAsync();
+
+            return await authResult.User.GetIdTokenAsync();
+        }
     }
 }
