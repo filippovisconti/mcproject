@@ -1,12 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:maps="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials" 
+             xmlns:vm="clr-namespace:mcproject.ViewModels"
              x:Class="mcproject.Views.JoinPage">
+
+    <ContentPage.BindingContext>
+        <vm:JoinViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Join Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            
+            <Picker  ItemsSource="{Binding SportGroups}" Title="Sport" Style="{StaticResource BaseButton}"
+            TitleColor="White"  HorizontalTextAlignment="Center" Margin="50,90,50,0">
+                
+                <Picker.Items>
+                    
+                    <x:String>Beach Volley</x:String>
+                    <x:String>Calcio</x:String>
+                    <x:String>Padel</x:String>
+                    <x:String>Pallavolo</x:String>
+                    <x:String>Tennis</x:String>
+                    <x:String>Non lo so</x:String>
+                </Picker.Items>
+                </Picker>
+
+            <DatePicker HorizontalOptions="FillAndExpand" Style="{StaticResource BaseButton}" MinimumDate="{Binding MinDate}"
+            MaximumDate="{Binding MaxDate}"
+            Date="{Binding SelectedDate}" 
+                        Margin="50,90,50,0"/>
+         
+                        
+            <Button Text="Zona" Style="{StaticResource BaseButton}"
+                Command="{Binding MapCommand}"
+                        Margin="50,90,50,0"/>
+
+           
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
