@@ -1,22 +1,14 @@
 ﻿using System;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using Amazon.CognitoIdentityProvider;
-using Amazon.CognitoIdentityProvider.Model;
-using Amazon.Extensions.CognitoAuthentication;
-using mcproject.Models;
-using mcproject.Services;
-using SQLitePCL;
-using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Windows.Input;
+using mcproject.Services;
 
 namespace mcproject.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public User user;
+        /*
+        public static User user;
         public AsyncCommand LoginCommand { get; }
 
 #pragma warning disable IDE0090 // Use 'new(...)'
@@ -26,7 +18,6 @@ namespace mcproject.ViewModels
             new Uri("com.yodadev.mcproject://");
 #pragma warning restore IDE0090 // Use 'new(...)'
         WebAuthenticatorResult authResult;
-        //private readonly IWebAuthenticator _webAuthenticator;
 
         private string _accessToken;
         public string AccessToken
@@ -42,10 +33,11 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _IDToken, value);
         }
 
-        public LoginViewModel(User PassedUser)
+
+        public LoginViewModel()
         {
             Title = "Login Page";
-            user = PassedUser;
+            user = new User();
             LoginCommand = new AsyncCommand(LoginMethod);
         }
 
@@ -61,33 +53,107 @@ namespace mcproject.ViewModels
                 });
                 AccessToken = authResult?.AccessToken;
                 IDToken = authResult?.IdToken;
-                //GetUserRequest request = new GetUserRequest();
-                //request.AccessToken = AccessToken;
-                //GetUserResponse response = CognitoIdentityProvider;
-                //AuthenticationResultType.
-                //com.yodadev.mcproject://?code=403a919b-eb57-40e0-96f5-e7a49b6e5cba
+
                 var handler = new Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler();
                 var id = handler.ReadJsonWebToken(IDToken);
+
                 user.EmailAddress = id.GetClaim("email").Value.ToString();
                 user.Name = id.GetClaim("name").Value.ToString();
                 user.Nickname = id.GetClaim("nickname").Value.ToString();
                 user.AccessToken = AccessToken;
                 user.IDToken = IDToken;
-                //id.GetClaim("email").Value
-                //System.Diagnostics.Debug.WriteLine();
-                //var idArray = id.Claims.AsEnumerable();
-                //foreach (var i in idArray)
-                //{
-                //    System.Diagnostics.Debug.WriteLine(i);
-                //}
-                ////System.Diagnostics.Debug.WriteLine("AT: " + AccessToken);
-                ////System.Diagnostics.Debug.WriteLine("IDT:" + IDToken);
-                await Shell.Current.GoToAsync("//{nameof(ManagePage)}");
+
+                await Shell.Current.GoToAsync("//ManagePage");
+
+
             }
             catch (TaskCanceledException)
             {
                 AccessToken = "You've cancelled.";
             }
         }
+
+        
+    //System.Diagnostics.Debug.WriteLine();
+    //var idArray = id.Claims.AsEnumerable();
+    //foreach (var i in idArray)
+    //{
+    //    System.Diagnostics.Debug.WriteLine(i);
+    //}
+    ////System.Diagnostics.Debug.WriteLine("AT: " + AccessToken);
+    ////System.Diagnostics.Debug.WriteLine("IDT:" + IDToken);
+    //await Shell.Current.GoToAsync("//ManagePage");
+    //await Shell.Current.GoToAsync($"{ nameof(ManagePage)}?user ={ user }");
+        */
+
+        private string password;
+        private string email;
+
+        public LoginViewModel()
+        {
+            SignUpCommand = new Command(OnSignUp);
+            SignInCommand = new Command(OnSignIn);
+            ForgotPasswordCommand = new Command(OnForgotPassword);
+            BypassCommand = new Command(OnBypassLogin);
+        }
+
+        private async void OnForgotPassword()
+        {
+            await Shell.Current.GoToAsync("TestPage");
+        }
+
+        private async void OnSignIn()
+        {
+            try
+            {
+                var authService = DependencyService.Resolve<IAuthService>();
+                var token = await authService.SignIn(Email, Password);
+
+                await Shell.Current.GoToAsync("//JoinPage");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                await Shell.Current
+                    .DisplayAlert("Sign In", "An error occured: " + ex.Message, "OK");
+            }
+        }
+
+        private async void OnSignUp()
+            => await Shell.Current.GoToAsync("NewUserPage");
+
+        private async void OnBypassLogin() // FIXME to be removed
+        {
+            await Shell.Current.GoToAsync("//JoinPage");
+        }
+
+        #region Properties
+        public string Password
+        {
+            get => password;
+            set => SetProperty(ref password, value);
+        }
+
+        public string Email
+        {
+            get => email;
+            set => SetProperty(ref email, value);
+        }
+        #endregion
+
+        #region Commands
+
+        public ICommand ForgotPasswordCommand { get; }
+
+        public ICommand SignInCommand { get; }
+
+        public ICommand SignUpCommand { get; }
+
+        public ICommand BypassCommand { get; }
+        #endregion
     }
 }
+
+
+

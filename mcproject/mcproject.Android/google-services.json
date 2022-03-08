@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "101396669460",
+    "firebase_url": "https://mcproject-1234-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mcproject-1234",
+    "storage_bucket": "mcproject-1234.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101396669460:android:8f3d240383626380d8f301",
+        "android_client_info": {
+          "package_name": "com.yodadev.mcproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101396669460-2v1k14nos4f0ma2lh0obj28ivmi8jlpk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAksy_LhIYvMq8vts6RnLHuCRqnsCLuCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101396669460-2v1k14nos4f0ma2lh0obj28ivmi8jlpk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

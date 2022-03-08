@@ -7,7 +7,7 @@ using Xamarin.Essentials;
 
 namespace mcproject.Services
 {
-    public static class MockDataStore
+    public static class MockDataStore //: IDataStore<EventoSportivo>
     {
         //static List<Item> items;
         static SQLiteAsyncConnection localDB;

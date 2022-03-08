@@ -2,52 +2,55 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              x:DataType="viewmodels:CreateViewModel"
-             x:Class="mcproject.Views.CreatePage">
+             x:Class="mcproject.Views.CreatePage"
+             Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <viewmodels:CreateViewModel/>
-        </ContentPage.BindingContext>
+    </ContentPage.BindingContext>
 
-  <Grid VerticalOptions="FillAndExpand"
-          Margin="10">
+    <StackLayout>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <Label Text="Crea un evento"
+        <Label Text="Crea un evento AGGIUNGI STATISTICHE"
              />
 
-        <!--ItemDisplayBinding="{Binding ..}"--> 
+        <!--ItemDisplayBinding="{Binding ..}"-->
         <Picker Title="Sport"
-                Grid.Row="0"
                 ItemsSource="{Binding CreateSport}"
                 SelectedItem="{Binding SelectedSport}"
-         >   
+         >
         </Picker>
 
 
-        <DatePicker MinimumDate="01/01/2021"
+        <DatePicker MinimumDate="{x:Static system:DateTime.Today}"
              MaximumDate="12/31/2031"
              Date="{Binding SelectedData}"
              Grid.Row="1"/>
 
 
         <Picker Title="Livello"
-                Grid.Row="2"
-                ItemsSource="{Binding }"
-                SelectedItem="{Binding }"
-         >   
+                ItemsSource="{Binding CreateLevel}"
+                SelectedItem="{Binding SelectedLevel}"
+         >
         </Picker>
 
 
+        <Entry Keyboard="Email"
+               Placeholder="Enter telegram username"
+               Text="{Binding SelectedTGusername}"
+               />
+
+        <Editor Placeholder = "Enter a note"
+               Text="{Binding SelectedNote}"
+               Margin="10" />
+
+        <Button Text="Create the event"
+                IsEnabled="{Binding InfoComplete}"
+                Command="{Binding CreateCommand}"
+                 />
 
 
-  </Grid>
+    </StackLayout>
 </ContentPage>
