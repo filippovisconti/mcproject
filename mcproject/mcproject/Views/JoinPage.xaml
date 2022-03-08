@@ -44,7 +44,7 @@
 
             <Button Text="Search" Style="{StaticResource BaseButton}"
                      Command="{Binding Search}"
-                     Margin="120,100,120,0"/>
+                     Margin="120,70,120,0"/>
 
         </StackLayout>
     </ContentPage.Content>
