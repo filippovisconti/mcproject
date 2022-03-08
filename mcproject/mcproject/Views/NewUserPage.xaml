@@ -4,16 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:vm="clr-namespace:mcproject.ViewModels"
-    x:DataType="vm:LoginViewModel"
-    x:Class="mcproject.Views.LoginPage"
+    x:DataType="vm:NewUserViewModel"
+    x:Class="mcproject.Views.NewUserPage"
     Title="{Binding Title}"
     Shell.NavBarIsVisible="False"
     Style="{StaticResource BaseContentPage}">
 
     <ContentPage.BindingContext>
-        <vm:LoginViewModel />
+        <vm:NewUserViewModel />
     </ContentPage.BindingContext>
-
 
     <Grid xct:SafeAreaEffect.SafeArea="true">
 
@@ -41,8 +40,39 @@
             <StackLayout
                 Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
 
+                <StackLayout>
+                    <Entry Placeholder="First Name" Text="{Binding FirstName}">
+                        <Entry.Behaviors>
+                            <xct:CharactersValidationBehavior
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            CharacterType="Alphanumeric"
+                            MaximumCharacterCount="30"/>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Entry Placeholder="Last Name" Text="{Binding LastName}">
+                        <Entry.Behaviors>
+                            <xct:CharactersValidationBehavior
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            CharacterType="Alphanumeric"
+                            MaximumCharacterCount="30"/>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Entry Placeholder="Telegram Username" Text="{Binding TelegramUsername}">
+                        <Entry.Behaviors>
+                            <xct:CharactersValidationBehavior
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            CharacterType="Alphanumeric"
+                            MaximumCharacterCount="30"/>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                </StackLayout>
+
                 <StackLayout Spacing="3">
-                    <Entry Placeholder="Email" x:Name="UserName" IsEnabled="True" Text="{Binding Email}">
+
+                    <Entry Placeholder="Email" x:Name="UserName" Text="{Binding Email}">
                         <Entry.Behaviors>
                             <xct:EmailValidationBehavior
                                 x:Name="EmailValidator"
@@ -55,7 +85,9 @@
                         FontSize="10"
                         IsVisible="{Binding IsNotValid, Source={x:Reference EmailValidator}}"
                    />
+
                 </StackLayout>
+
 
                 <StackLayout Spacing="3">
 
@@ -75,31 +107,29 @@
                     <Label Text="Invalid password. Choose a password from 8 to 30 characters long."
                         TextColor="Red"
                         FontSize="10"
-                        IsVisible="{Binding IsNotValid, Source={x:Reference PasswordValidator}}"
-                   />
+                        IsVisible="{Binding IsNotValid, Source={x:Reference PasswordValidator}}"/>
+
+
+                    <Entry Placeholder="Repeat Password" IsPassword="True" Text="{Binding RepPassword}">
+                        <Entry.Behaviors>
+                            <xct:RequiredStringValidationBehavior RequiredString="{Binding Password}"
+                            x:Name="SecondPasswordValidator"
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"/>
+                        </Entry.Behaviors>
+
+                    </Entry>
+
+                    <Label Text="Invalid password. Passwords must match."
+                    TextColor="Red"
+                    FontSize="10"
+                    IsVisible="{Binding IsNotValid, Source={x:Reference SecondPasswordValidator}}"/>
+
 
                 </StackLayout>
 
-                <Button Text="Login" Style="{StaticResource BaseButton}"
-                        Command="{Binding SignInCommand}"
-                        IsEnabled="{Binding IsNotValid, Source={x:Reference EmailValidator}}"
-                        Margin="0,10,0,0"/>
-
-                <StackLayout Orientation="Horizontal">
-
-                    <Button Text="Forgot Password"
-                        HorizontalOptions="StartAndExpand"
-                        Command="{Binding ForgotPasswordCommand}"
-                        Style="{StaticResource SecondaryButton}"/>
-
-                    <Button Text="Sign Up"
+                <Button Text="SignUp" Style="{StaticResource BaseButton}"
                         Command="{Binding SignUpCommand}"
-                        Style="{StaticResource SecondaryButton}"/>
-
-                </StackLayout>
-
-                <Button Text="Bypass Login" Style="{StaticResource BaseButton}"
-                        Command="{Binding BypassCommand}"
+                        IsEnabled="{Binding IsNotValid, Source={x:Reference EmailValidator}}"
                         Margin="0,10,0,0"/>
 
             </StackLayout>
@@ -107,6 +137,4 @@
         </ScrollView>
 
     </Grid>
-
-
 </ContentPage>
