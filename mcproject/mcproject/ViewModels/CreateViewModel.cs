@@ -60,6 +60,20 @@ namespace mcproject.ViewModels
 
 
 
+        /*public ObservableCollection<string> CreateCity
+        {
+            get => Services.Constants.City;
+        }*/
+
+
+        private string _SelectedCity;
+        public string SelectedCity
+        {
+            get => _SelectedCity;
+            set => SetProperty(ref _SelectedCity, value);
+        }
+
+
         private string _SelectedNote;
         public string SelectedNote
         {
@@ -80,6 +94,7 @@ namespace mcproject.ViewModels
             CreateEvento.DateAndTime = SelectedData;
             CreateEvento.Level = SelectedLevel;
             CreateEvento.TGUsername = SelectedTGusername;
+            CreateEvento.City = SelectedCity;
             CreateEvento.Notes = SelectedNote;
             return CreateEvento;
 

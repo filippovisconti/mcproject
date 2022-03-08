@@ -10,10 +10,14 @@ namespace mcproject.Services
 
         static Constants()
         {
+            Sport.Add("Calcio");
             Sport.Add("Calcetto");
+            Sport.Add("Calciotto");
             Sport.Add("Pallavolo");
             Sport.Add("Beach volley");
             Sport.Add("Golf");
+            Sport.Add("Tennis");
+            Sport.Add("Padel");
             Livello.Add("Principiante");
             Livello.Add("Medio");
             Livello.Add("Avanzato");

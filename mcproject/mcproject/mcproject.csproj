@@ -30,6 +30,7 @@
     <PackageReference Include="Amazon.Extensions.CognitoAuthentication" Version="2.2.2" />
     <PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="3.7.1.104" />
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.16.0" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2337" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Newtonsoft.Json" />
@@ -50,6 +51,7 @@
     <None Remove="Firebase.Auth" />
     <None Remove="FirebaseAuthentication.net" />
     <None Remove="FirebaseDatabase.net" />
+    <None Remove="Xamarin.Forms.Maps" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\CreatePage.xaml">
