@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace mcproject.Services
 {
@@ -14,6 +13,6 @@ namespace mcproject.Services
         Task<string> SignIn(string email, string password);
         void SignOut();
 
-
+        Task<Models.User> RetrieveUserInfo();
     }
 }

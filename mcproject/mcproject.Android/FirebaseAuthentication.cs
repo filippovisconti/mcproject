@@ -1,5 +1,5 @@
-﻿using Firebase.Auth;
-using mcproject.Droid;
+﻿using mcproject.Droid;
+using mcproject.Models;
 using mcproject.Services;
 using System;
 using System.Threading.Tasks;
@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 [assembly: Xamarin.Forms.Dependency(typeof(FirebaseAuthentication))]
 namespace mcproject.Droid
 {
-    public class FirebaseAuthentication : IAuthService
+    public class FirebaseAuthentication //: IAuthService
     {
+        /*
         public async Task<bool> CreateUser(string username, string email, string password)
         {
             var authResult = await FirebaseAuth.Instance
@@ -39,5 +40,30 @@ namespace mcproject.Droid
 
         public void SignOut()
             => FirebaseAuth.Instance.SignOut();
+
+        public async Task<Models.User> RetrieveUserInfo()
+        {
+            try
+            {
+                if (IsSignedIn())
+                {
+                    var currentUser = Firebase.Auth.Instance;
+                    return new Models.User(currentUser.DisplayName, currentUser.Email);
+
+                }
+                else
+                {
+                    throw new Exception("You are not signed in.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                await Shell.Current
+                    .DisplayAlert("Retrieval of User Info", "An error occured: " + ex.Message, "OK");
+                return null;
+            }
+        }*/
     }
 }

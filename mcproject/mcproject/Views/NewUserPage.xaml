@@ -40,26 +40,39 @@
             <StackLayout
                 Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
 
-                <Entry Placeholder="Full Name" >
-                    <Entry.Behaviors>
-                        <xct:CharactersValidationBehavior
+                <StackLayout>
+                    <Entry Placeholder="First Name" Text="{Binding FirstName}">
+                        <Entry.Behaviors>
+                            <xct:CharactersValidationBehavior
                             InvalidStyle="{StaticResource InvalidEntryStyle}"
                             CharacterType="Alphanumeric"
                             MaximumCharacterCount="30"/>
-                    </Entry.Behaviors>
-                </Entry>
+                        </Entry.Behaviors>
+                    </Entry>
 
-                <Entry Placeholder="@Telegram Username" Text="{Binding TelegramUsername}">
-                    <Entry.Behaviors>
-                        <xct:CharactersValidationBehavior
+                    <Entry Placeholder="Last Name" Text="{Binding LastName}">
+                        <Entry.Behaviors>
+                            <xct:CharactersValidationBehavior
                             InvalidStyle="{StaticResource InvalidEntryStyle}"
                             CharacterType="Alphanumeric"
                             MaximumCharacterCount="30"/>
-                    </Entry.Behaviors>
-                </Entry>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Entry Placeholder="Telegram Username" Text="{Binding TelegramUsername}">
+                        <Entry.Behaviors>
+                            <xct:CharactersValidationBehavior
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            CharacterType="Alphanumeric"
+                            MaximumCharacterCount="30"/>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                </StackLayout>
 
                 <StackLayout Spacing="3">
-                    <Entry Placeholder="Email" x:Name="UserName" IsEnabled="True" >
+
+                    <Entry Placeholder="Email" x:Name="UserName" Text="{Binding Email}">
                         <Entry.Behaviors>
                             <xct:EmailValidationBehavior
                                 x:Name="EmailValidator"
@@ -72,6 +85,7 @@
                         FontSize="10"
                         IsVisible="{Binding IsNotValid, Source={x:Reference EmailValidator}}"
                    />
+
                 </StackLayout>
 
 

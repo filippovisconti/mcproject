@@ -24,6 +24,8 @@ namespace mcproject.ViewModels
         private string repPassword;
         private string email;
         private string telegramUsername;
+        private string firstName;
+        private string lastName;
 
         #region Properties
         public string Password
@@ -34,7 +36,7 @@ namespace mcproject.ViewModels
 
         public string RepPassword
         {
-            get => password;
+            get => repPassword;
             set => SetProperty(ref repPassword, value);
         }
 
@@ -46,8 +48,20 @@ namespace mcproject.ViewModels
 
         public string TelegramUsername
         {
-            get => email;
+            get => telegramUsername;
             set => SetProperty(ref telegramUsername, value);
+        }
+
+        public string FirstName
+        {
+            get => firstName;
+            set => SetProperty(ref firstName, value);
+        }
+
+        public string LastName
+        {
+            get => lastName;
+            set => SetProperty(ref lastName, value);
         }
         #endregion
 
@@ -58,22 +72,22 @@ namespace mcproject.ViewModels
                 if (Password != RepPassword) throw new Exception("Different Passwords");
 
                 var authService = DependencyService.Resolve<IAuthService>();
-                var token = await authService.CreateUser(TelegramUsername, Email, Password);
+                var token = await authService.CreateUser(FirstName + LastName, Email, Password);
 
-                await Xamarin.Forms.Shell.Current.GoToAsync("//HomePage");
+                await Xamarin.Forms.Shell.Current.GoToAsync("//JoinPage");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
 
                 await Shell.Current
-                    .DisplayAlert("SignIn", "An error occurs", "OK");
+                    .DisplayAlert("Sign-up error", "An error occured: " + ex.Message, "OK");
             }
         }
 
         private async void OnBypassLogin() // FIXME to be removed
         {
-            await Xamarin.Forms.Shell.Current.GoToAsync("//HomePage");
+            await Xamarin.Forms.Shell.Current.GoToAsync("//JoinPage");
         }
 
     }
