@@ -142,6 +142,9 @@
     <PackageReference Include="Xamarin.Firebase.Installations">
       <Version>117.0.0.3</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Forms.Maps">
+      <Version>5.0.0.2337</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

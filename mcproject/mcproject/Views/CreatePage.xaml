@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:DataType="viewmodels:CreateViewModel"
              x:Class="mcproject.Views.CreatePage"
              Title="{Binding Title}">
@@ -42,14 +42,24 @@
                Text="{Binding SelectedTGusername}"
                />
 
+         <Picker Title="City"
+                ItemsSource="{Binding CreateCity}"
+                SelectedItem="{Binding SelectedCity}"
+         >
+        </Picker>
+
+
         <Editor Placeholder = "Enter a note"
                Text="{Binding SelectedNote}"
                Margin="10" />
+
 
         <Button Text="Create the event"
                 IsEnabled="{Binding InfoComplete}"
                 Command="{Binding CreateCommand}"
                  />
+
+        <maps:Map IsShowingUser="True"/>
 
 
     </StackLayout>

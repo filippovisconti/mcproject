@@ -24,10 +24,13 @@ namespace mcproject.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
+            Xamarin.FormsMaps.Init(); // MAP :)
+
             Firebase.Core.App.Configure();
 
             DependencyService.Register<IAuthService, FirebaseAuthentication>();
             Analytics.SetAnalyticsCollectionEnabled(true); // FIXME
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

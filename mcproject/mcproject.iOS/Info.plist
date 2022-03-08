@@ -47,5 +47,9 @@
 			<string>Editor</string>
 		</dict>
 	</array>
+	<key>Privacy - NSLocationWhenInUse</key>
+	<string>Permission required to show a map</string>
+	<key>Privacy - NSLocationTrackaAlways</key>
+	<string>Permission required to show a map</string>
 </dict>
 </plist>
