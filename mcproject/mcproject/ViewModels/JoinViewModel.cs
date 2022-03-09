@@ -1,23 +1,19 @@
-﻿using MvvmHelpers;
-using System;
-using System.Collections.Generic;
+﻿using Xamarin.Forms;
 using System.Collections.ObjectModel;
-using System.Text;
-using Xamarin.Forms;
-
+using System.Windows.Input;
 
 namespace mcproject.ViewModels
 {
     public class JoinViewModel : ViewModelBase
     {
-        public Command Search;
-        public ObservableRangeCollection<string> AvailableSports
+        public ICommand Search;
+        public Collection<string> AvailableSports
         {
 
-            get => (ObservableRangeCollection<string>)Services.Constants.Sport;
+            get => Services.Constants.Sport;
         }
         //public ObservableRangeCollection<Grouping<string, Sport>> SportGroups { get; }
-        
+
         public JoinViewModel()
         {
             Search = new Command(OnSearch);

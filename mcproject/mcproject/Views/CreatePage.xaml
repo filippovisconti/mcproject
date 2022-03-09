@@ -12,52 +12,58 @@
     </ContentPage.BindingContext>
 
     <StackLayout>
+        <!--
+        <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center" VerticalOptions="Center">
 
-        <Label Text="Crea un evento AGGIUNGI STATISTICHE"
-             />
+            <Label Text="Create a new Event!" Style="{StaticResource BaseLabel}" FontSize="Title"
+                       Margin="0,50,0,0"/>
 
-        <!--ItemDisplayBinding="{Binding ..}"-->
+        </StackLayout>
+
+
+        ItemDisplayBinding="{Binding ..}"-->
         <Picker Title="Sport"
                 ItemsSource="{Binding CreateSport}"
                 SelectedItem="{Binding SelectedSport}"
-         >
-        </Picker>
+                Style="{StaticResource BasePicker}"/>
 
 
-        <DatePicker MinimumDate="{x:Static system:DateTime.Today}"
-             MaximumDate="12/31/2031"
-             Date="{Binding SelectedData}"
-             Grid.Row="1"/>
+
+        <DatePicker 
+                    Date="{Binding SelectedData}"
+                    Style="{StaticResource BaseDatePicker}"/>
 
 
         <Picker Title="Livello"
                 ItemsSource="{Binding CreateLevel}"
                 SelectedItem="{Binding SelectedLevel}"
-         >
-        </Picker>
+                Style="{StaticResource BasePicker}"/>
+
 
 
         <Entry Keyboard="Email"
                Placeholder="Enter telegram username"
                Text="{Binding SelectedTGusername}"
-               />
+               Style="{StaticResource BaseEntry}"/>
 
-         <Picker Title="City"
+        <Picker Title="City"
                 ItemsSource="{Binding CreateCity}"
                 SelectedItem="{Binding SelectedCity}"
-         >
-        </Picker>
+                Style="{StaticResource BasePicker}"/>
+
 
 
         <Editor Placeholder = "Enter a note"
-               Text="{Binding SelectedNote}"
-               Margin="10" />
+                Text="{Binding SelectedNote}"
+                Margin="50" />
 
 
         <Button Text="Create the event"
                 IsEnabled="{Binding InfoComplete}"
                 Command="{Binding CreateCommand}"
-                 />
+                Style="{StaticResource BaseButton}"/>
 
         <maps:Map IsShowingUser="True"/>
 

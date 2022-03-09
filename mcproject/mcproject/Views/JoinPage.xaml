@@ -3,22 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:maps="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials" 
              xmlns:vm="clr-namespace:mcproject.ViewModels"
-             x:Class="mcproject.Views.JoinPage">
+             x:Class="mcproject.Views.JoinPage"
+             Title="Join in">
 
     <ContentPage.BindingContext>
         <vm:JoinViewModel/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <StackLayout>
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center" VerticalOptions="Center">
+
+                <Label Text="Look for an event!" Style="{StaticResource BaseLabel}" FontSize="Title"
+                       Margin="0,50,0,0"/>
+
+            </StackLayout>
 
             <Picker  ItemsSource="{Binding AvailableSports}" 
                      SelectedItem="{Binding SelectedSport}"
                      Title="Sport" 
-                     TitleColor="White" 
-                     Style="{StaticResource BasePicker}"
-                     HorizontalTextAlignment="Center" Margin="50,90,50,0">
-            </Picker>
+                     Style="{StaticResource BasePicker}"/>
 
             <!--<DatePicker HorizontalOptions="FillAndExpand" Style="{StaticResource BaseButton}" MinimumDate="{Binding MinDate}"
             MaximumDate="{Binding MaxDate}"
@@ -27,24 +33,19 @@
 
             <Picker  ItemsSource="{Binding Level}" 
                      SelectedItem="{Binding SelectedLevel}"
-                     Title="Level" 
-                     TitleColor="White" 
-                     Style="{StaticResource BasePicker}"
-                     HorizontalTextAlignment="Center" Margin="50,90,50,0">
-            </Picker>
+                     Title="Level"
+                     Style="{StaticResource BasePicker}"/>
 
 
             <Picker  ItemsSource="{Binding City}" 
                      SelectedItem="{Binding SelectedCity}"
                      Title="Level" 
-                     TitleColor="White" 
-                     Style="{StaticResource BasePicker}"
-                     HorizontalTextAlignment="Center" Margin="50,90,50,0">
-            </Picker>
+                     Style="{StaticResource BasePicker}"/>
 
             <Button Text="Search" Style="{StaticResource BaseButton}"
-                        Command="{Binding Search}"
-                        Margin="0,10,0,0"/>
+                     Command="{Binding Search}"
+                     Margin="120,70,120,0"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
