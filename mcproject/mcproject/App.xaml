@@ -91,7 +91,6 @@
             </Style>
 
             <Style TargetType="DatePicker" x:Key="BaseDatePicker" >
-                <Setter Property="MinimumDate" Value="{x:Static system:DateTime.Today}"/>
                 <Setter Property="MaximumDate" Value="12/31/2025"/>
                 <Setter Property="TextColor"
                         Value="{AppThemeBinding
