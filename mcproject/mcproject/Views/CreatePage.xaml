@@ -31,8 +31,8 @@
 
 
 
-        <DatePicker 
-                    Date="{Binding SelectedData}"
+        <DatePicker Date="{Binding SelectedData}"
+                    MinimumDate="{x:Static system:DateTime.Today}"
                     Style="{StaticResource BaseDatePicker}"/>
 
 
@@ -65,7 +65,7 @@
                 Command="{Binding CreateCommand}"
                 Style="{StaticResource BaseButton}"/>
 
-        <maps:Map IsShowingUser="True"/>
+        <maps:Map  IsShowingUser="True"/>
 
 
     </StackLayout>
