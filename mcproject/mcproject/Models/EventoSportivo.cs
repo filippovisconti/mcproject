@@ -6,12 +6,7 @@ namespace mcproject.Models
 {
     public class EventoSportivo
     {
-        public EventoSportivo()
-        {
-           
-        }
 
-        [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public string Owner { get; set; }
         public string Sport { get; set; }
@@ -21,5 +16,25 @@ namespace mcproject.Models
         public string Notes { get; set; }
         public string TGUsername { get; set; }
         public Image Icon { get; set; }
+
+        public override bool Equals(Object obj)
+        {
+            //Check for null and compare run-time types.
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                EventoSportivo p = (EventoSportivo)obj;
+                return (this.ID == p.ID);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
+
 }

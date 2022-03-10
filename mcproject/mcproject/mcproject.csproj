@@ -31,6 +31,7 @@
     <PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="3.7.1.104" />
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.16.0" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2337" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.0.7" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Newtonsoft.Json" />

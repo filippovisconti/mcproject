@@ -145,6 +145,9 @@
     <PackageReference Include="Xamarin.Forms.Maps">
       <Version>5.0.0.2337</Version>
     </PackageReference>
+    <PackageReference Include="FirebaseDatabase.net">
+      <Version>4.0.7</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
