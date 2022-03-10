@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Firebase.Database;
-using Firebase.Database.Offline;
 using Firebase.Database.Query;
 using mcproject.Models;
 
@@ -15,12 +13,8 @@ namespace mcproject.Services
 
     {
         FirebaseClient client = null;
-        string EventList = "EventList";
-        string UserInfoList = "UserInfoList";
-
-        public FirebaseDB()
-        {
-        }
+        readonly string EventList = "EventList";
+        readonly string UserInfoList = "UserInfoList";
 
 
         public void Init()
@@ -33,30 +27,29 @@ namespace mcproject.Services
             client.Dispose();
         }
 
-        public async Task<bool> AddItemAsync(EventoSportivo item)
+        public async Task AddItemAsync(EventoSportivo item)
         {
             if (client == null) Init();
 
-            var res = await client
+            await client
                 .Child(EventList)
                 .PostAsync(item);
 
-            return res != null;
         }
 
-        public Task<bool> DeleteItemAsync(string id)
+        public Task DeleteItemAsync(string id)
         {
             throw new NotImplementedException();
         }
 
         public EventoSportivo GetItem(string id)
         {
-            return GetItems().
-                FirstOrDefault<EventoSportivo>(a => a.ID.Equals(id));
+            return GetAllItems().
+                FirstOrDefault(a => a.ID.Equals(id));
 
         }
 
-        public ObservableCollection<EventoSportivo> GetItems()
+        public ObservableCollection<EventoSportivo> GetAllItems()
         {
             if (client == null) Init();
 
@@ -66,19 +59,43 @@ namespace mcproject.Services
                 .AsObservableCollection();
         }
 
-        public async Task<bool> UpdateItemAsync(EventoSportivo item)
+        public async Task UpdateItemAsync(EventoSportivo item)
         {
-            throw new NotImplementedException();
+            if (client == null) Init();
+
+            var res = (await client
+                .Child(UserInfoList)
+                .OnceAsync<EventoSportivo>())
+                .FirstOrDefault(a => a.Object.ID == item.ID);
+
+            await client
+                .Child(EventList)
+                .Child(res.Key)
+                .PutAsync(res.Object);
         }
 
-        public async Task<bool> AddUserInfoAsync(User item)
+        public async Task AddUserInfoAsync(User item)
         {
-            throw new NotImplementedException();
+            if (client == null) Init();
+
+            await client
+                .Child(UserInfoList)
+                .PostAsync(item);
         }
 
-        public async Task<bool> UpdateUserInfoAsync(User item)
+        public async Task UpdateUserInfoAsync(User item)
         {
-            throw new NotImplementedException();
+            if (client == null) Init();
+
+            var res = (await client
+                .Child(UserInfoList)
+                .OnceAsync<User>())
+                .FirstOrDefault(a => a.Object.EmailAddress == item.EmailAddress);
+
+            await client
+                .Child(UserInfoList)
+                .Child(res.Key)
+                .PutAsync(res.Object);
         }
 
         public async Task DeleteUserInfoAsync(string email)
@@ -96,20 +113,17 @@ namespace mcproject.Services
                 .DeleteAsync();
         }
 
-        public User GetUserInfo(string email)
+        public async Task<User> GetUserInfo(string email)
         {
             if (client == null) Init();
 
-            var res = client
+            var res = (await client
                 .Child(UserInfoList)
-                .AsObservable<User>()
-                .AsObservableCollection();
+                .OnceAsync<User>())
+                .FirstOrDefault(a => a.Object.EmailAddress == email);
 
-            foreach (User user in res)
-                if (user.EmailAddress.Equals(email)) return user;
-            return null;
+            return res.Object;
+
         }
-
-
     }
 }

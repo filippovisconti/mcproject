@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace mcproject.Services
@@ -8,17 +9,18 @@ namespace mcproject.Services
     {
         void Init();
         void Close();
-        Task<bool> AddItemAsync(T item);
-        Task<bool> UpdateItemAsync(T item);
-        Task<bool> DeleteItemAsync(string id);
 
-        Task<bool> AddUserInfoAsync(W item);
-        Task<bool> UpdateUserInfoAsync(W item);
-        Task<bool> DeleteUserInfoAsync(string uid);
+        Task AddItemAsync(T item);
+        Task UpdateItemAsync(T item);
+        Task DeleteItemAsync(string id);
+
+        Task AddUserInfoAsync(W item);
+        Task UpdateUserInfoAsync(W item);
+        Task DeleteUserInfoAsync(string uid);
 
         T GetItem(string id);
-        IEnumerable<T> GetItems();
+        ObservableCollection<T> GetAllItems();
 
-        W GetUserInfo(string id);
+        Task<W> GetUserInfo(string id);
     }
 }
