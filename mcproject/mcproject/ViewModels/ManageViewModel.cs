@@ -1,7 +1,7 @@
-﻿using mcproject.Models;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Web;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace mcproject.ViewModels
@@ -18,10 +18,16 @@ namespace mcproject.ViewModels
 
         public ManageViewModel()
         {
-
+            GoToEvents = new AsyncCommand(OnGoToEvents);
 
 
         }
+
+        private async Task OnGoToEvents()
+        {
+            await Shell.Current.GoToAsync("EventsManagePage");
+        }
+
         public Collection<string> City
         {
             get => Services.Constants.City;
@@ -34,7 +40,7 @@ namespace mcproject.ViewModels
             get => _SelectedCity;
             set => SetProperty(ref _SelectedCity, value);
         }
-
+        public ICommand GoToEvents { get; }
     }
 
 }

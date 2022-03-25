@@ -16,6 +16,7 @@ namespace mcproject
             Routing.RegisterRoute(nameof(ManagePage), typeof(ManagePage));
             Routing.RegisterRoute(nameof(NewUserPage), typeof(NewUserPage));
             Routing.RegisterRoute(nameof(TestPage), typeof(TestPage));  // FIXME to be removed once completed
+            Routing.RegisterRoute(nameof(EventsManagePage), typeof(EventsManagePage));
 
         }
 
