@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using mcproject.Models;
+using mcproject.Services;
 using MvvmHelpers.Commands;
 using Xamarin.Forms;
 
@@ -9,19 +10,60 @@ namespace mcproject.ViewModels
 {
     public class CreateViewModel : ViewModelBase
     {
-
-        public AsyncCommand CreateCommand { get; }
         public CreateViewModel()
         {
             Title = "Create a new event";
             CreateCommand = new AsyncCommand(CreateMethod);
+            TestCreateSportCommand = new AsyncCommand(TestCreateSports);
+            PopulateLists();
         }
 
-        public ObservableCollection<string> CreateSport
+        #region DBStuff
+
+        FirebaseDB client;
+        private void PopulateLists()
+        {
+            client = new FirebaseDB();
+            CreateLevel = client.GetAvailableLevelsList();
+            CreateSport = client.GetAvailableSportsList();
+        }
+        #endregion
+
+        #region Commands
+
+        public AsyncCommand CreateCommand { get; }
+
+        private async Task CreateMethod()
         {
 
-            get => Services.Constants.Sport;
+            await Shell.Current.GoToAsync("TestPage");
         }
+
+        public AsyncCommand TestCreateSportCommand { get; }
+
+        private async Task TestCreateSports()
+        {
+
+            await client.AddSportAsync("Pallavolo");
+            await client.AddSportAsync("Padel");
+            await client.AddSportAsync("Calcetto");
+            await client.AddSportAsync("Bocce");
+            await client.AddSportAsync("Lancio di Coriandoli");
+            await client.AddSportAsync("Soffio di minestrine");
+            await client.AddSportAsync("Suonare i citofoni");
+
+            await client.AddLevelAsync("Principiante");
+            await client.AddLevelAsync("Dilettante");
+            await client.AddLevelAsync("Avanzato");
+            await client.AddLevelAsync("Esperto");
+
+
+        }
+        #endregion
+
+        #region EventProperties
+
+        public ObservableCollection<string> CreateSport { get; set; }
 
         private string _SelectedSport;
         public string SelectedSport
@@ -37,10 +79,7 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedData, value);
         }
 
-        public ObservableCollection<string> CreateLevel
-        {
-            get => Services.Constants.Livello;
-        }
+        public ObservableCollection<string> CreateLevel { get; set; }
 
 
         private string _SelectedLevel;
@@ -57,8 +96,6 @@ namespace mcproject.ViewModels
             get => _SelectedTGusername;
             set => SetProperty(ref _SelectedTGusername, value);
         }
-
-
 
         public ObservableCollection<string> CreateCity
         {
@@ -81,35 +118,40 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedNote, value);
         }
 
-
-
-        public EventoSportivo Create()
+        public bool InfoComplete()
         {
-#pragma warning disable IDE0017 // Simplify object initialization
-#pragma warning disable IDE0090 // Use 'new(...)'
-            EventoSportivo CreateEvento = new EventoSportivo();
-#pragma warning restore IDE0090 // Use 'new(...)'
-#pragma warning restore IDE0017 // Simplify object initialization
-            CreateEvento.Sport = SelectedSport;
-            CreateEvento.DateAndTime = SelectedData;
-            CreateEvento.Level = SelectedLevel;
-            CreateEvento.TGUsername = SelectedTGusername;
-            CreateEvento.City = SelectedCity;
-            CreateEvento.Notes = SelectedNote;
+            return SelectedSport != null &&
+                   SelectedLevel != null &&
+                   SelectedCity != null &&
+                   SelectedNote != null &&
+                   SelectedTGusername != null;
+        }
+
+        #endregion
+
+        public EventoSportivo CreateEventFromProperties()
+        {
+            EventoSportivo CreateEvento;
+            if (InfoComplete()) throw new ArgumentNullException();
+            else
+
+                CreateEvento = new()
+                {
+                    Sport = SelectedSport,
+                    DateAndTime = SelectedData,
+                    Level = SelectedLevel,
+                    TGUsername = SelectedTGusername,
+                    City = SelectedCity,
+                    Notes = SelectedNote
+                };
+
             return CreateEvento;
 
         }
 
-        public bool InfoComplete => (
-               SelectedSport != null &&
-               SelectedLevel != null &&
-               SelectedTGusername != null);
 
 
-        private async Task CreateMethod()
-        {
-            await Shell.Current.GoToAsync("TestPage");
-        }
+
 
     }
 

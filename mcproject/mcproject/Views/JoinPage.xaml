@@ -4,7 +4,7 @@
              xmlns:maps="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials" 
              xmlns:vm="clr-namespace:mcproject.ViewModels"
              x:Class="mcproject.Views.JoinPage"
-             Title="Join in">
+             >
 
     <ContentPage.BindingContext>
         <vm:JoinViewModel/>

@@ -14,6 +14,8 @@ namespace mcproject.Services
     {
         FirebaseClient client = null;
         readonly string EventList = "EventList";
+        readonly string SportsList = "SportsList";
+        readonly string LevelsList = "LevelsList";
         readonly string UserInfoList = "UserInfoList";
 
 
@@ -47,6 +49,11 @@ namespace mcproject.Services
             return GetAllItems().
                 FirstOrDefault(a => a.ID.Equals(id));
 
+        }
+
+        internal Task AddItemAsync(string v)
+        {
+            throw new NotImplementedException();
         }
 
         public ObservableCollection<EventoSportivo> GetAllItems()
@@ -123,6 +130,46 @@ namespace mcproject.Services
                 .FirstOrDefault(a => a.Object.EmailAddress == email);
 
             return res.Object;
+
+        }
+
+        public ObservableCollection<string> GetAvailableSportsList()
+        {
+            if (client == null) Init();
+
+            return client
+                .Child(SportsList)
+                .AsObservable<string>()
+                .AsObservableCollection();
+        }
+
+        public ObservableCollection<string> GetAvailableLevelsList()
+        {
+            if (client == null) Init();
+
+            return client
+                .Child(LevelsList)
+                .AsObservable<string>()
+                .AsObservableCollection();
+        }
+
+        public async Task AddSportAsync(string item)
+        {
+            if (client == null) Init();
+
+            await client
+                .Child(SportsList)
+                .PostAsync(item);
+
+        }
+
+        public async Task AddLevelAsync(string item)
+        {
+            if (client == null) Init();
+
+            await client
+                .Child(LevelsList)
+                .PostAsync(item);
 
         }
     }

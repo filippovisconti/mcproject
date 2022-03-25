@@ -15,7 +15,7 @@ namespace mcproject.ViewModels
         public ManageViewModel()
         {
 
-
+            Title = "Manage your events";
 
         }
 

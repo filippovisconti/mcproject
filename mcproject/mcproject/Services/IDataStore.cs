@@ -22,5 +22,8 @@ namespace mcproject.Services
         ObservableCollection<T> GetAllItems();
 
         Task<W> GetUserInfo(string id);
+
+        ObservableCollection<string> GetAvailableSportsList();
+        ObservableCollection<string> GetAvailableLevelsList();
     }
 }

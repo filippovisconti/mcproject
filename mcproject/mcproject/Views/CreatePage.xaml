@@ -65,6 +65,10 @@
                 Command="{Binding CreateCommand}"
                 Style="{StaticResource BaseButton}"/>
 
+        <Button Text="TEST CREATE SPORTS"
+                Command="{Binding TestCreateSports}"
+                Style="{StaticResource BaseButton}"/>
+
         <maps:Map  IsShowingUser="True"/>
 
 

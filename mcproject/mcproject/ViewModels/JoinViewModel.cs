@@ -16,6 +16,7 @@ namespace mcproject.ViewModels
 
         public JoinViewModel()
         {
+            Title = "Join in";
             Search = new Command(OnSearch);
         }
 
