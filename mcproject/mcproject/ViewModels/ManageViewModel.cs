@@ -8,9 +8,13 @@ namespace mcproject.ViewModels
 {
 
     public class ManageViewModel : ViewModelBase
-
-
     {
+
+        public Collection<string> AvailableSports
+        {
+
+            get => Services.Constants.Sport;
+        }
 
         public ManageViewModel()
         {

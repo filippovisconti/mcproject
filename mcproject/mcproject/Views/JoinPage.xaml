@@ -39,7 +39,7 @@
 
             <Picker  ItemsSource="{Binding City}" 
                      SelectedItem="{Binding SelectedCity}"
-                     Title="Level" 
+                     Title="City" 
                      Style="{StaticResource BasePicker}"/>
 
             <Button Text="Search" Style="{StaticResource BaseButton}"

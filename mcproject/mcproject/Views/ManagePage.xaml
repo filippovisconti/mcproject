@@ -11,14 +11,54 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Manage Page"
-                VerticalOptions="CenterAndExpand" 
+            <Label Text="Your Events:"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Picker Title="City"
-                ItemsSource="{Binding CreateCity}"
-                SelectedItem="{Binding SelectedCity}"
-                Style="{StaticResource BasePicker}"/>
+            <Picker  ItemsSource="{Binding City}" 
+                     SelectedItem="{Binding SelectedCity}"
+                     Title="City" 
+                     Style="{StaticResource BasePicker}"/>
+
+            <CarouselView ItemsSource="{Binding City}"
+                          PeekAreaInsets="100">
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"
+                           ItemSpacing="0" />
+            </CarouselView.ItemsLayout>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame HasShadow="True"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       Margin="20"
+                       HeightRequest="300"
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                                <StackLayout>
+                                    <Label Text="data evento {Binding Name}"
+                               FontAttributes="Bold"
+                               FontSize="Large"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                                 <!--   <Image Source="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.today.it%2Fbest%2Fsport-fitness%2Fabbigliamento-pallavolo.html&psig=AOvVaw3FHOg4uwN-rWvZ5Rphq_h1&ust=1648286836038000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLiYxY354PYCFQAAAAAdAAAAABAD"
+                               Aspect="AspectFill"
+                               HeightRequest="150"
+                               WidthRequest="150"
+                               HorizontalOptions="Center" /> -->
+                                    <Label Text="descrizione {Binding Location}"
+                               HorizontalOptions="Center" />
+                                    <Label Text="d{Binding Details}"
+                               FontAttributes="Italic"
+                               HorizontalOptions="Center"
+                               MaxLines="5"
+                               LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
