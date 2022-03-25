@@ -35,7 +35,6 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedCity, value);
         }
 
-
     }
 
 }

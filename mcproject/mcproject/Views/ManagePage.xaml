@@ -2,9 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:vm="clr-namespace:mcproject.ViewModels"
-            
-             x:Class="mcproject.Views.ManagePage"
-             Title="Your events:">
+             x:DataType="vm:ManageViewModel"
+             x:Class="mcproject.Views.ManagePage">
 
     <ContentPage.BindingContext>
         <vm:ManageViewModel/>

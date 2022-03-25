@@ -1,15 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace mcproject.Services
 {
-    public interface IDataStore<T>
+    public interface IDataStore<T, W>
     {
-        Task<bool> AddItemAsync(T item);
-        Task<bool> UpdateItemAsync(T item);
-        Task<bool> DeleteItemAsync(string id);
-        Task<T> GetItemAsync(string id);
-        Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
+        void Init();
+        void Close();
+
+        Task AddItemAsync(T item);
+        Task UpdateItemAsync(T item);
+        Task DeleteItemAsync(string id);
+
+        Task AddUserInfoAsync(W item);
+        Task UpdateUserInfoAsync(W item);
+        Task DeleteUserInfoAsync(string uid);
+
+        T GetItem(string id);
+        ObservableCollection<T> GetAllItems();
+
+        Task<W> GetUserInfo(string id);
     }
 }
