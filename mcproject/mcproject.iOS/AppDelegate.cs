@@ -24,8 +24,6 @@ namespace mcproject.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
-            Xamarin.FormsMaps.Init(); // MAP :)
-
             Firebase.Core.App.Configure();
 
             DependencyService.Register<IAuthService, FirebaseAuthentication>();

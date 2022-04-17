@@ -65,8 +65,5 @@
                 Command="{Binding CreateCommand}"
                 Style="{StaticResource BaseButton}"/>
 
-        <maps:Map  IsShowingUser="True"/>
-
-
     </StackLayout>
 </ContentPage>

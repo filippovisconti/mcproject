@@ -30,7 +30,6 @@
     <CodesignKey>Apple Development: filippo.visconti23@gmail.com (4755UABZM9)</CodesignKey>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
     <MtouchFastDev>true</MtouchFastDev>
-    <MtouchSdkVersion>15.2</MtouchSdkVersion>
 <CodesignProvision>iOS Team Provisioning Profile: com.yodadev.mcproject</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -57,7 +56,6 @@
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
 <DeviceSpecificBuild>false</DeviceSpecificBuild>
-<MtouchSdkVersion>15.2</MtouchSdkVersion>
 <MtouchFloat32>true</MtouchFloat32>
 <CodesignProvision>iOS Team Provisioning Profile: com.yodadev.mcproject</CodesignProvision>
 <MtouchFastDev>true</MtouchFastDev>
