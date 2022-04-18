@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using mcproject.Models;
 using MvvmHelpers.Commands;
@@ -82,7 +83,7 @@ namespace mcproject.ViewModels
         }
 
 
-
+        
         public EventoSportivo Create()
         {
 #pragma warning disable IDE0017 // Simplify object initialization
@@ -107,9 +108,12 @@ namespace mcproject.ViewModels
 
 
         private async Task CreateMethod()
-        {
-            await Shell.Current.GoToAsync("TestPage");
-        }
+          {
+            //await Shell.Current.GoToAsync("TestPage");
+
+            await Shell.Current.GoToAsync($"TestPage?sport={SelectedSport}&data={SelectedData}&level={SelectedLevel}&tg={SelectedTGusername}&city={SelectedCity}&note={SelectedNote}");
+             
+          }
 
     }
 

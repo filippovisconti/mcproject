@@ -42,7 +42,6 @@
                 Style="{StaticResource BasePicker}"/>
 
 
-
         <Entry Keyboard="Email"
                Placeholder="Enter telegram username"
                Text="{Binding SelectedTGusername}"
@@ -64,6 +63,8 @@
                 IsEnabled="{Binding InfoComplete}"
                 Command="{Binding CreateCommand}"
                 Style="{StaticResource BaseButton}"/>
+
+
 
     </StackLayout>
 </ContentPage>

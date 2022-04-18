@@ -4,22 +4,40 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
     x:Class="mcproject.Views.TestPage"
-    x:DataType="viewmodels:CreateViewModel"
+    x:DataType="viewmodels:TestViewModel"
     Title="{Binding Title}">
 
     <ContentPage.BindingContext>
-        <viewmodels:CreateViewModel/>
+        <viewmodels:TestViewModel/>
     </ContentPage.BindingContext>
 
 
     <ContentPage.Content>
-        <StackLayout>
-        <Label  
-                Text="{Binding SelectedTGusername}"
-                        TextColor="Red"
-                        FontSize="20"
-                                      />
-        </StackLayout>
+        <FlexLayout>
 
+         <Frame WidthRequest="500"
+                HeightRequest="500">
+
+        <FlexLayout Direction="Column">
+
+          <Label Text="{Binding TestSport}"
+                 Style="{StaticResource BaseLabel}"/>
+
+          <Label Text="{Binding TestLevel}"
+                 Style="{StaticResource BaseLabel}"/>
+
+          <Label Text="{Binding TestTG}"
+                 Style="{StaticResource BaseLabel}"/>
+          
+          <Label Text="{Binding TestCity}"
+                 Style="{StaticResource BaseLabel}"/>
+
+           <Label Text="{Binding TestNote}"
+                 Style="{StaticResource BaseLabel}"/>
+
+
+      </FlexLayout>
+        </Frame>
+      </FlexLayout>
     </ContentPage.Content>
 </ContentPage>
