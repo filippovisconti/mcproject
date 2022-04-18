@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
-             xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:system="clr-namespace:System;assembly=mscorlib" 
              x:DataType="viewmodels:CreateViewModel"
              x:Class="mcproject.Views.CreatePage"
              Title="{Binding Title}">
@@ -48,16 +48,16 @@
                Text="{Binding SelectedTGusername}"
                Style="{StaticResource BaseEntry}"/>
 
+
         <Picker Title="City"
                 ItemsSource="{Binding CreateCity}"
                 SelectedItem="{Binding SelectedCity}"
                 Style="{StaticResource BasePicker}"/>
 
 
-
         <Editor Placeholder = "Enter a note"
                 Text="{Binding SelectedNote}"
-                Margin="50" />
+                Margin="30" />
 
 
         <Button Text="Create the event"

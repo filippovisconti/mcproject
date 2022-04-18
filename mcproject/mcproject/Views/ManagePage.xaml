@@ -14,11 +14,6 @@
             <Label Text="Manage Page"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-
-            <Picker Title="City"
-                ItemsSource="{Binding CreateCity}"
-                SelectedItem="{Binding SelectedCity}"
-                Style="{StaticResource BasePicker}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

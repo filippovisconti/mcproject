@@ -2,11 +2,24 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="mcproject.Views.TestPage">
+    xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
+    x:Class="mcproject.Views.TestPage"
+    x:DataType="viewmodels:CreateViewModel"
+    Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <viewmodels:CreateViewModel/>
+    </ContentPage.BindingContext>
+
+
     <ContentPage.Content>
-        <Label Text="Not Implemented Yet."
+        <StackLayout>
+        <Label  
+                Text="{Binding SelectedTGusername}"
                         TextColor="Red"
                         FontSize="20"
                                       />
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>
