@@ -11,8 +11,6 @@ namespace mcproject.ViewModels
 {
     public class TestViewModel : ViewModelBase, IQueryAttributable
 
-
-
     {
         private string _TestSport;
         public string TestSport
@@ -56,14 +54,7 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _TestNote, value);
         }
 
-       /*
-
-       public void ApplyQueryAttributes(IDictionary<string, string> query)
-       {
-           throw new NotImplementedException();
-       }
-
-        */
+     
 
        public void ApplyQueryAttributes(IDictionary<string, string> query)
        {
