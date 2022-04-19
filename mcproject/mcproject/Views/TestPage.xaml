@@ -13,31 +13,66 @@
 
 
     <ContentPage.Content>
-        <FlexLayout>
+        <!--FlexLayout>
 
-         <Frame WidthRequest="500"
-                HeightRequest="500">
+         <Frame WidthRequest="350"
+                HeightRequest="350">
 
-        <FlexLayout Direction="Column">
+         <FlexLayout Direction="Column"
+                     AlignItems="Center"
+                     JustifyContent="SpaceEvenly"-->
+
+        <Grid>
+
+         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        
+        <Frame>
+        <StackLayout
+
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="Center">
+
+           <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center" VerticalOptions="Center">
+
+                <Label Text="Review:" Style="{StaticResource BaseLabel}" FontSize="Title"
+                      />
+
+            </StackLayout>
 
           <Label Text="{Binding TestSport}"
-                 Style="{StaticResource BaseLabel}"/>
+                 Style="{StaticResource SecondaryLabel}"/>
 
           <Label Text="{Binding TestLevel}"
-                 Style="{StaticResource BaseLabel}"/>
+                 Style="{StaticResource SecondaryLabel}"/>
 
           <Label Text="{Binding TestTG}"
-                 Style="{StaticResource BaseLabel}"/>
+                 Style="{StaticResource SecondaryLabel}"/>
           
           <Label Text="{Binding TestCity}"
-                 Style="{StaticResource BaseLabel}"/>
+                 Style="{StaticResource SecondaryLabel}"/>
 
-           <Label Text="{Binding TestNote}"
-                 Style="{StaticResource BaseLabel}"/>
+          <Label Text="{Binding TestNote}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+          <Label FlexLayout.Grow="1" />
+
+        
+         <Button Text="Create the event"
+                Style="{StaticResource BaseButton}"/>
 
 
-      </FlexLayout>
+      <!--/FlexLayout>
         </Frame>
-      </FlexLayout>
+      </FlexLayout-->
+          </StackLayout>
+          </Frame>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

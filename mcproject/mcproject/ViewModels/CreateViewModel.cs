@@ -103,17 +103,27 @@ namespace mcproject.ViewModels
 
         public bool InfoComplete => (
                SelectedSport != null &&
+               SelectedData != null &&
                SelectedLevel != null &&
-               SelectedTGusername != null);
+               SelectedTGusername != null &&
+               SelectedCity != null);
 
 
         private async Task CreateMethod()
           {
             //await Shell.Current.GoToAsync("TestPage");
+            try
+            {
+                await Shell.Current.GoToAsync($"TestPage?sport={SelectedSport}&data={SelectedData}&level={SelectedLevel}&tg={SelectedTGusername}&city={SelectedCity}&note={SelectedNote}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
 
-            await Shell.Current.GoToAsync($"TestPage?sport={SelectedSport}&data={SelectedData}&level={SelectedLevel}&tg={SelectedTGusername}&city={SelectedCity}&note={SelectedNote}");
-             
-          }
+                await Shell.Current
+                    .DisplayAlert("Create Sporting Event", "An error occured: " + ex.Message, "OK");
+            }
+        }
 
     }
 
