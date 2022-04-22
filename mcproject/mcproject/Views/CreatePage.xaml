@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
-             xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:DataType="viewmodels:CreateViewModel"
              x:Class="mcproject.Views.CreatePage"
              Title="{Binding Title}">
@@ -61,15 +62,15 @@
 
 
         <Button Text="Create the event"
-                IsEnabled="{Binding InfoComplete}"
+                IsEnabled="{Binding AreInfoComplete}"
                 Command="{Binding CreateCommand}"
                 Style="{StaticResource BaseButton}"/>
 
-        <Button Text="TEST CREATE SPORTS"
-                Command="{Binding TestCreateSports}"
+        <!--<Button Text="TEST CREATE SPORTS"
+                Command="{Binding TestCreateSportsCommand}"
                 Style="{StaticResource BaseButton}"/>
 
-        <maps:Map  IsShowingUser="True"/>
+        <maps:Map  IsShowingUser="True"/> -->
 
 
     </StackLayout>

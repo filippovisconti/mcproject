@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:maps="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials" 
              xmlns:vm="clr-namespace:mcproject.ViewModels"
-             x:Class="mcproject.Views.JoinPage"
-             >
+             x:Class="mcproject.Views.JoinPage">
 
     <ContentPage.BindingContext>
         <vm:JoinViewModel/>

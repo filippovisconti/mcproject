@@ -17,17 +17,6 @@ namespace mcproject.Models
         public string TGUsername { get; set; }
         public Image Icon { get; set; }
 
-        public EventoSportivo(string owner, string sport, string city, string level, DateTime dateAndTime, string notes, string tGUsername)
-        {
-            Owner = owner ?? throw new ArgumentNullException(nameof(owner));
-            Sport = sport ?? throw new ArgumentNullException(nameof(sport));
-            City = city ?? throw new ArgumentNullException(nameof(city));
-            Level = level ?? throw new ArgumentNullException(nameof(level));
-            DateAndTime = dateAndTime;
-            Notes = notes ?? throw new ArgumentNullException(nameof(notes));
-            TGUsername = tGUsername ?? throw new ArgumentNullException(nameof(tGUsername));
-        }
-
         public EventoSportivo()
         {
 

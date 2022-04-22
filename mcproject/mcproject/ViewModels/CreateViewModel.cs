@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using mcproject.Models;
@@ -14,7 +15,7 @@ namespace mcproject.ViewModels
         {
             Title = "Create a new event";
             CreateCommand = new AsyncCommand(CreateMethod);
-            TestCreateSportCommand = new AsyncCommand(TestCreateSports);
+            TestCreateSportsCommand = new AsyncCommand(TestCreateSports);
             PopulateLists();
         }
 
@@ -24,8 +25,13 @@ namespace mcproject.ViewModels
         private void PopulateLists()
         {
             client = new FirebaseDB();
-            CreateLevel = client.GetAvailableLevelsList();
-            CreateSport = client.GetAvailableSportsList();
+            var temp = client.GetAvailableLevelsList();
+            CreateLevel = new List<string>();
+            foreach (Difficulty d in temp) { CreateLevel.Add(d.Level); }
+
+            var temp2 = client.GetAvailableSportsList();
+            foreach (Sport s in temp2) { CreateSport.Add(s.Name); }
+            CreateSport = new List<string>();
         }
         #endregion
 
@@ -39,23 +45,23 @@ namespace mcproject.ViewModels
             await Shell.Current.GoToAsync("TestPage");
         }
 
-        public AsyncCommand TestCreateSportCommand { get; }
+        public AsyncCommand TestCreateSportsCommand { get; }
 
         private async Task TestCreateSports()
         {
 
-            await client.AddSportAsync("Pallavolo");
-            await client.AddSportAsync("Padel");
-            await client.AddSportAsync("Calcetto");
-            await client.AddSportAsync("Bocce");
-            await client.AddSportAsync("Lancio di Coriandoli");
-            await client.AddSportAsync("Soffio di minestrine");
-            await client.AddSportAsync("Suonare i citofoni");
+            await client.AddSportAsync(new Sport("Pallavolo"));
+            await client.AddSportAsync(new Sport("Padel"));
+            await client.AddSportAsync(new Sport("Calcetto"));
+            await client.AddSportAsync(new Sport("Bocce"));
+            await client.AddSportAsync(new Sport("Lancio di Coriandoli"));
+            await client.AddSportAsync(new Sport("Soffio di minestrine"));
+            await client.AddSportAsync(new Sport("Suonare i citofoni"));
 
-            await client.AddLevelAsync("Principiante");
-            await client.AddLevelAsync("Dilettante");
-            await client.AddLevelAsync("Avanzato");
-            await client.AddLevelAsync("Esperto");
+            await client.AddLevelAsync(new Difficulty("Principiante"));
+            await client.AddLevelAsync(new Difficulty("Dilettante"));
+            await client.AddLevelAsync(new Difficulty("Avanzato"));
+            await client.AddLevelAsync(new Difficulty("Esperto"));
 
 
         }
@@ -63,7 +69,7 @@ namespace mcproject.ViewModels
 
         #region EventProperties
 
-        public ObservableCollection<string> CreateSport { get; set; }
+        public List<string> CreateSport { get; set; }
 
         private string _SelectedSport;
         public string SelectedSport
@@ -79,7 +85,7 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedData, value);
         }
 
-        public ObservableCollection<string> CreateLevel { get; set; }
+        public List<string> CreateLevel { get; set; }
 
 
         private string _SelectedLevel;
@@ -118,6 +124,8 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedNote, value);
         }
 
+
+
         public bool InfoComplete()
         {
             return SelectedSport != null &&
@@ -126,6 +134,8 @@ namespace mcproject.ViewModels
                    SelectedNote != null &&
                    SelectedTGusername != null;
         }
+
+        public bool AreInfoComplete { get => InfoComplete(); }
 
         #endregion
 

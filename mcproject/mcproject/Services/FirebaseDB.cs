@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -9,16 +10,18 @@ using mcproject.Models;
 
 namespace mcproject.Services
 {
-    public class FirebaseDB : IDataStore<EventoSportivo, User>
+    public class FirebaseDB
 
     {
         FirebaseClient client = null;
+        #region properties
         readonly string EventList = "EventList";
         readonly string SportsList = "SportsList";
         readonly string LevelsList = "LevelsList";
         readonly string UserInfoList = "UserInfoList";
+        #endregion
 
-
+        #region init and dispose
         public void Init()
         {
             client = new FirebaseClient("https://mcproject-1234-default-rtdb.europe-west1.firebasedatabase.app/");
@@ -29,148 +32,138 @@ namespace mcproject.Services
             client.Dispose();
         }
 
-        public async Task AddItemAsync(EventoSportivo item)
+        #endregion
+
+        #region CRUD evento sportivo
+        public async Task AddNewEventoSportivoAsync(EventoSportivo item)
         {
-            if (client == null) Init();
+            var eventID = (await GetAllEventiAsync()).Count;
+            await client.Child(EventList).PostAsync(new EventoSportivo()
+            {
+                ID = eventID++,
+                Owner = item.Owner,
+                Sport = item.Sport,
+                City = item.City,
+                Level = item.Level,
+                DateAndTime = item.DateAndTime,
+                Notes = item.Notes,
+                TGUsername = item.TGUsername,
+                Icon = item.Icon
+            });
+        }
+        public async Task UpdateEventoSportivoAsync(EventoSportivo item)
+        {
+            var toBeUpdated = (await client.Child(EventList).OnceAsync<EventoSportivo>())
+                .Where(a => a.Object.ID == item.ID).FirstOrDefault();
 
-            await client
-                .Child(EventList)
-                .PostAsync(item);
+            await client.Child(EventList).Child(toBeUpdated.Key)
+                .PutAsync(new EventoSportivo()
+                {
+                    Owner = item.Owner,
+                    Sport = item.Sport,
+                    City = item.City,
+                    Level = item.Level,
+                    DateAndTime = item.DateAndTime,
+                    Notes = item.Notes,
+                    TGUsername = item.TGUsername,
+                    Icon = item.Icon
+                });
+        }
+        public async Task DeleteEventoSportivoAsync(EventoSportivo item)
+        {
+            var toBeDeleted = (await client.Child(EventList).OnceAsync<EventoSportivo>())
+                .Where(a => a.Object.ID == item.ID).FirstOrDefault();
 
+            await client.Child(EventList).Child(toBeDeleted.Key).DeleteAsync();
         }
 
-        public Task DeleteItemAsync(string id)
+        public async Task<EventoSportivo> GetEventoAsync(int id)
         {
-            throw new NotImplementedException();
+            return (await client.Child(EventList).OnceAsync<EventoSportivo>())
+               .Where(a => a.Object.ID == id).FirstOrDefault().Object;
         }
 
-        public EventoSportivo GetItem(string id)
+        public async Task<ObservableCollection<EventoSportivo>> GetAllEventiAsync()
         {
-            return GetAllItems().
-                FirstOrDefault(a => a.ID.Equals(id));
-
-        }
-
-        internal Task AddItemAsync(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ObservableCollection<EventoSportivo> GetAllItems()
-        {
-            if (client == null) Init();
-
-            return client
-                .Child(EventList)
-                .AsObservable<EventoSportivo>()
-                .AsObservableCollection();
-        }
-
-        public async Task UpdateItemAsync(EventoSportivo item)
-        {
-            if (client == null) Init();
-
-            var res = (await client
-                .Child(UserInfoList)
+            var events = (await client.Child(EventList)
                 .OnceAsync<EventoSportivo>())
-                .FirstOrDefault(a => a.Object.ID == item.ID);
+                .Select(item => new EventoSportivo
+                {
+                    ID = item.Object.ID,
+                    Owner = item.Object.Owner,
+                    Sport = item.Object.Sport,
+                    City = item.Object.City,
+                    Level = item.Object.Level,
+                    DateAndTime = item.Object.DateAndTime,
+                    Notes = item.Object.Notes,
+                    TGUsername = item.Object.TGUsername,
+                    Icon = item.Object.Icon
+                }).ToList();
 
-            await client
-                .Child(EventList)
-                .Child(res.Key)
-                .PutAsync(res.Object);
+            return new ObservableCollection<EventoSportivo>(events);
         }
 
+
+        #endregion
+
+        #region CRUD User
         public async Task AddUserInfoAsync(User item)
         {
-            if (client == null) Init();
-
-            await client
-                .Child(UserInfoList)
-                .PostAsync(item);
+            var userID = (await GetAllEventiAsync()).Count;
+            await client.Child(UserInfoList).PostAsync(new User()
+            {
+                ID = userID++,
+                Name = item.Name,
+                TelegramUsername = item.TelegramUsername,
+                EmailAddress = item.EmailAddress
+            });
         }
-
         public async Task UpdateUserInfoAsync(User item)
         {
-            if (client == null) Init();
+            var toBeUpdated = (await client.Child(UserInfoList).OnceAsync<User>())
+                .Where(a => a.Object.ID == item.ID).FirstOrDefault();
 
-            var res = (await client
-                .Child(UserInfoList)
-                .OnceAsync<User>())
-                .FirstOrDefault(a => a.Object.EmailAddress == item.EmailAddress);
-
-            await client
-                .Child(UserInfoList)
-                .Child(res.Key)
-                .PutAsync(res.Object);
+            await client.Child(UserInfoList).Child(toBeUpdated.Key)
+                .PutAsync(new User()
+                {
+                    Name = item.Name,
+                    TelegramUsername = item.TelegramUsername,
+                    EmailAddress = item.EmailAddress
+                });
         }
-
-        public async Task DeleteUserInfoAsync(string email)
+        public async Task DeleteUserInfoAsync(User item)
         {
-            if (client == null) Init();
+            var toBeDeleted = (await client.Child(UserInfoList).OnceAsync<User>())
+                .Where(a => a.Object.ID == item.ID).FirstOrDefault();
 
-            var res = (await client
-                .Child(UserInfoList)
-                .OnceAsync<User>())
-                .FirstOrDefault(a => a.Object.EmailAddress == email);
-
-            await client
-                .Child(UserInfoList)
-                .Child(res.Key)
-                .DeleteAsync();
+            await client.Child(UserInfoList).Child(toBeDeleted.Key).DeleteAsync();
         }
 
-        public async Task<User> GetUserInfo(string email)
+        public async Task<User> GetUserInfo(int id)
         {
-            if (client == null) Init();
-
-            var res = (await client
-                .Child(UserInfoList)
-                .OnceAsync<User>())
-                .FirstOrDefault(a => a.Object.EmailAddress == email);
-
-            return res.Object;
-
+            return (await client.Child(UserInfoList).OnceAsync<User>())
+               .Where(a => a.Object.ID == id).FirstOrDefault().Object;
         }
+        #endregion
 
-        public ObservableCollection<string> GetAvailableSportsList()
+        #region retrive available sports and difficulty levels
+        public async Task<ObservableCollection<Sport>> GetAvailableSportsListAsync()
         {
-            if (client == null) Init();
+            var sports = (await client.Child(SportsList)
+                .OnceAsync<Sport>())
+                .Select(item => new Sport(item.Object.Name)).ToList();
 
-            return client
-                .Child(SportsList)
-                .AsObservable<string>()
-                .AsObservableCollection();
+            return new ObservableCollection<Sport>(sports);
         }
-
-        public ObservableCollection<string> GetAvailableLevelsList()
+        public async Task<ObservableCollection<Difficulty>> GetAvailableLevelsListAsync()
         {
-            if (client == null) Init();
+            var levels = (await client.Child(LevelsList)
+                .OnceAsync<Difficulty>())
+                .Select(item => new Difficulty(item.Object.Level)).ToList();
 
-            return client
-                .Child(LevelsList)
-                .AsObservable<string>()
-                .AsObservableCollection();
+            return new ObservableCollection<Difficulty>(levels);
         }
 
-        public async Task AddSportAsync(string item)
-        {
-            if (client == null) Init();
-
-            await client
-                .Child(SportsList)
-                .PostAsync(item);
-
-        }
-
-        public async Task AddLevelAsync(string item)
-        {
-            if (client == null) Init();
-
-            await client
-                .Child(LevelsList)
-                .PostAsync(item);
-
-        }
+        #endregion
     }
 }

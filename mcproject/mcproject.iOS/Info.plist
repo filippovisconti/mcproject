@@ -51,5 +51,7 @@
 	<string>Permission required to show a map</string>
 	<key>Privacy - NSLocationTrackaAlways</key>
 	<string>Permission required to show a map</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>NSLocationWhenInUseUsageDescription</string>
 </dict>
 </plist>
