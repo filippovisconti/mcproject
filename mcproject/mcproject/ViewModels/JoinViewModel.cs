@@ -24,8 +24,8 @@ namespace mcproject.ViewModels
 
         private async Task OnSearch()
         {
-            //await Shell.Current.GoToAsync("LookForPage");
-            await Shell.Current.GoToAsync($"LookForPage?sport={SelectedSport}&level={SelectedLevel}&city={SelectedCity}");
+            await Shell.Current.GoToAsync("LookForPage");
+            //await Shell.Current.GoToAsync($"LookForPage?sport={SelectedSport}&level={SelectedLevel}&city={SelectedCity}");
         }
 
  

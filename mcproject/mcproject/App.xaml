@@ -156,6 +156,8 @@
                 <Setter Property="TextColor" Value="Red"/>
             </Style>
 
+
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

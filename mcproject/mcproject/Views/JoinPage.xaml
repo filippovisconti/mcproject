@@ -42,9 +42,10 @@
                      Title="City" 
                      Style="{StaticResource BasePicker}"/>
 
-            <Button Text="Search" Style="{StaticResource BaseButton}"
-                     Command="{Binding Search}"
-                     Margin="120,70,120,0"/>
+            <Button Text="Search" 
+                    Command="{Binding Search}"
+                    Style="{StaticResource BaseButton}"
+                    Margin="120,70,120,0"/>
 
         </StackLayout>
     </ContentPage.Content>

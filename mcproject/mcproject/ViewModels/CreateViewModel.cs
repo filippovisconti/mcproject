@@ -86,11 +86,7 @@ namespace mcproject.ViewModels
         
         public EventoSportivo Create()
         {
-#pragma warning disable IDE0017 // Simplify object initialization
-#pragma warning disable IDE0090 // Use 'new(...)'
             EventoSportivo CreateEvento = new EventoSportivo();
-#pragma warning restore IDE0090 // Use 'new(...)'
-#pragma warning restore IDE0017 // Simplify object initialization
             CreateEvento.Sport = SelectedSport;
             CreateEvento.DateAndTime = SelectedData;
             CreateEvento.Level = SelectedLevel;
