@@ -22,6 +22,11 @@ namespace mcproject.Models
 
         }
 
+ public override string ToString()
+        {
+            return Sport;
+        }
+
         public override bool Equals(Object obj)
         {
             //Check for null and compare run-time types.

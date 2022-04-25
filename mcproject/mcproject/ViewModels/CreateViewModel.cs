@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using mcproject.Models;
+using System.Linq;
 using mcproject.Services;
 
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -127,20 +128,46 @@ namespace mcproject.ViewModels
 
 
 
-        public bool InfoComplete()
+        public EventoSportivo Create()
         {
-            return SelectedSport != null &&
-                   SelectedLevel != null &&
-                   SelectedCity != null &&
-                   SelectedNote != null &&
-                   SelectedTGusername != null;
+#pragma warning disable IDE0017 // Simplify object initialization
+#pragma warning disable IDE0090 // Use 'new(...)'
+            EventoSportivo CreateEvento = new EventoSportivo();
+#pragma warning restore IDE0090 // Use 'new(...)'
+#pragma warning restore IDE0017 // Simplify object initialization
+            CreateEvento.Sport = SelectedSport;
+            CreateEvento.DateAndTime = SelectedData;
+            CreateEvento.Level = SelectedLevel;
+            CreateEvento.TGUsername = SelectedTGusername;
+            CreateEvento.City = SelectedCity;
+            CreateEvento.Notes = SelectedNote;
+            return CreateEvento;
+
         }
 
-        public bool AreInfoComplete { get => InfoComplete(); }
+        public bool InfoComplete => (
+               SelectedSport != null &&
+               SelectedLevel != null &&
+               SelectedTGusername != null);
 
         #endregion
 
-        public EventoSportivo CreateEventFromProperties()
+        private async Task CreateMethod()
+          {
+            //await Shell.Current.GoToAsync("TestPage");
+            try
+            {
+                await Shell.Current.GoToAsync($"TestPage?sport={SelectedSport}&data={SelectedData}&level={SelectedLevel}&tg={SelectedTGusername}&city={SelectedCity}&note={SelectedNote}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                await Shell.Current
+                    .DisplayAlert("Create Sporting Event", "An error occured: " + ex.Message, "OK");
+            }
+        }
+ public EventoSportivo CreateEventFromProperties()
         {
             EventoSportivo CreateEvento;
             if (InfoComplete()) throw new ArgumentNullException();
@@ -159,10 +186,6 @@ namespace mcproject.ViewModels
             return CreateEvento;
 
         }
-
-
-
-
 
     }
 

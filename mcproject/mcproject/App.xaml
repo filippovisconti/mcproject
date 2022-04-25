@@ -108,6 +108,9 @@
                         Value="{AppThemeBinding
                             Dark={StaticResource TextColorDark},
                             Light={StaticResource TextColor}}"/>
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Margin" Value="50,20,50,0"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
 
                 <Setter Property="BackgroundColor"
                         Value="Transparent"/>
@@ -121,6 +124,27 @@
                             Light={StaticResource TextColor}}"/>
             </Style>
 
+
+            <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="Honeydew" />
+            <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="CornerRadius" Value="15" />
+
+             </Style>
+
+
+            <Style x:Key="SecondaryLabel" TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                            Dark={StaticResource TextColorDark},
+                            Light={StaticResource TextColor}}"/>
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Margin" Value="50,20,50,0"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                
+            </Style>
+
             <Style x:Key="BaseContentPage" TargetType="ContentPage">
                 <Setter Property="BackgroundColor"
                         Value="{AppThemeBinding
@@ -131,6 +155,8 @@
             <Style x:Key="InvalidEntryStyle" TargetType="Entry">
                 <Setter Property="TextColor" Value="Red"/>
             </Style>
+
+
 
         </ResourceDictionary>
     </Application.Resources>

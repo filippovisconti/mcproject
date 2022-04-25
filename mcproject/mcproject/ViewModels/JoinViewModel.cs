@@ -1,29 +1,34 @@
 ﻿using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using MvvmHelpers.Commands;
 
 namespace mcproject.ViewModels
 {
     public class JoinViewModel : ViewModelBase
     {
-        public ICommand Search;
+       
         public Collection<string> AvailableSports
         {
 
             get => Services.Constants.Sport;
         }
-        //public ObservableRangeCollection<Grouping<string, Sport>> SportGroups { get; }
 
+        public ICommand Search { get; }
         public JoinViewModel()
         {
-            Title = "Join in";
             Search = new Command(OnSearch);
         }
 
-        private async void OnSearch()
+        private async Task OnSearch()
         {
-            await Shell.Current.GoToAsync("TestPage");
+            await Shell.Current.GoToAsync("LookForPage");
+            //await Shell.Current.GoToAsync($"LookForPage?sport={SelectedSport}&level={SelectedLevel}&city={SelectedCity}");
         }
+
+ 
 
         private string _SelectedSport;
         public string SelectedSport
@@ -57,10 +62,5 @@ namespace mcproject.ViewModels
             get => _SelectedCity;
             set => SetProperty(ref _SelectedCity, value);
         }
-
-
-
-
-
     }
 }

@@ -24,7 +24,7 @@ namespace mcproject.ViewModels
         }
 
 
-        public ObservableCollection<string> City
+        public ObservableCollection<string> CreateCity
         {
             get => Services.Constants.City;
         }

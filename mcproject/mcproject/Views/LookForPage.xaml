@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:model="clr-namespace:mcproject.Models"
+    x:Class="mcproject.Views.LookForPage"
+    x:DataType="viewmodels:LookForViewModel"
+    Title="{Binding Title}">
+
+     <ContentPage.BindingContext>
+        <viewmodels:LookForViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <!--ATTEMPT 1-->
+
+        <!--CollectionView
+            ItemsSource="{Binding Eventi}"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedEvent, Mode=TwoWay}">
+
+              <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                       <Label Grid.Column="1"
+                       Text="{Binding SelectedSport}"
+                       FontAttributes="Bold" />
+
+                    </Grid>
+
+
+                </DataTemplate>
+              </CollectionView.ItemTemplate>
+             
+            <CollectionView.Behaviors>
+                <xct:EventToCommandBehavior
+                EventName="ItemSelected"
+                Command="{Binding SelectedCommand}"
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"/>
+            </CollectionView.Behaviors>
+
+            </CollectionView!-->
+
+
+
+         <!--ATTEMPT 2-->
+
+        <!--CollectionView
+            ItemsSource="{Binding Eventi}">
+             <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                       <Label Text="{Binding SelectedSport}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>      
+        </CollectionView-->
+
+        <CollectionView
+            ItemsSource="{Binding Eventi}">
+
+             <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:EventoSportivo">
+                
+                        <Grid Padding="10"
+                         RowDefinitions="Auto, *"
+                         ColumnDefinitions="Auto, *">
+                      
+                       <Frame>
+                         <StackLayout>  
+                         <Label Grid.Column="1"
+                                Text="{Binding Sport}"
+                                Style="{StaticResource SecondaryLabel}"/>
+                         <Label Grid.Row="1"
+                                Grid.Column="1"
+                                Text="{Binding City}"
+                                Style="{StaticResource SecondaryLabel}"/>
+                         <Label Grid.Row="2"
+                                Grid.Column="1"
+                                Text="{Binding Level}"
+                                Style="{StaticResource SecondaryLabel}"/>
+                          
+                         </StackLayout>
+                      </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>      
+        </CollectionView>
+
+
+    </ContentPage.Content>
+</ContentPage>

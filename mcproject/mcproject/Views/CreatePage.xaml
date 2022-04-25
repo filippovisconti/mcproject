@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:DataType="viewmodels:CreateViewModel"
              x:Class="mcproject.Views.CreatePage"
              Title="{Binding Title}">
@@ -25,7 +24,7 @@
 
 
         ItemDisplayBinding="{Binding ..}"-->
-        <Picker x:Name="myPicker"
+        <Picker
                 Title="Sport" 
                 ItemsSource="{Binding CreateSport, Mode=TwoWay}"
                 SelectedItem="{Binding SelectedSport}"
@@ -51,22 +50,24 @@
                Text="{Binding SelectedTGusername}"
                Style="{StaticResource BaseEntry}"/>
 
+
         <Picker Title="City"
                 ItemsSource="{Binding CreateCity}"
                 SelectedItem="{Binding SelectedCity}"
                 Style="{StaticResource BasePicker}"/>
 
 
-
         <Editor Placeholder = "Enter a note"
                 Text="{Binding SelectedNote}"
-                Margin="50" />
+                Margin="30" />
 
 
         <Button Text="Create the event"
                 IsEnabled="{Binding AreInfoComplete}"
                 Command="{Binding CreateCommand}"
                 Style="{StaticResource BaseButton}"/>
+
+
 
     </StackLayout>
 </ContentPage>
