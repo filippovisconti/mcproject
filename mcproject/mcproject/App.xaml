@@ -67,8 +67,7 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
             </Style>
 
-            <Style TargetType="Button" x:Key="SecondaryButton" >
-<<<<<<< HEAD
+            <Style TargetType="Button" x:Key="SecondaryButton">
                 <Setter Property="TextColor"
                         Value="{AppThemeBinding
                             Dark={StaticResource TextColorDark},
@@ -90,16 +89,6 @@
                 <Setter Property="Margin" Value="50,20,50,0"/>
 
             </Style>
-=======
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
-                    Light={StaticResource TextColor}}" />
-                <Setter Property="BackgroundColor" Value="Transparent" />
-            </Style>
-
-            <Style x:Key="BaseEntry" TargetType="Entry">
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
-                    Light={StaticResource TextColor}}"></Setter>
->>>>>>> RemoteRepo/master
 
             <Style TargetType="DatePicker" x:Key="BaseDatePicker" >
                 <Setter Property="MaximumDate" Value="12/31/2025"/>
@@ -137,10 +126,6 @@
                         Value="{AppThemeBinding
                             Dark={StaticResource DarkBackground},
                             Light={StaticResource WhiteBackground }}"/>
-            </Style>
-
-            <Style x:Key="InvalidEntryStyle" TargetType="Entry">
-                <Setter Property="TextColor" Value="Red"/>
             </Style>
 
             <Style x:Key="InvalidEntryStyle" TargetType="Entry">
