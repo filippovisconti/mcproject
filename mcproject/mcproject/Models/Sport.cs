@@ -1,12 +1,17 @@
 ﻿using System;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+
 namespace mcproject.Models
 {
-    public class Sport
+    public class Sport : ObservableObject
     {
-        public string Name { get; }
-        public Sport(string n)
+        public string Name { get; set; }
+
+        public override string ToString()
         {
-            Name = n;
+            return Name;
         }
     }
+
+
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -10,10 +8,21 @@ using mcproject.Models;
 
 namespace mcproject.Services
 {
-    public class FirebaseDB
+    public sealed class FirebaseDB
 
     {
-        FirebaseClient client = null;
+        private static readonly FirebaseDB instance = new();
+
+        public static FirebaseDB Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+
+        public readonly FirebaseClient client = null;
         #region properties
         readonly string EventList = "EventList";
         readonly string SportsList = "SportsList";
@@ -22,14 +31,15 @@ namespace mcproject.Services
         #endregion
 
         #region init and dispose
-        public void Init()
+        private FirebaseDB()
         {
             client = new FirebaseClient("https://mcproject-1234-default-rtdb.europe-west1.firebasedatabase.app/");
+
         }
 
-        public void Close()
+        static FirebaseDB()
         {
-            client.Dispose();
+
         }
 
         #endregion
@@ -83,7 +93,7 @@ namespace mcproject.Services
                .Where(a => a.Object.ID == id).FirstOrDefault().Object;
         }
 
-        public async Task<ObservableCollection<EventoSportivo>> GetAllEventiAsync()
+        public async Task<IList<EventoSportivo>> GetAllEventiAsync()
         {
             var events = (await client.Child(EventList)
                 .OnceAsync<EventoSportivo>())
@@ -100,7 +110,7 @@ namespace mcproject.Services
                     Icon = item.Object.Icon
                 }).ToList();
 
-            return new ObservableCollection<EventoSportivo>(events);
+            return events;
         }
 
 
@@ -147,21 +157,28 @@ namespace mcproject.Services
         #endregion
 
         #region retrive available sports and difficulty levels
-        public async Task<ObservableCollection<Sport>> GetAvailableSportsListAsync()
+        public async Task<IList<Sport>> GetAvailableSportsListAsync()
         {
-            var sports = (await client.Child(SportsList)
-                .OnceAsync<Sport>())
-                .Select(item => new Sport(item.Object.Name)).ToList();
+            //return (await client.Child(SportsList)
+            //    .OnceAsync<Sport>())
+            //    .Select(item => item.Object);
 
-            return new ObservableCollection<Sport>(sports);
+            var l1 = await client.Child(SportsList).OnceAsync<Sport>();
+            var l2 = l1.Select(item => item.Object);
+            return l2.ToList();
+
         }
-        public async Task<ObservableCollection<Difficulty>> GetAvailableLevelsListAsync()
-        {
-            var levels = (await client.Child(LevelsList)
-                .OnceAsync<Difficulty>())
-                .Select(item => new Difficulty(item.Object.Level)).ToList();
 
-            return new ObservableCollection<Difficulty>(levels);
+        public async Task<IList<Difficulty>> GetAvailableLevelsListAsync()
+        {
+            //return (await client.Child(LevelsList)
+            //    .OnceAsync<Difficulty>())
+            //    .Select(item => item.Object);
+
+            var l1 = await client.Child(LevelsList).OnceAsync<Difficulty>();
+            var l2 = l1.Select(item => item.Object);
+            return l2.ToList();
+
         }
 
         #endregion

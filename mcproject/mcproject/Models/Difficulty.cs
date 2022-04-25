@@ -3,10 +3,13 @@ namespace mcproject.Models
 {
     public class Difficulty
     {
-        public string Level { get; }
-        public Difficulty(string l)
+        public string Level { get; set; }
+
+        public override string ToString()
         {
-            Level = l;
+            return Level;
         }
     }
+
+
 }

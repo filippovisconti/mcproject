@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using mcproject.Models;
 using mcproject.Services;
-using MvvmHelpers.Commands;
+
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace mcproject.ViewModels
@@ -14,25 +16,46 @@ namespace mcproject.ViewModels
         public CreateViewModel()
         {
             Title = "Create a new event";
+
             CreateCommand = new AsyncCommand(CreateMethod);
-            TestCreateSportsCommand = new AsyncCommand(TestCreateSports);
-            PopulateLists();
+            //TestCreateSportsCommand = new AsyncCommand(TestCreateSports);
+            PopulateThoseBitches();
         }
 
         #region DBStuff
+        private readonly FirebaseDB db = FirebaseDB.Instance;
 
-        FirebaseDB client;
-        private void PopulateLists()
+        private void PopulateThoseBitches()
         {
-            client = new FirebaseDB();
-            var temp = client.GetAvailableLevelsList();
-            CreateLevel = new List<string>();
-            foreach (Difficulty d in temp) { CreateLevel.Add(d.Level); }
+            _ = Task.Run(async () =>
+              {
 
-            var temp2 = client.GetAvailableSportsList();
-            foreach (Sport s in temp2) { CreateSport.Add(s.Name); }
-            CreateSport = new List<string>();
+                  CreateLevel = new ObservableCollection<Difficulty>(await db.GetAvailableLevelsListAsync());
+                  OnPropertyChanged(nameof(CreateLevel));
+
+                  //QUESTO FUNZIONA
+                  //IEnumerable<Difficulty> lev = await db.GetAvailableLevelsListAsync();
+                  //var cl = new ObservableCollection<Difficulty>(lev);
+                  //CreateLevel = cl;
+                  //OnPropertyChanged(nameof(CreateLevel));
+
+              });
+            _ = Task.Run(async () =>
+              {
+
+                  CreateSport = new ObservableCollection<Sport>(await db.GetAvailableSportsListAsync());
+                  OnPropertyChanged(nameof(CreateSport));
+
+                  //QUESTO FUNZIONA
+                  //IEnumerable<Sport> sp = await db.GetAvailableSportsListAsync();
+                  //var cs = new ObservableCollection<Sport>(sp);
+                  //CreateSport = cs;
+                  //OnPropertyChanged(nameof(CreateSport));
+
+              });
         }
+
+
         #endregion
 
         #region Commands
@@ -45,8 +68,12 @@ namespace mcproject.ViewModels
             await Shell.Current.GoToAsync("TestPage");
         }
 
+        /*
         public AsyncCommand TestCreateSportsCommand { get; }
-
+        private async Task TestCreateSports()
+        {
+            await PopulateLists();
+        }
         private async Task TestCreateSports()
         {
 
@@ -64,15 +91,15 @@ namespace mcproject.ViewModels
             await client.AddLevelAsync(new Difficulty("Esperto"));
 
 
-        }
+        }*/
         #endregion
 
         #region EventProperties
 
-        public List<string> CreateSport { get; set; }
+        public IList<Sport> CreateSport { get; set; }
 
-        private string _SelectedSport;
-        public string SelectedSport
+        private Sport _SelectedSport;
+        public Sport SelectedSport
         {
             get => _SelectedSport;
             set => SetProperty(ref _SelectedSport, value);
@@ -85,11 +112,11 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedData, value);
         }
 
-        public List<string> CreateLevel { get; set; }
+        //public ObservableCollection<Difficulty> CreateLevel { get; set; }
+        public IList<Difficulty> CreateLevel { get; set; }
 
-
-        private string _SelectedLevel;
-        public string SelectedLevel
+        private Difficulty _SelectedLevel;
+        public Difficulty SelectedLevel
         {
             get => _SelectedLevel;
             set => SetProperty(ref _SelectedLevel, value);

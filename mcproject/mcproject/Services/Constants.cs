@@ -5,9 +5,9 @@ namespace mcproject.Services
 {
     public static class Constants
     {
-        public static ObservableCollection<string> Sport = new ObservableCollection<string>();
-        public static ObservableCollection<string> Livello = new ObservableCollection<string>();
-        public static ObservableCollection<string> City = new ObservableCollection<string>();
+        public static ObservableCollection<string> Sport = new();
+        public static ObservableCollection<string> Livello = new();
+        public static ObservableCollection<string> City = new();
 
         static Constants()
         {
