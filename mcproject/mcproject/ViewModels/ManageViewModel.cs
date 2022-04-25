@@ -16,6 +16,12 @@ namespace mcproject.ViewModels
             get => Services.Constants.Sport;
         }
 
+        public Collection<string> City
+        {
+
+            get => Services.Constants.City;
+        }
+
         public ManageViewModel()
         {
 

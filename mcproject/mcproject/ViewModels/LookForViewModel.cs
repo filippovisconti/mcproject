@@ -15,7 +15,7 @@ namespace mcproject.ViewModels
     public class LookForViewModel : ViewModelBase
     {
 
-    
+
         private ObservableCollection<EventoSportivo> _Eventi;
         public ObservableCollection<EventoSportivo> Eventi
         {
@@ -23,59 +23,83 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _Eventi, value);
         }
 
-        public AsyncCommand<EventoSportivo> SelectedCommand { get;  }
+        public AsyncCommand<EventoSportivo> SelectedCommand { get; }
 
         public LookForViewModel()
-        { 
+        {
             SelectedCommand = new AsyncCommand<EventoSportivo>(Selected);
 
             Eventi = new ObservableCollection<EventoSportivo>();
 
             Eventi.Add(new EventoSportivo
+            {
+                Sport = new Sport()
                 {
-                    Sport = "Golf",
-                    Level = "Principiante",
-                    City = "Milano",
-                    DateAndTime = new DateTime(2022, 6, 23),
-                    TGUsername = "tgusr2",
-                    Notes = "None"
-
-                });
-
-             Eventi.Add(new EventoSportivo
+                    Name = "Golf"
+                },
+                Level = new Difficulty()
                 {
-                    Sport = "Golf",
-                    Level = "Avanzato",
-                    City = "Roma",
-                    DateAndTime = new DateTime(2022, 6, 23),
-                    TGUsername = "tgusr3",
-                    Notes = "None"
+                    Level = "Principiante"
+                },
+                City = "Milano",
+                DateAndTime = new DateTime(2022, 6, 23),
+                TGUsername = "tgusr2",
+                Notes = "None"
 
-                });
+            });
 
-                Eventi.Add(new EventoSportivo
+            Eventi.Add(new EventoSportivo
+            {
+                Sport = new Sport()
                 {
-                    Sport = "Golf",
-                    Level = "Avanzato",
-                    City = "Milano",
-                    DateAndTime = new DateTime(2022, 6, 23),
-                    TGUsername = "tgusr2",
-                    Notes = "None"
-
-                });
-
-                Eventi.Add(new EventoSportivo
+                    Name = "Golf"
+                },
+                Level = new Difficulty()
                 {
-                    Sport = "Golf",
-                    Level = "Principiante",
-                    City = "Milano",
-                    DateAndTime = new DateTime(2022, 6, 23),
-                    TGUsername = "tgusr3",
-                    Notes = "None"
+                    Level = "Blaaaa"
+                },
+                City = "Roma",
+                DateAndTime = new DateTime(2022, 6, 24),
+                TGUsername = "tgusr3",
+                Notes = "None"
 
-                });
+            });
 
-                OnPropertyChanged(nameof(Eventi));
+            Eventi.Add(new EventoSportivo
+            {
+                Sport = new Sport()
+                {
+                    Name = "Pallavolo"
+                },
+                Level = new Difficulty()
+                {
+                    Level = "Avanzato"
+                },
+                City = "Milano",
+                DateAndTime = new DateTime(2022, 6, 25),
+                TGUsername = "tgusr2",
+                Notes = "None"
+
+            });
+
+            Eventi.Add(new EventoSportivo
+            {
+                Sport = new Sport()
+                {
+                    Name = "Citofoni"
+                },
+                Level = new Difficulty()
+                {
+                    Level = "Fraaaa"
+                },
+                City = "Milano",
+                DateAndTime = new DateTime(2022, 6, 26),
+                TGUsername = "tgusr3",
+                Notes = "None"
+
+            });
+
+            OnPropertyChanged(nameof(Eventi));
         }
 
 
@@ -94,7 +118,7 @@ namespace mcproject.ViewModels
             if (eventoSportivo == null)
                 return;
 
-            await Application.Current.MainPage.DisplayAlert("Selected", eventoSportivo.Sport, "OK");
+            await Application.Current.MainPage.DisplayAlert("Selected", eventoSportivo.Sport.Name, "OK");
         }
 
 

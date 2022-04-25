@@ -22,9 +22,9 @@ namespace mcproject.Models
 
         }
 
- public override string ToString()
+        public override string ToString()
         {
-            return Sport;
+            return Sport.Name + City + Level.Level;
         }
 
         public override bool Equals(Object obj)

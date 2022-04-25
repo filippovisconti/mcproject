@@ -2,14 +2,13 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using MvvmHelpers.Commands;
 
 namespace mcproject.ViewModels
 {
     public class JoinViewModel : ViewModelBase
     {
-       
+
         public Collection<string> AvailableSports
         {
 
@@ -19,7 +18,7 @@ namespace mcproject.ViewModels
         public ICommand Search { get; }
         public JoinViewModel()
         {
-            Search = new Command(OnSearch);
+            Search = new AsyncCommand(OnSearch);
         }
 
         private async Task OnSearch()
@@ -28,7 +27,7 @@ namespace mcproject.ViewModels
             //await Shell.Current.GoToAsync($"LookForPage?sport={SelectedSport}&level={SelectedLevel}&city={SelectedCity}");
         }
 
- 
+
 
         private string _SelectedSport;
         public string SelectedSport
