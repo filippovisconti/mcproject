@@ -18,7 +18,6 @@ namespace mcproject.ViewModels
             Title = "Create a new event";
 
             CreateCommand = new AsyncCommand(CreateMethod);
-            //TestCreateSportsCommand = new AsyncCommand(TestCreateSports);
             PopulateThoseBitches();
         }
 
@@ -68,30 +67,6 @@ namespace mcproject.ViewModels
             await Shell.Current.GoToAsync("TestPage");
         }
 
-        /*
-        public AsyncCommand TestCreateSportsCommand { get; }
-        private async Task TestCreateSports()
-        {
-            await PopulateLists();
-        }
-        private async Task TestCreateSports()
-        {
-
-            await client.AddSportAsync(new Sport("Pallavolo"));
-            await client.AddSportAsync(new Sport("Padel"));
-            await client.AddSportAsync(new Sport("Calcetto"));
-            await client.AddSportAsync(new Sport("Bocce"));
-            await client.AddSportAsync(new Sport("Lancio di Coriandoli"));
-            await client.AddSportAsync(new Sport("Soffio di minestrine"));
-            await client.AddSportAsync(new Sport("Suonare i citofoni"));
-
-            await client.AddLevelAsync(new Difficulty("Principiante"));
-            await client.AddLevelAsync(new Difficulty("Dilettante"));
-            await client.AddLevelAsync(new Difficulty("Avanzato"));
-            await client.AddLevelAsync(new Difficulty("Esperto"));
-
-
-        }*/
         #endregion
 
         #region EventProperties
@@ -112,7 +87,6 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedData, value);
         }
 
-        //public ObservableCollection<Difficulty> CreateLevel { get; set; }
         public IList<Difficulty> CreateLevel { get; set; }
 
         private Difficulty _SelectedLevel;

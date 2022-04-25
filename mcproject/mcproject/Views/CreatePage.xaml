@@ -67,13 +67,6 @@
                 IsEnabled="{Binding AreInfoComplete}"
                 Command="{Binding CreateCommand}"
                 Style="{StaticResource BaseButton}"/>
-        <!--
-        <Button Text="TEST CREATE SPORTS"
-                Command="{Binding TestCreateSportsCommand}"
-                Style="{StaticResource BaseButton}"/>
-
-        <maps:Map  IsShowingUser="True"/> -->
-
 
     </StackLayout>
 </ContentPage>
