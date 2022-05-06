@@ -40,16 +40,8 @@ namespace mcproject.ViewModels
               });
             _ = Task.Run(async () =>
               {
-
                   CreateSport = new ObservableCollection<Sport>(await db.GetAvailableSportsListAsync());
                   OnPropertyChanged(nameof(CreateSport));
-
-                  //QUESTO FUNZIONA
-                  //IEnumerable<Sport> sp = await db.GetAvailableSportsListAsync();
-                  //var cs = new ObservableCollection<Sport>(sp);
-                  //CreateSport = cs;
-                  //OnPropertyChanged(nameof(CreateSport));
-
               });
         }
 
@@ -155,7 +147,7 @@ namespace mcproject.ViewModels
             {
                 if (InfoComplete())
                     await Shell.Current
-                        .GoToAsync($"TestPage?sport={SelectedSport}&data={SelectedData}&level={SelectedLevel}&tg={SelectedTGusername}&city={SelectedCity}&note={SelectedNote}");
+                        .GoToAsync($"ConfirmCreationPage?sport={SelectedSport}&data={SelectedData}&level={SelectedLevel}&tg={SelectedTGusername}&city={SelectedCity}&note={SelectedNote}");
                 else
                     await Shell.Current
                         .DisplayAlert("Create Sporting Event", "An error occured: info non complete", "OK");
@@ -191,3 +183,17 @@ namespace mcproject.ViewModels
     }
 
 }
+
+//_ = Task.Run(async () =>
+//{
+
+//    CreateLevel = new ObservableCollection<Difficulty>(await db.GetAvailableLevelsListAsync());
+//    OnPropertyChanged(nameof(CreateLevel));
+
+//    //QUESTO FUNZIONA
+//    //IEnumerable<Difficulty> lev = await db.GetAvailableLevelsListAsync();
+//    //var cl = new ObservableCollection<Difficulty>(lev);
+//    //CreateLevel = cl;
+//    //OnPropertyChanged(nameof(CreateLevel));
+
+//});
