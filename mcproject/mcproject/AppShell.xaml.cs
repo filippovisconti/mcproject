@@ -15,10 +15,11 @@ namespace mcproject
             Routing.RegisterRoute(nameof(JoinPage), typeof(JoinPage));
             Routing.RegisterRoute(nameof(ManagePage), typeof(ManagePage));
             Routing.RegisterRoute(nameof(NewUserPage), typeof(NewUserPage));
-            Routing.RegisterRoute(nameof(TestPage), typeof(TestPage));  // FIXME to be removed once completed
+            Routing.RegisterRoute(nameof(TestPage), typeof(TestPage));  
             Routing.RegisterRoute(nameof(LookForPage), typeof(LookForPage));
-            Routing.RegisterRoute(nameof(ConfirmCreationPage), typeof(ConfirmCreationPage));
+Routing.RegisterRoute(nameof(ConfirmCreationPage), typeof(ConfirmCreationPage));
 
+ Routing.RegisterRoute(nameof(SumUpPage), typeof(SumUpPage));
         }
 
     }
