@@ -21,11 +21,13 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _Eventi, value);
         }
 
-        public AsyncCommand<EventoSportivo> SelectedCommand { get; }
+        public AsyncCommand SelectedCommand { get; }
+        //public AsyncCommand JoinCommand { get; }
 
         public LookForViewModel()
         {
-            SelectedCommand = new AsyncCommand<EventoSportivo>(Selected);
+            SelectedCommand = new AsyncCommand(Selected);
+            //JoinCommand = new AsyncCommand(JoinMethod);
 
             Eventi = new ObservableCollection<EventoSportivo>();
 
@@ -111,33 +113,19 @@ namespace mcproject.ViewModels
         }
 
 
-        async Task Selected(EventoSportivo eventoSportivo)
+        public async Task Selected()
         {
-            if (eventoSportivo == null)
+            if (SelectedEvent == null)
                 return;
 
-            await Application.Current.MainPage.DisplayAlert("Selected", eventoSportivo.Sport.Name, "OK");
+            await Shell.Current.GoToAsync($"SumUpPage?ID={SelectedEvent.ID}");
         }
 
+       // private async Task JoinMethod()
+       // {
+       //     await Shell.Current.GoToAsync("");
+       // }
 
-        /*   public void ApplyQueryAttributes(IDictionary<string, string> query)
-           {
-               this.SelectedSport = HttpUtility.UrlDecode(query["sport"]);
-               this.SelectedLevel = HttpUtility.UrlDecode(query["level"]);
-               this.SelectedCity = HttpUtility.UrlDecode(query["city"]);
-           }
-
-           public void GetAttributes()
-           {
-               IDictionary<string, string> openWith = new Dictionary<string, string>();
-
-               openWith.Add("sport", "SelectedSport");
-               openWith.Add("level", "SelectedLevel");
-               openWith.Add("city", "SelectedCity");
-
-               ApplyQueryAttributes(openWith);
-           }
-        */
-
-    }
+          
+        }
 }
