@@ -14,8 +14,6 @@ namespace mcproject.ViewModels
 {
     public class LookForViewModel : ViewModelBase
     {
-
-
         private ObservableCollection<EventoSportivo> _Eventi;
         public ObservableCollection<EventoSportivo> Eventi
         {

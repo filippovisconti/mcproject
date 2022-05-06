@@ -126,7 +126,7 @@
 
 
             <Style TargetType="Frame">
-            <Setter Property="BackgroundColor" Value="Honeydew" />
+            <Setter Property="BackgroundColor" Value="Lavender" />
             <Setter Property="BorderColor" Value="{StaticResource Primary}" />
             <Setter Property="Margin" Value="10" />
             <Setter Property="CornerRadius" Value="15" />
