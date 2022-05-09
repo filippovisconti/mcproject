@@ -186,16 +186,7 @@ namespace mcproject.Services
         #region look for an event
 
 
-        /* --- da correggere --- 
-        public async Task<IList<EventoSportivo>> SearchBySportLevelCityAsync(Sport sport, Difficulty level, string city)
-        {
-
-            var a = await client.Child(EventList).OnceAsync<EventoSportivo>();
-            var lst = a.Select(item => item.Object);
-            return lst.ToList();
-
-        } */
-
+        /* --- da correggere --- */
         public async Task<IList<EventoSportivo>> SearchBySportLevelCityAsync(Sport sport, Difficulty level, string city)
         {
 
@@ -206,6 +197,7 @@ namespace mcproject.Services
                 .ToList();
 
         }
+        
 
         #endregion
     }

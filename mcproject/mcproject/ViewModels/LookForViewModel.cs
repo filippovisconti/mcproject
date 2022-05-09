@@ -67,7 +67,7 @@ namespace mcproject.ViewModels
 
             SelectedCommand = new AsyncCommand(Selected);
             
-            LoadEvent();
+            //LoadEvent();
 
             //OnPropertyChanged(nameof(Eventi));
         }
@@ -105,6 +105,8 @@ namespace mcproject.ViewModels
             Level = (HttpUtility.UrlDecode(query["level"]))
             };
             this.SelectedCity = (HttpUtility.UrlDecode(query["city"]));
+
+            LoadEvent();
         }
 
         public void GetAttributes()
