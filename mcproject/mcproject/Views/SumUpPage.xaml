@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:mcproject.ViewModels"
-    x:Class="mcproject.Views.SumUpPage">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
+    xmlns:vm="clr-namespace:mcproject.ViewModels"
+    x:Class="mcproject.Views.SumUpPage"
+    x:DataType="viewmodels:SumUpViewModel"
+    Title="{Binding Title}">
 
      <ContentPage.BindingContext>
         <vm:SumUpViewModel/>
@@ -11,10 +15,50 @@
 
     <ContentPage.Content>
 
-        <StackLayout>
+         <Grid>
+
+         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        
+        <Frame>
+        <StackLayout
+
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="Center">
+
+           <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center" VerticalOptions="Center">
+
+                <Label Text="Review:" Style="{StaticResource BaseLabel}" FontSize="Title"/>
+
+            </StackLayout>
+
+          <Label Text="{Binding Sport}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+          <Label Text="{Binding Level}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+          <Label Text="{Binding TG}"
+                 Style="{StaticResource SecondaryLabel}"/>
+          
+          <Label Text="{Binding City}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+          <Label Text="{Binding Note}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+          <Label FlexLayout.Grow="1" />
 
 
-        </StackLayout>
+          </StackLayout>
+          </Frame>
+        </Grid>
         
     </ContentPage.Content>
 </ContentPage>

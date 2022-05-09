@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SQLite;
 using Xamarin.Forms;
 
@@ -16,6 +17,7 @@ namespace mcproject.Models
         public string Notes { get; set; }
         public string TGUsername { get; set; }
         public Image Icon { get; set; }
+        public IList<EventoSportivo> Object { get; internal set; }
 
         public EventoSportivo()
         {

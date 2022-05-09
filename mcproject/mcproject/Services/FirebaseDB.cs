@@ -182,5 +182,31 @@ namespace mcproject.Services
         }
 
         #endregion
+
+        #region look for an event
+
+
+        /* --- da correggere --- 
+        public async Task<IList<EventoSportivo>> SearchBySportLevelCityAsync(Sport sport, Difficulty level, string city)
+        {
+
+            var a = await client.Child(EventList).OnceAsync<EventoSportivo>();
+            var lst = a.Select(item => item.Object);
+            return lst.ToList();
+
+        } */
+
+        public async Task<IList<EventoSportivo>> SearchBySportLevelCityAsync(Sport sport, Difficulty level, string city)
+        {
+
+            var a = await client.Child(EventList).OnceAsync<EventoSportivo>();
+            var lst = a.Where(a => a.Object.Sport == sport && a.Object.Level == level && a.Object.City == city);
+            var l2 = lst.Select(item => item.Object);
+            return l2
+                .ToList();
+
+        }
+
+        #endregion
     }
 }

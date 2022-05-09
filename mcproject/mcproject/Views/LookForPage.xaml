@@ -56,10 +56,18 @@
 
             </CollectionView!-->
 
+        <StackLayout>
 
 
- 
-        <StackLayout> 
+        
+        <StackLayout>
+            <Label Text="You selected:" Style="{StaticResource BaseLabel}" FontSize="Title"/>
+            <Label Text="{Binding SelectedSport}" Style="{StaticResource BaseLabel}" FontSize="Title"/>
+            <Label Text="{Binding SelectedLevel}"  Style="{StaticResource BaseLabel}" FontSize="Title"/>
+            <Label Text="{Binding SelectedCity}" Style="{StaticResource BaseLabel}" FontSize="Title"/>
+
+        </StackLayout>
+
         <CollectionView
             ItemsSource="{Binding Eventi}"
             SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
@@ -99,13 +107,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-        
-        <!--StackLayout>
-             <Button Text="Join the event"
-                    Command="{Binding JoinCommand}"
-                    Style="{StaticResource BaseButton}"/>
-        </StackLayout-->
 
         </StackLayout>
     </ContentPage.Content>

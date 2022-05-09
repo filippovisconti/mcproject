@@ -7,12 +7,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using mcproject.Models;
+using mcproject.Services;
 using MvvmHelpers.Commands;
 using Xamarin.Forms;
 
 namespace mcproject.ViewModels
 {
-    public class LookForViewModel : ViewModelBase
+    public class LookForViewModel : ViewModelBase, IQueryAttributable
     {
         private ObservableCollection<EventoSportivo> _Eventi;
         public ObservableCollection<EventoSportivo> Eventi
@@ -21,87 +22,26 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _Eventi, value);
         }
 
-        public AsyncCommand SelectedCommand { get; }
-        //public AsyncCommand JoinCommand { get; }
-
-        public LookForViewModel()
+        private Sport _SelectedSport;
+        public Sport SelectedSport
         {
-            SelectedCommand = new AsyncCommand(Selected);
-            //JoinCommand = new AsyncCommand(JoinMethod);
-
-            Eventi = new ObservableCollection<EventoSportivo>();
-
-            Eventi.Add(new EventoSportivo
-            {
-                Sport = new Sport()
-                {
-                    Name = "Golf"
-                },
-                Level = new Difficulty()
-                {
-                    Level = "Principiante"
-                },
-                City = "Milano",
-                DateAndTime = new DateTime(2022, 6, 23),
-                TGUsername = "tgusr2",
-                Notes = "None"
-
-            });
-
-            Eventi.Add(new EventoSportivo
-            {
-                Sport = new Sport()
-                {
-                    Name = "Golf"
-                },
-                Level = new Difficulty()
-                {
-                    Level = "Blaaaa"
-                },
-                City = "Roma",
-                DateAndTime = new DateTime(2022, 6, 24),
-                TGUsername = "tgusr3",
-                Notes = "None"
-
-            });
-
-            Eventi.Add(new EventoSportivo
-            {
-                Sport = new Sport()
-                {
-                    Name = "Pallavolo"
-                },
-                Level = new Difficulty()
-                {
-                    Level = "Avanzato"
-                },
-                City = "Milano",
-                DateAndTime = new DateTime(2022, 6, 25),
-                TGUsername = "tgusr2",
-                Notes = "None"
-
-            });
-
-            Eventi.Add(new EventoSportivo
-            {
-                Sport = new Sport()
-                {
-                    Name = "Citofoni"
-                },
-                Level = new Difficulty()
-                {
-                    Level = "Fraaaa"
-                },
-                City = "Milano",
-                DateAndTime = new DateTime(2022, 6, 26),
-                TGUsername = "tgusr3",
-                Notes = "None"
-
-            });
-
-            OnPropertyChanged(nameof(Eventi));
+            get => _SelectedSport;
+            set => SetProperty(ref _SelectedSport, value);
         }
 
+        private Difficulty _SelectedLevel;
+        public Difficulty SelectedLevel
+        {
+            get => _SelectedLevel;
+            set => SetProperty(ref _SelectedLevel, value);
+        }
+
+        private string _SelectedCity;
+        public string SelectedCity
+        {
+            get => _SelectedCity;
+            set => SetProperty(ref _SelectedCity, value);
+        }
 
         public EventoSportivo PreviouslySelected;
         private EventoSportivo _SelectedEvent;
@@ -113,6 +53,38 @@ namespace mcproject.ViewModels
         }
 
 
+        public AsyncCommand SelectedCommand { get; }
+
+        private readonly FirebaseDB db = FirebaseDB.Instance;
+
+
+
+
+
+
+        public LookForViewModel()
+        {
+
+            SelectedCommand = new AsyncCommand(Selected);
+            
+            LoadEvent();
+
+            //OnPropertyChanged(nameof(Eventi));
+        }
+
+        private void LoadEvent()
+        {
+            //if (SelectedSport == null) throw new NullReferenceException();
+            _ = Task.Run(async () =>
+              {
+
+                  Eventi = new ObservableCollection<EventoSportivo>(await db.SearchBySportLevelCityAsync(SelectedSport, SelectedLevel, SelectedCity));
+                  OnPropertyChanged(nameof(Eventi));
+
+              }); 
+        }
+
+
         public async Task Selected()
         {
             if (SelectedEvent == null)
@@ -121,11 +93,33 @@ namespace mcproject.ViewModels
             await Shell.Current.GoToAsync($"SumUpPage?ID={SelectedEvent.ID}");
         }
 
-       // private async Task JoinMethod()
-       // {
-       //     await Shell.Current.GoToAsync("");
-       // }
 
+        public void ApplyQueryAttributes(IDictionary<string, string> query)
+        {
+            SelectedSport = new Sport()
+            {
+                Name = (HttpUtility.UrlDecode(query["sport"]))
+            };
+            SelectedLevel =  new Difficulty()
+            {
+            Level = (HttpUtility.UrlDecode(query["level"]))
+            };
+            this.SelectedCity = (HttpUtility.UrlDecode(query["city"]));
+        }
+
+        public void GetAttributes()
+        {
+            IDictionary<string, string> openWith = new Dictionary<string, string>();
+
+            openWith.Add("sport", "SelectedSport");
+            openWith.Add("level", "SelectedLevel");
+            openWith.Add("city", "SelectedCity");
+
+            ApplyQueryAttributes(openWith);
+
+        }
+
+      
           
         }
 }

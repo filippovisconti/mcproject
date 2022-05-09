@@ -3,50 +3,28 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using MvvmHelpers.Commands;
+using mcproject.Models;
+using System.Collections.Generic;
+using mcproject.Services;
 
 namespace mcproject.ViewModels
 {
     public class JoinViewModel : ViewModelBase
     {
 
-        public Collection<string> AvailableSports
+        private IList<Sport> _AvailableSports;
+        public IList<Sport> AvailableSports
         {
 
-            get => Services.Constants.Sport;
+            get => _AvailableSports;
+            set => SetProperty(ref _AvailableSports, value);
         }
 
-        public ICommand Search { get; }
-        public JoinViewModel()
+        private IList<Difficulty> _Level;
+        public IList<Difficulty> Level
         {
-            Search = new AsyncCommand(OnSearch);
-        }
-
-        private async Task OnSearch()
-        {
-            await Shell.Current.GoToAsync("LookForPage");
-            //await Shell.Current.GoToAsync($"LookForPage?sport={SelectedSport}&level={SelectedLevel}&city={SelectedCity}");
-        }
-
-
-
-        private string _SelectedSport;
-        public string SelectedSport
-        {
-            get => _SelectedSport;
-            set => SetProperty(ref _SelectedSport, value);
-        }
-
-        public Collection<string> Level
-        {
-            get => Services.Constants.Livello;
-        }
-
-
-        private string _SelectedLevel;
-        public string SelectedLevel
-        {
-            get => _SelectedLevel;
-            set => SetProperty(ref _SelectedLevel, value);
+            get => _Level;
+            set => SetProperty(ref _Level, value);
         }
 
         public Collection<string> City
@@ -54,6 +32,61 @@ namespace mcproject.ViewModels
             get => Services.Constants.City;
         }
 
+
+        public ICommand Search { get; }
+        public JoinViewModel()
+        {
+            Search = new AsyncCommand(OnSearch);
+            PopulateThoseBitches();
+        }
+
+        private async Task OnSearch()
+        {
+            //await Shell.Current.GoToAsync("LookForPage");
+            await Shell.Current.GoToAsync($"LookForPage?sport={SelectedSport}&level={SelectedLevel}&city={SelectedCity}");
+        }
+
+        private readonly FirebaseDB db = FirebaseDB.Instance;
+        private void PopulateThoseBitches()
+        {
+            _ = Task.Run(async () =>
+            {
+
+                Level = new ObservableCollection<Difficulty>(await db.GetAvailableLevelsListAsync());
+                OnPropertyChanged(nameof(Level));
+
+                //QUESTO FUNZIONA
+                //IEnumerable<Difficulty> lev = await db.GetAvailableLevelsListAsync();
+                //var cl = new ObservableCollection<Difficulty>(lev);
+                //CreateLevel = cl;
+                //OnPropertyChanged(nameof(CreateLevel));
+
+            });
+            _ = Task.Run(async () =>
+            {
+
+                AvailableSports = new ObservableCollection<Sport>(await db.GetAvailableSportsListAsync());
+                OnPropertyChanged(nameof(AvailableSports));
+
+            });
+        }
+
+
+
+
+        private Sport _SelectedSport;
+        public Sport SelectedSport
+        {
+            get => _SelectedSport;
+            set => SetProperty(ref _SelectedSport, value);
+        }
+
+        private Difficulty _SelectedLevel;
+        public Difficulty SelectedLevel
+        {
+            get => _SelectedLevel;
+            set => SetProperty(ref _SelectedLevel, value);
+        }
 
         private string _SelectedCity;
         public string SelectedCity
