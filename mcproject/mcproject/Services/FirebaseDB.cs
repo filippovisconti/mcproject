@@ -11,6 +11,16 @@ namespace mcproject.Services
     public sealed class FirebaseDB
 
     {
+
+        #region properties
+        readonly string EventList = "EventList";
+        readonly string SportsList = "SportsList";
+        readonly string LevelsList = "LevelsList";
+        readonly string UserInfoList = "UserInfoList";
+ readonly string CitiesList = "CitiesList";      // TODO to be implemented
+        #endregion
+
+        #region DB init and dispose
         private static readonly FirebaseDB instance = new();
 
         public static FirebaseDB Instance
@@ -23,15 +33,7 @@ namespace mcproject.Services
 
 
         public readonly FirebaseClient client = null;
-        #region properties
-        readonly string EventList = "EventList";
-        readonly string CitiesList = "CitiesList";      // TODO to be implemented
-        readonly string SportsList = "SportsList";
-        readonly string LevelsList = "LevelsList";
-        readonly string UserInfoList = "UserInfoList";
-        #endregion
 
-        #region init and dispose
         private FirebaseDB()
         {
             client = new FirebaseClient("https://mcproject-1234-default-rtdb.europe-west1.firebasedatabase.app/");
@@ -92,6 +94,12 @@ namespace mcproject.Services
         {
             return (await client.Child(EventList).OnceAsync<EventoSportivo>())
                .Where(a => a.Object.ID == id).FirstOrDefault().Object;
+        }
+
+        public async Task<EventoSportivo> GetEventoAsync(EventoSportivo item)
+        {
+            return (await client.Child(EventList).OnceAsync<EventoSportivo>())
+               .Where(a => a.Object.ID == item.ID).FirstOrDefault().Object;
         }
 
         public async Task<IList<EventoSportivo>> GetAllEventiAsync()
@@ -160,26 +168,16 @@ namespace mcproject.Services
         #region retrive available sports and difficulty levels
         public async Task<IList<Sport>> GetAvailableSportsListAsync()
         {
-            //return (await client.Child(SportsList)
-            //    .OnceAsync<Sport>())
-            //    .Select(item => item.Object);
-
-            var l1 = await client.Child(SportsList).OnceAsync<Sport>();
-            var l2 = l1.Select(item => item.Object);
-            return l2.ToList();
-
+            return ((await client.Child(SportsList)
+                .OnceAsync<Sport>())
+                .Select(item => item.Object)).ToList();
         }
 
         public async Task<IList<Difficulty>> GetAvailableLevelsListAsync()
         {
-            //return (await client.Child(LevelsList)
-            //    .OnceAsync<Difficulty>())
-            //    .Select(item => item.Object);
-
-            var l1 = await client.Child(LevelsList).OnceAsync<Difficulty>();
-            var l2 = l1.Select(item => item.Object);
-            return l2.ToList();
-
+            return ((await client.Child(LevelsList)
+                .OnceAsync<Difficulty>())
+                .Select(item => item.Object)).ToList();
         }
 
         #endregion
