@@ -8,57 +8,64 @@
     x:DataType="viewmodels:SumUpViewModel"
     Title="{Binding Title}">
 
-     <ContentPage.BindingContext>
+    <ContentPage.BindingContext>
         <vm:SumUpViewModel/>
     </ContentPage.BindingContext>
 
 
     <ContentPage.Content>
 
-         <Grid>
+        <Grid>
 
-         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        
-        <Frame>
-        <StackLayout
+
+            <Frame>
+                <StackLayout
 
             VerticalOptions="FillAndExpand"
             HorizontalOptions="Center">
 
-           <StackLayout
+                    <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Center" VerticalOptions="Center">
 
-                <Label Text="Review:" Style="{StaticResource BaseLabel}" FontSize="Title"/>
+                        <Label Text="Event Details" Style="{StaticResource BaseLabel}" FontSize="Title"/>
 
-            </StackLayout>
+                    </StackLayout>
 
-          <Label Text="{Binding Sport}"
+                    <Label Text="{Binding Sport}"
                  Style="{StaticResource SecondaryLabel}"/>
 
-          <Label Text="{Binding Level}"
+                    <Label Text="{Binding Level}"
                  Style="{StaticResource SecondaryLabel}"/>
 
-          <Label Text="{Binding TG}"
-                 Style="{StaticResource SecondaryLabel}"/>
-          
-          <Label Text="{Binding City}"
+                    <Label Text="{Binding Date}"
                  Style="{StaticResource SecondaryLabel}"/>
 
-          <Label Text="{Binding Note}"
+                    <Label Text="{Binding TG}"
                  Style="{StaticResource SecondaryLabel}"/>
 
-          <Label FlexLayout.Grow="1" />
+                    <Label Text="{Binding City}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Text="{Binding Note}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label FlexLayout.Grow="1" />
 
 
-          </StackLayout>
-          </Frame>
+                    <Button Text="Contact"
+                    Command="{Binding OpenTelegramCommand}"
+                Style="{StaticResource BaseButton}"/>
+                </StackLayout>
+            </Frame>
+
         </Grid>
-        
+
     </ContentPage.Content>
 </ContentPage>

@@ -76,6 +76,13 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedData, value);
         }
 
+        private TimeSpan _SelectedTime;
+        public TimeSpan SelectedTime
+        {
+            get => _SelectedTime;
+            set => SetProperty(ref _SelectedTime, value);
+        }
+
         public IList<Difficulty> CreateLevel { get; set; }
 
         private Difficulty _SelectedLevel;
@@ -118,22 +125,24 @@ namespace mcproject.ViewModels
 
 
 
-        public EventoSportivo Create()
-        {
+        //public EventoSportivo Create()
+        //{
 
-            EventoSportivo CreateEvento = new()
-            {
-                Sport = SelectedSport,
-                DateAndTime = SelectedData,
-                Level = SelectedLevel,
-                TGUsername = SelectedTGusername,
-                City = SelectedCity,
-                Notes = SelectedNote
-            };
-            return CreateEvento;
 
-        }
+        //    EventoSportivo CreateEvento = new()
+        //    {
+        //        Sport = SelectedSport,
+        //        DateAndTime = SelectedData,
+        //        Level = SelectedLevel,
+        //        TGUsername = SelectedTGusername,
+        //        City = SelectedCity,
+        //        Notes = SelectedNote
+        //    };
+        //    return CreateEvento;
 
+        //}
+
+        // used in the viewmodel
         public bool InfoComplete()
         {
             return
@@ -142,6 +151,7 @@ namespace mcproject.ViewModels
                 SelectedTGusername != null;
         }
 
+        // used in the view
         public bool AreInfoComplete => InfoComplete();
 
         #endregion
@@ -149,6 +159,7 @@ namespace mcproject.ViewModels
         private async Task CreateMethod()
         {
             //await Shell.Current.GoToAsync("TestPage");
+            SelectedData = SelectedData.AddHours(SelectedTime.Hours).AddMinutes(SelectedTime.Minutes);
             try
             {
                 if (InfoComplete())

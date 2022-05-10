@@ -85,9 +85,7 @@ namespace mcproject.ViewModels
 
         public async Task Selected()
         {
-            if (SelectedEvent == null)
-                return;
-
+            // await Shell.Current.GoToAsync($"..?parameterToPassBack={parameterValueToPassBack}");
             await Shell.Current.GoToAsync($"SumUpPage?ID={SelectedEvent.ID}");
         }
 

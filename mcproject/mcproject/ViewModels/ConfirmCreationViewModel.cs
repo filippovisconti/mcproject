@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Web;
 using mcproject.Models;
 using mcproject.Services;
-using mcproject.Views;
 using MvvmHelpers.Commands;
 using Xamarin.Forms;
 

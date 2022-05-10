@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System.Web;
 using mcproject.Models;
 using mcproject.Services;
+using MvvmHelpers.Commands;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace mcproject.ViewModels
@@ -12,26 +14,43 @@ namespace mcproject.ViewModels
     {
         EventoSportivo eventoSportivo;
         private readonly FirebaseDB db = FirebaseDB.Instance;
+        public AsyncCommand OpenTelegramCommand { get; }
+
         public SumUpViewModel()
         {
-            getEvento();
 
-            this.Sport = eventoSportivo.Sport;
-            this.Date = eventoSportivo.DateAndTime;
-            this.Level = eventoSportivo.Level;
-            this.TG = eventoSportivo.TGUsername;
-            this.City = eventoSportivo.City;
-            this.Note = eventoSportivo.Notes;
+
+            OpenTelegramCommand = new AsyncCommand(OnOpenTelegram);
 
             //bottone t.me/nomeutente
         }
 
-        private void getEvento()
+        private async Task OnOpenTelegram()
+        {
+            Uri uri = new("https://t.me/" + TG);
+            try
+            {
+                await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+            }
+            catch
+            {
+                // No browser installed ?!?!}
+            }
+        }
+
+        private void GetEvento()
         {
             _ = Task.Run(async () =>
             {
-                eventoSportivo = (await db.GetEventoAsync(ID));
+                eventoSportivo = (await db.GetEventoAsyncByID(ID));
                 OnPropertyChanged(nameof(eventoSportivo));
+
+                Sport = eventoSportivo.Sport;
+                Date = eventoSportivo.DateAndTime;
+                Level = eventoSportivo.Level;
+                TG = eventoSportivo.TGUsername;
+                City = eventoSportivo.City;
+                Note = eventoSportivo.Notes;
 
             });
         }
@@ -85,20 +104,25 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _Note, value);
         }
 
+        // this instead is called by magic IDK but it works
         public void ApplyQueryAttributes(IDictionary<string, string> query)
         {
-            this.ID = Convert.ToInt32(HttpUtility.UrlDecode(query["ID"]));
+            ID = Convert.ToInt32(HttpUtility.UrlDecode(query["ID"]));
+
+            GetEvento();
         }
 
-        public void GetAttributes()
-        {
-            IDictionary<string, string> openWith = new Dictionary<string, string>();
+        // this never gets called automatically
+        //public void GetAttributes()
+        //{
+        //    IDictionary<string, string> openWith = new Dictionary<string, string>
+        //    {
+        //        { "ID", "SelectedEvent.ID" }
+        //    };
 
-            openWith.Add("ID", "SelectedEvent.ID");
+        //    ApplyQueryAttributes(openWith);
 
-            ApplyQueryAttributes(openWith);
-
-        }
+        //}
 
     }
 }

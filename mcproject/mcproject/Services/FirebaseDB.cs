@@ -17,7 +17,7 @@ namespace mcproject.Services
         readonly string SportsList = "SportsList";
         readonly string LevelsList = "LevelsList";
         readonly string UserInfoList = "UserInfoList";
- readonly string CitiesList = "CitiesList";      // TODO to be implemented
+        readonly string CitiesList = "CitiesList";      // TODO to be implemented
         #endregion
 
         #region DB init and dispose
@@ -90,13 +90,19 @@ namespace mcproject.Services
             await client.Child(EventList).Child(toBeDeleted.Key).DeleteAsync();
         }
 
-        public async Task<EventoSportivo> GetEventoAsync(int id)
+        public async Task<EventoSportivo> GetEventoAsyncByKey(string key)
+        {
+            return await client.Child(EventList).Child(key).OnceSingleAsync<EventoSportivo>();
+        }
+
+        public async Task<EventoSportivo> GetEventoAsyncByID(int id)
         {
             return (await client.Child(EventList).OnceAsync<EventoSportivo>())
                .Where(a => a.Object.ID == id).FirstOrDefault().Object;
         }
 
-        public async Task<EventoSportivo> GetEventoAsync(EventoSportivo item)
+
+        public async Task<EventoSportivo> GetEventoAsyncByID(EventoSportivo item)
         {
             return (await client.Child(EventList).OnceAsync<EventoSportivo>())
                .Where(a => a.Object.ID == item.ID).FirstOrDefault().Object;
