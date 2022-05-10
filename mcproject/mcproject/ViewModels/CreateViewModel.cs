@@ -27,16 +27,8 @@ namespace mcproject.ViewModels
         {
             _ = Task.Run(async () =>
               {
-
                   CreateLevel = new ObservableCollection<Difficulty>(await db.GetAvailableLevelsListAsync());
                   OnPropertyChanged(nameof(CreateLevel));
-
-                  //QUESTO FUNZIONA
-                  //IEnumerable<Difficulty> lev = await db.GetAvailableLevelsListAsync();
-                  //var cl = new ObservableCollection<Difficulty>(lev);
-                  //CreateLevel = cl;
-                  //OnPropertyChanged(nameof(CreateLevel));
-
               });
             _ = Task.Run(async () =>
               {
