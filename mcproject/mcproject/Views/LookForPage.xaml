@@ -9,7 +9,7 @@
     x:DataType="viewmodels:LookForViewModel"
     Title="{Binding Title}">
 
-     <ContentPage.BindingContext>
+    <ContentPage.BindingContext>
         <viewmodels:LookForViewModel/>
     </ContentPage.BindingContext>
 
@@ -59,54 +59,58 @@
         <StackLayout>
 
 
-        
-        <StackLayout>
-            <Label Text="You selected:" Style="{StaticResource BaseLabel}" FontSize="Title"/>
-            <Label Text="{Binding SelectedSport}" Style="{StaticResource BaseLabel}" FontSize="Title"/>
-            <Label Text="{Binding SelectedLevel}"  Style="{StaticResource BaseLabel}" FontSize="Title"/>
-            <Label Text="{Binding SelectedCity}" Style="{StaticResource BaseLabel}" FontSize="Title"/>
 
-        </StackLayout>
+            <!--<StackLayout>
+                <Label Text="You selected:" Style="{StaticResource BaseLabel}" FontSize="Title"/>
+                <Label Text="{Binding SelectedSport}" Style="{StaticResource BaseLabel}" FontSize="Title"/>
+                <Label Text="{Binding SelectedLevel}"  Style="{StaticResource BaseLabel}" FontSize="Title"/>
+                <Label Text="{Binding SelectedCity}" Style="{StaticResource BaseLabel}" FontSize="Title"/>
 
-        <CollectionView
+            </StackLayout>-->
+
+            <CollectionView
             ItemsSource="{Binding Eventi}"
             SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
             SelectionChangedCommand="{Binding SelectedCommand}"
             SelectionMode="Single">
-             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:EventoSportivo">
-               
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:EventoSportivo">
+
                         <Grid  HorizontalOptions="Center"
                                VerticalOptions="FillAndExpand">
-                      
-                       <Frame>
-                         <StackLayout>
-                         <StackLayout
+
+                            <Frame>
+                                <StackLayout>
+                                    <StackLayout
                             Orientation="Horizontal"
                             HorizontalOptions="Center" VerticalOptions="Center">
 
-                         <Label Text="Available:" Style="{StaticResource BaseLabel}" FontSize="Title"/>
+                                        <Label Text="{Binding Sport}" Style="{StaticResource BaseLabel}" FontSize="Title"/>
 
-                         </StackLayout>
-                         <Label Grid.Row="0"
+                                    </StackLayout>
+                                    <Label Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{Binding DateAndTime}"
+                                Style="{StaticResource SecondaryLabel}"/>
+                                    <!--<Label Grid.Row="0"
                                 Grid.Column="1"
                                 Text="{Binding Sport}"
-                                Style="{StaticResource SecondaryLabel}"/>
-                         <Label Grid.Row="1"
+                                Style="{StaticResource SecondaryLabel}"/>-->
+                                    <Label Grid.Row="1"
                                 Grid.Column="1"
                                 Text="{Binding City}"
                                 Style="{StaticResource SecondaryLabel}"/>
-                         <Label Grid.Row="2"
+                                    <Label Grid.Row="2"
                                 Grid.Column="1"
                                 Text="{Binding Level}"
                                 Style="{StaticResource SecondaryLabel}"/>
-                          
-                         </StackLayout>
-                      </Frame>
-                    </Grid>  
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         </StackLayout>
     </ContentPage.Content>

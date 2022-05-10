@@ -64,7 +64,7 @@ namespace mcproject.ViewModels
                 OnPropertyChanged(nameof(AvailableSports));
 
             });
-            _ = Task.Run(async () =>
+            _ = Task.Run(() =>
             {
 
                 Cities = new ObservableCollection<City>(Constants.cities);

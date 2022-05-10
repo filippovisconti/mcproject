@@ -47,8 +47,8 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _telegramUsername, value);
         }
 
-        private string _city;
-        public string City
+        private City _city;
+        public City City
         {
             get => _city;
             set => SetProperty(ref _city, value);
@@ -74,7 +74,10 @@ namespace mcproject.ViewModels
             {
                 Level = HttpUtility.UrlDecode(query["level"])
             };
-            City = HttpUtility.UrlDecode(query["city"]);
+            City = new City()
+            {
+                Name = HttpUtility.UrlDecode(query["city"])
+            };
             Note = HttpUtility.UrlDecode(query["note"]);
         }
 
