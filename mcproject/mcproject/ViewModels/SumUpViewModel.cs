@@ -71,8 +71,8 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _TG, value);
         }
 
-        private string _City;
-        public string City
+        private City _City;
+        public City City
         {
             get => _City;
             set => SetProperty(ref _City, value);

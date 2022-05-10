@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Firebase.Database.Query;
 using mcproject.Models;
 using mcproject.Services;
 
@@ -51,6 +52,17 @@ namespace mcproject.ViewModels
                   //OnPropertyChanged(nameof(CreateSport));
 
               });
+
+            _ = Task.Run(async () =>
+            {
+                //await db.client.Child("CitiesList").PostAsync(new City()
+                //{
+                //    Name = "Roma"
+                //});
+                CreateCity = new ObservableCollection<City>(Constants.cities);
+                OnPropertyChanged(nameof(CreateCity));
+
+            });
         }
 
 
@@ -97,14 +109,16 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedTGusername, value);
         }
 
-        public ObservableCollection<string> CreateCity
+        private IList<City> _CreateCity;
+        public IList<City> CreateCity
         {
-            get => Constants.City;
+            get => _CreateCity;
+            set => SetProperty(ref _CreateCity, value);
         }
 
 
-        private string _SelectedCity;
-        public string SelectedCity
+        private City _SelectedCity;
+        public City SelectedCity
         {
             get => _SelectedCity;
             set => SetProperty(ref _SelectedCity, value);

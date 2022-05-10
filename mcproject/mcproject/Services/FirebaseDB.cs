@@ -25,6 +25,7 @@ namespace mcproject.Services
         public readonly FirebaseClient client = null;
         #region properties
         readonly string EventList = "EventList";
+        readonly string CitiesList = "CitiesList";      // TODO to be implemented
         readonly string SportsList = "SportsList";
         readonly string LevelsList = "LevelsList";
         readonly string UserInfoList = "UserInfoList";
@@ -187,17 +188,17 @@ namespace mcproject.Services
 
 
         /* --- da correggere --- */
-        public async Task<IList<EventoSportivo>> SearchBySportLevelCityAsync(Sport sport, Difficulty level, string city)
+        public async Task<IList<EventoSportivo>> SearchBySportLevelCityAsync(string sport, string level, string city)
         {
 
             var a = await client.Child(EventList).OnceAsync<EventoSportivo>();
-            var lst = a.Where(a => a.Object.Sport == sport && a.Object.Level == level && a.Object.City == city);
+            var lst = a.Where(a => a.Object.Sport.Name == sport && a.Object.Level.Level == level && a.Object.City.Name == city);
             var l2 = lst.Select(item => item.Object);
             return l2
                 .ToList();
 
         }
-        
+
 
         #endregion
     }

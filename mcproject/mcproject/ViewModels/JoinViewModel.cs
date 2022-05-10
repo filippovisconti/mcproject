@@ -27,9 +27,11 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _Level, value);
         }
 
-        public Collection<string> City
+        private IList<City> _Cities;
+        public IList<City> Cities
         {
-            get => Services.Constants.City;
+            get => _Cities;
+            set => SetProperty(ref _Cities, value);
         }
 
 
@@ -62,6 +64,14 @@ namespace mcproject.ViewModels
                 OnPropertyChanged(nameof(AvailableSports));
 
             });
+            _ = Task.Run(async () =>
+            {
+
+                Cities = new ObservableCollection<City>(Constants.cities);
+                OnPropertyChanged(nameof(Cities));
+
+            });
+
         }
 
 
@@ -81,8 +91,8 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedLevel, value);
         }
 
-        private string _SelectedCity;
-        public string SelectedCity
+        private City _SelectedCity;
+        public City SelectedCity
         {
             get => _SelectedCity;
             set => SetProperty(ref _SelectedCity, value);

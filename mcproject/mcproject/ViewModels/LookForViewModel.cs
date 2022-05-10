@@ -36,8 +36,8 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedLevel, value);
         }
 
-        private string _SelectedCity;
-        public string SelectedCity
+        private City _SelectedCity;
+        public City SelectedCity
         {
             get => _SelectedCity;
             set => SetProperty(ref _SelectedCity, value);
@@ -66,10 +66,7 @@ namespace mcproject.ViewModels
         {
 
             SelectedCommand = new AsyncCommand(Selected);
-            
-            //LoadEvent();
 
-            //OnPropertyChanged(nameof(Eventi));
         }
 
         private void LoadEvent()
@@ -78,10 +75,11 @@ namespace mcproject.ViewModels
             _ = Task.Run(async () =>
               {
 
-                  Eventi = new ObservableCollection<EventoSportivo>(await db.SearchBySportLevelCityAsync(SelectedSport, SelectedLevel, SelectedCity));
+                  Eventi = new ObservableCollection<EventoSportivo>(
+                      await db.SearchBySportLevelCityAsync(SelectedSport.Name, SelectedLevel.Level, SelectedCity.Name));
                   OnPropertyChanged(nameof(Eventi));
 
-              }); 
+              });
         }
 
 
@@ -100,28 +98,35 @@ namespace mcproject.ViewModels
             {
                 Name = (HttpUtility.UrlDecode(query["sport"]))
             };
-            SelectedLevel =  new Difficulty()
+            SelectedLevel = new Difficulty()
             {
-            Level = (HttpUtility.UrlDecode(query["level"]))
+                Level = (HttpUtility.UrlDecode(query["level"]))
             };
-            this.SelectedCity = (HttpUtility.UrlDecode(query["city"]));
+            SelectedCity = new City()
+            {
+                Name = (HttpUtility.UrlDecode(query["city"]))
+            };
+
+            // wait for the variables to be filled with the right value
+            // while (SelectedSport == null || SelectedLevel == null || SelectedCity == null) ;
 
             LoadEvent();
         }
 
         public void GetAttributes()
         {
-            IDictionary<string, string> openWith = new Dictionary<string, string>();
-
-            openWith.Add("sport", "SelectedSport");
-            openWith.Add("level", "SelectedLevel");
-            openWith.Add("city", "SelectedCity");
+            IDictionary<string, string> openWith = new Dictionary<string, string>
+            {
+                { "sport", "SelectedSport" },
+                { "level", "SelectedLevel" },
+                { "city", "SelectedCity" }
+            };
 
             ApplyQueryAttributes(openWith);
 
         }
 
-      
-          
-        }
+
+
+    }
 }
