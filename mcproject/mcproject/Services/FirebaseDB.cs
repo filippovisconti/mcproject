@@ -17,6 +17,7 @@ namespace mcproject.Services
         readonly string SportsList = "SportsList";
         readonly string LevelsList = "LevelsList";
         readonly string UserInfoList = "UserInfoList";
+        readonly string CitiesList = "CitiesList";      // TODO to be implemented
         #endregion
 
         #region DB init and dispose
@@ -89,13 +90,19 @@ namespace mcproject.Services
             await client.Child(EventList).Child(toBeDeleted.Key).DeleteAsync();
         }
 
-        public async Task<EventoSportivo> GetEventoAsync(int id)
+        public async Task<EventoSportivo> GetEventoAsyncByKey(string key)
+        {
+            return await client.Child(EventList).Child(key).OnceSingleAsync<EventoSportivo>();
+        }
+
+        public async Task<EventoSportivo> GetEventoAsyncByID(int id)
         {
             return (await client.Child(EventList).OnceAsync<EventoSportivo>())
                .Where(a => a.Object.ID == id).FirstOrDefault().Object;
         }
 
-        public async Task<EventoSportivo> GetEventoAsync(EventoSportivo item)
+
+        public async Task<EventoSportivo> GetEventoAsyncByID(EventoSportivo item)
         {
             return (await client.Child(EventList).OnceAsync<EventoSportivo>())
                .Where(a => a.Object.ID == item.ID).FirstOrDefault().Object;
@@ -178,6 +185,24 @@ namespace mcproject.Services
                 .OnceAsync<Difficulty>())
                 .Select(item => item.Object)).ToList();
         }
+
+        #endregion
+
+        #region look for an event
+
+
+        /* --- da correggere --- */
+        public async Task<IList<EventoSportivo>> SearchBySportLevelCityAsync(string sport, string level, string city)
+        {
+
+            var a = await client.Child(EventList).OnceAsync<EventoSportivo>();
+            var lst = a.Where(a => a.Object.Sport.Name == sport && a.Object.Level.Level == level && a.Object.City.Name == city);
+            var l2 = lst.Select(item => item.Object);
+            return l2
+                .ToList();
+
+        }
+
 
         #endregion
     }

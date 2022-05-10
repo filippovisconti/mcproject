@@ -14,17 +14,17 @@
             <Label Text="Your Events:"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Picker  ItemsSource="{Binding City}" 
+            <Picker  ItemsSource="{Binding Cities}" 
                      SelectedItem="{Binding SelectedCity}"
                      Title="City" 
                      Style="{StaticResource BasePicker}"/>
 
-            <CarouselView ItemsSource="{Binding City}"
+            <CarouselView ItemsSource="{Binding Cities}"
                           PeekAreaInsets="100">
-            <CarouselView.ItemsLayout>
-                <LinearItemsLayout Orientation="Horizontal"
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"
                            ItemSpacing="0" />
-            </CarouselView.ItemsLayout>
+                </CarouselView.ItemsLayout>
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
@@ -41,7 +41,7 @@
                                FontSize="Large"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
-                                 <!--   <Image Source="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.today.it%2Fbest%2Fsport-fitness%2Fabbigliamento-pallavolo.html&psig=AOvVaw3FHOg4uwN-rWvZ5Rphq_h1&ust=1648286836038000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLiYxY354PYCFQAAAAAdAAAAABAD"
+                                    <!--   <Image Source="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.today.it%2Fbest%2Fsport-fitness%2Fabbigliamento-pallavolo.html&psig=AOvVaw3FHOg4uwN-rWvZ5Rphq_h1&ust=1648286836038000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLiYxY354PYCFQAAAAAdAAAAABAD"
                                Aspect="AspectFill"
                                HeightRequest="150"
                                WidthRequest="150"
