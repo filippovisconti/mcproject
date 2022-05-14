@@ -3,60 +3,96 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using MvvmHelpers.Commands;
+using mcproject.Models;
+using System.Collections.Generic;
+using mcproject.Services;
 
 namespace mcproject.ViewModels
 {
     public class JoinViewModel : ViewModelBase
     {
 
-        public Collection<string> AvailableSports
+        private IList<Sport> _AvailableSports;
+        public IList<Sport> AvailableSports
         {
 
-            get => Services.Constants.Sport;
+            get => _AvailableSports;
+            set => SetProperty(ref _AvailableSports, value);
         }
+
+        private IList<Difficulty> _Level;
+        public IList<Difficulty> Level
+        {
+            get => _Level;
+            set => SetProperty(ref _Level, value);
+        }
+
+        private IList<City> _Cities;
+        public IList<City> Cities
+        {
+            get => _Cities;
+            set => SetProperty(ref _Cities, value);
+        }
+
 
         public ICommand Search { get; }
         public JoinViewModel()
         {
             Search = new AsyncCommand(OnSearch);
+            PopulateThoseBitches();
         }
 
         private async Task OnSearch()
         {
-            await Shell.Current.GoToAsync("LookForPage");
-            //await Shell.Current.GoToAsync($"LookForPage?sport={SelectedSport}&level={SelectedLevel}&city={SelectedCity}");
+            //await Shell.Current.GoToAsync("LookForPage");
+            await Shell.Current.GoToAsync($"LookForPage?sport={SelectedSport}&level={SelectedLevel}&city={SelectedCity}");
+        }
+
+        private readonly FirebaseDB db = FirebaseDB.Instance;
+        private void PopulateThoseBitches()
+        {
+            _ = Task.Run(async () =>
+            {
+
+                Level = new ObservableCollection<Difficulty>(await db.GetAvailableLevelsListAsync());
+                OnPropertyChanged(nameof(Level));
+            });
+            _ = Task.Run(async () =>
+            {
+
+                AvailableSports = new ObservableCollection<Sport>(await db.GetAvailableSportsListAsync());
+                OnPropertyChanged(nameof(AvailableSports));
+
+            });
+            _ = Task.Run(() =>
+            {
+
+                Cities = new ObservableCollection<City>(Constants.cities);
+                OnPropertyChanged(nameof(Cities));
+
+            });
+
         }
 
 
 
-        private string _SelectedSport;
-        public string SelectedSport
+
+        private Sport _SelectedSport;
+        public Sport SelectedSport
         {
             get => _SelectedSport;
             set => SetProperty(ref _SelectedSport, value);
         }
 
-        public Collection<string> Level
-        {
-            get => Services.Constants.Livello;
-        }
-
-
-        private string _SelectedLevel;
-        public string SelectedLevel
+        private Difficulty _SelectedLevel;
+        public Difficulty SelectedLevel
         {
             get => _SelectedLevel;
             set => SetProperty(ref _SelectedLevel, value);
         }
 
-        public Collection<string> City
-        {
-            get => Services.Constants.City;
-        }
-
-
-        private string _SelectedCity;
-        public string SelectedCity
+        private City _SelectedCity;
+        public City SelectedCity
         {
             get => _SelectedCity;
             set => SetProperty(ref _SelectedCity, value);

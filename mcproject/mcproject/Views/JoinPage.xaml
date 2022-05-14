@@ -36,7 +36,7 @@
                      Style="{StaticResource BasePicker}"/>
 
 
-            <Picker  ItemsSource="{Binding City}" 
+            <Picker  ItemsSource="{Binding Cities}" 
                      SelectedItem="{Binding SelectedCity}"
                      Title="City" 
                      Style="{StaticResource BasePicker}"/>

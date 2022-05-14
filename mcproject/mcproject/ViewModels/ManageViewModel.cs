@@ -9,18 +9,24 @@ namespace mcproject.ViewModels
 
     public class ManageViewModel : ViewModelBase
     {
+        // TODO GET RID OF THIS 
 
-        public Collection<string> AvailableSports
+        //public Collection<string> AvailableSports
+        //{
+
+        //    get => Services.Constants.Sport;
+        //}
+
+        public IList<City> Cities
         {
 
-            get => Services.Constants.Sport;
+            get => Services.Constants.cities;
         }
 
-        public Collection<string> City
-        {
-
-            get => Services.Constants.City;
-        }
+        //public ObservableCollection<string> CreateCity
+        //{
+        //    get => Services.Constants.City;
+        //}
 
         public ManageViewModel()
         {
@@ -29,11 +35,6 @@ namespace mcproject.ViewModels
 
         }
 
-
-        public ObservableCollection<string> CreateCity
-        {
-            get => Services.Constants.City;
-        }
 
 
         private string _SelectedCity;

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Web;
-using mcproject.Models;
-using MvvmHelpers.Commands;
 using Xamarin.Forms;
 namespace mcproject.ViewModels
 {
@@ -54,33 +49,33 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _TestNote, value);
         }
 
-     
-
-       public void ApplyQueryAttributes(IDictionary<string, string> query)
-       {
-           this.TestTG = HttpUtility.UrlDecode(query["tg"]);
-           this.TestSport = HttpUtility.UrlDecode(query["sport"]);
-           this.TestDate = Convert.ToDateTime(HttpUtility.UrlDecode(query["data"]));
-           this.TestLevel = HttpUtility.UrlDecode(query["level"]);
-           this.TestCity = HttpUtility.UrlDecode(query["city"]);
-           this.TestNote = HttpUtility.UrlDecode(query["note"]);
-       }
-
-       public void GetAttributes()
-       {
-           IDictionary<string, string> openWith = new Dictionary<string, string>();
-
-           openWith.Add("sport", "SelectedSport");
-           openWith.Add("data", "SelectedData");
-           openWith.Add("level", "SelectedLevel");
-           openWith.Add("tg", "SelectedTGusername");
-           openWith.Add("city", "SelectedCity");
-           openWith.Add("note", "SelectedNote");
-
-           ApplyQueryAttributes(openWith);
 
 
-       }
+        public void ApplyQueryAttributes(IDictionary<string, string> query)
+        {
+            this.TestTG = HttpUtility.UrlDecode(query["tg"]);
+            this.TestSport = HttpUtility.UrlDecode(query["sport"]);
+            this.TestDate = Convert.ToDateTime(HttpUtility.UrlDecode(query["data"]));
+            this.TestLevel = HttpUtility.UrlDecode(query["level"]);
+            this.TestCity = HttpUtility.UrlDecode(query["city"]);
+            this.TestNote = HttpUtility.UrlDecode(query["note"]);
+        }
+
+        public void GetAttributes()
+        {
+            IDictionary<string, string> openWith = new Dictionary<string, string>();
+
+            openWith.Add("sport", "SelectedSport");
+            openWith.Add("data", "SelectedData");
+            openWith.Add("level", "SelectedLevel");
+            openWith.Add("tg", "SelectedTGusername");
+            openWith.Add("city", "SelectedCity");
+            openWith.Add("note", "SelectedNote");
+
+            ApplyQueryAttributes(openWith);
+
+
+        }
 
     }
 }

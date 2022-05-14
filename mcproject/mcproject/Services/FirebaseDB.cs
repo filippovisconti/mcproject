@@ -11,6 +11,16 @@ namespace mcproject.Services
     public sealed class FirebaseDB
 
     {
+
+        #region properties
+        readonly string EventList = "EventList";
+        readonly string SportsList = "SportsList";
+        readonly string LevelsList = "LevelsList";
+        readonly string UserInfoList = "UserInfoList";
+        readonly string CitiesList = "CitiesList";      // TODO to be implemented
+        #endregion
+
+        #region DB init and dispose
         private static readonly FirebaseDB instance = new();
 
         public static FirebaseDB Instance
@@ -23,14 +33,7 @@ namespace mcproject.Services
 
 
         public readonly FirebaseClient client = null;
-        #region properties
-        readonly string EventList = "EventList";
-        readonly string SportsList = "SportsList";
-        readonly string LevelsList = "LevelsList";
-        readonly string UserInfoList = "UserInfoList";
-        #endregion
 
-        #region init and dispose
         private FirebaseDB()
         {
             client = new FirebaseClient("https://mcproject-1234-default-rtdb.europe-west1.firebasedatabase.app/");
@@ -87,10 +90,22 @@ namespace mcproject.Services
             await client.Child(EventList).Child(toBeDeleted.Key).DeleteAsync();
         }
 
-        public async Task<EventoSportivo> GetEventoAsync(int id)
+        public async Task<EventoSportivo> GetEventoAsyncByKey(string key)
+        {
+            return await client.Child(EventList).Child(key).OnceSingleAsync<EventoSportivo>();
+        }
+
+        public async Task<EventoSportivo> GetEventoAsyncByID(int id)
         {
             return (await client.Child(EventList).OnceAsync<EventoSportivo>())
                .Where(a => a.Object.ID == id).FirstOrDefault().Object;
+        }
+
+
+        public async Task<EventoSportivo> GetEventoAsyncByID(EventoSportivo item)
+        {
+            return (await client.Child(EventList).OnceAsync<EventoSportivo>())
+               .Where(a => a.Object.ID == item.ID).FirstOrDefault().Object;
         }
 
         public async Task<IList<EventoSportivo>> GetAllEventiAsync()
@@ -159,27 +174,35 @@ namespace mcproject.Services
         #region retrive available sports and difficulty levels
         public async Task<IList<Sport>> GetAvailableSportsListAsync()
         {
-            //return (await client.Child(SportsList)
-            //    .OnceAsync<Sport>())
-            //    .Select(item => item.Object);
-
-            var l1 = await client.Child(SportsList).OnceAsync<Sport>();
-            var l2 = l1.Select(item => item.Object);
-            return l2.ToList();
-
+            return ((await client.Child(SportsList)
+                .OnceAsync<Sport>())
+                .Select(item => item.Object)).ToList();
         }
 
         public async Task<IList<Difficulty>> GetAvailableLevelsListAsync()
         {
-            //return (await client.Child(LevelsList)
-            //    .OnceAsync<Difficulty>())
-            //    .Select(item => item.Object);
+            return ((await client.Child(LevelsList)
+                .OnceAsync<Difficulty>())
+                .Select(item => item.Object)).ToList();
+        }
 
-            var l1 = await client.Child(LevelsList).OnceAsync<Difficulty>();
-            var l2 = l1.Select(item => item.Object);
-            return l2.ToList();
+        #endregion
+
+        #region look for an event
+
+
+        /* --- da correggere --- */
+        public async Task<IList<EventoSportivo>> SearchBySportLevelCityAsync(string sport, string level, string city)
+        {
+
+            var a = await client.Child(EventList).OnceAsync<EventoSportivo>();
+            var lst = a.Where(a => a.Object.Sport.Name == sport && a.Object.Level.Level == level && a.Object.City.Name == city);
+            var l2 = lst.Select(item => item.Object);
+            return l2
+                .ToList();
 
         }
+
 
         #endregion
     }
