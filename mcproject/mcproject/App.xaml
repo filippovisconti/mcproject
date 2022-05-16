@@ -112,7 +112,6 @@
                 <Setter Property="Margin" Value="50,20,50,0"/>
                 <Setter Property="HorizontalOptions" Value="Fill"/>
                 <Setter Property="Format" Value="t"/>
-
             </Style>
 
             <Style x:Key="BaseEntry" TargetType="Entry">
@@ -123,7 +122,6 @@
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="Margin" Value="50,20,50,0"/>
                 <Setter Property="HorizontalOptions" Value="Fill"/>
-
                 <Setter Property="BackgroundColor"
                         Value="Transparent"/>
                 <Setter Property="Margin" Value="50,20,50,0"/>
