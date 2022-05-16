@@ -4,7 +4,7 @@ using System.Text;
 
 namespace mcproject.ViewModels
 {
-    class ModifyEventPageViewModel
+    class ModifyEventViewModel
     {
     }
 }
