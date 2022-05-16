@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -101,11 +102,32 @@ namespace mcproject.Services
                .Where(a => a.Object.ID == id).FirstOrDefault().Object;
         }
 
-
         public async Task<EventoSportivo> GetEventoAsyncByID(EventoSportivo item)
         {
             return (await client.Child(EventList).OnceAsync<EventoSportivo>())
                .Where(a => a.Object.ID == item.ID).FirstOrDefault().Object;
+        }
+
+        public async Task<IList<EventoSportivo>> GetEventoAsyncByOwner(User user)
+        {
+            string ownerEmail = user.Email;
+            if (ownerEmail == null || ownerEmail.Length < 6)
+                throw new ArgumentNullException("ownerEmail", "user email is null or too short to be valid.");
+            else
+                return (await client.Child(EventList).OnceAsync<EventoSportivo>())
+                   .Where(a => a.Object.Owner == ownerEmail).
+                   Select(item => new EventoSportivo
+                   {
+                       ID = item.Object.ID,
+                       Owner = item.Object.Owner,
+                       Sport = item.Object.Sport,
+                       City = item.Object.City,
+                       Level = item.Object.Level,
+                       DateAndTime = item.Object.DateAndTime,
+                       Notes = item.Object.Notes,
+                       TGUsername = item.Object.TGUsername,
+                       Icon = item.Object.Icon
+                   }).ToList();
         }
 
         public async Task<IList<EventoSportivo>> GetAllEventiAsync()
@@ -139,8 +161,7 @@ namespace mcproject.Services
             {
                 ID = userID++,
                 Name = item.Name,
-                TelegramUsername = item.TelegramUsername,
-                EmailAddress = item.EmailAddress
+                Email = item.Email
             });
         }
         public async Task UpdateUserInfoAsync(User item)
@@ -152,8 +173,7 @@ namespace mcproject.Services
                 .PutAsync(new User()
                 {
                     Name = item.Name,
-                    TelegramUsername = item.TelegramUsername,
-                    EmailAddress = item.EmailAddress
+                    Email = item.Email
                 });
         }
         public async Task DeleteUserInfoAsync(User item)
@@ -191,15 +211,18 @@ namespace mcproject.Services
         #region look for an event
 
 
-        /* --- da correggere --- */
         public async Task<IList<EventoSportivo>> SearchBySportLevelCityAsync(string sport, string level, string city)
         {
 
-            var a = await client.Child(EventList).OnceAsync<EventoSportivo>();
-            var lst = a.Where(a => a.Object.Sport.Name == sport && a.Object.Level.Level == level && a.Object.City.Name == city);
-            var l2 = lst.Select(item => item.Object);
-            return l2
-                .ToList();
+            return (await client.Child(EventList).OnceAsync<EventoSportivo>())
+                .Where(a => a.Object.Sport.Name == sport && a.Object.Level.Level == level && a.Object.City.Name == city)
+                .Select(item => item.Object).ToList();
+
+            //var a = await client.Child(EventList).OnceAsync<EventoSportivo>();
+            //var lst = a.Where(a => a.Object.Sport.Name == sport && a.Object.Level.Level == level && a.Object.City.Name == city);
+            //var l2 = lst.Select(item => item.Object);
+            //return l2
+            //    .ToList();
 
         }
 

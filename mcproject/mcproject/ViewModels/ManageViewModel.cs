@@ -1,4 +1,5 @@
 ﻿using mcproject.Models;
+using mcproject.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -12,12 +13,16 @@ namespace mcproject.ViewModels
 
     public class ManageViewModel : ViewModelBase
     {
-        // TODO GET RID OF THIS 
+        // TODO GET RID OF THIS
 
         //public Collection<string> AvailableSports
         //{
 
         //    get => Services.Constants.Sport;
+        //}
+        //public ObservableCollection<string> CreateCity
+        //{
+        //    get => Services.Constants.City;
         //}
 
         public IList<City> Cities
@@ -26,10 +31,6 @@ namespace mcproject.ViewModels
             get => Services.Constants.cities;
         }
 
-        //public ObservableCollection<string> CreateCity
-        //{
-        //    get => Services.Constants.City;
-        //}
 
         public ManageViewModel()
         {
@@ -88,6 +89,13 @@ namespace mcproject.ViewModels
             await Shell.Current.GoToAsync($"ModifyEventPage?ID={SelectedEvent.ID}");
         }
 
+
+        private async Task<IList<EventoSportivo>> GetEventsByOwner()
+        {
+            User u = await DependencyService.Resolve<IAuthService>().RetrieveUserInfo();
+
+            return await FirebaseDB.Instance.GetEventoAsyncByOwner(u);
+        }
 
     }
 
