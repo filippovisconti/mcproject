@@ -51,7 +51,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: filippo.visconti23@gmail.com (4755UABZM9)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
@@ -167,7 +167,7 @@
       <Version>1.8.116</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials.Interfaces">
-      <Version>1.7.2</Version>
+      <Version>1.7.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens">
       <Version>6.17.0</Version>
