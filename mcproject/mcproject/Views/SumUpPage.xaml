@@ -34,7 +34,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Center" VerticalOptions="Center">
 
-                        <Label Text="Event Details" Style="{StaticResource BaseLabel}" FontSize="Title"/>
+                        <Label Text="Event Details" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
 
                     </StackLayout>
 
@@ -61,7 +61,7 @@
 
                     <Button Text="Contact"
                     Command="{Binding OpenTelegramCommand}"
-                Style="{StaticResource BaseButton}"/>
+                Style="{StaticResource ThirdButton}"/>
                 </StackLayout>
             </Frame>
 

@@ -64,7 +64,7 @@
 
         
          <Button Text="Create the event"
-                Style="{StaticResource BaseButton}"/>
+                 Style="{StaticResource SecondButton}"/>
 
 
       <!--/FlexLayout>

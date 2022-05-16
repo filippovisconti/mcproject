@@ -41,7 +41,7 @@
                 Orientation="Horizontal"
                 HorizontalOptions="Center" VerticalOptions="Center">
 
-                        <Label Text="Review:" Style="{StaticResource BaseLabel}" FontSize="Title"
+                        <Label Text="Review:" Style="{StaticResource ThirdLabel}" FontSize="Title"
                       />
 
                     </StackLayout>
@@ -68,7 +68,7 @@
 
 
                     <Button Text="Confirm"
-                Style="{StaticResource BaseButton}"
+                Style="{StaticResource ThirdButton}"
                             Command="{Binding ConfirmCommand}"/>
 
 

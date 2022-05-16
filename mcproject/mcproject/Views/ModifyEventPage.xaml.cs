@@ -4,13 +4,11 @@ using Xamarin.Forms.Xaml;
 namespace mcproject.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ManagePage : ContentPage
+    public partial class ModifyEventPage : ContentPage
     {
-
-        public ManagePage()
+        public ModifyEventPage()
         {
             InitializeComponent();
         }
-       
     }
 }

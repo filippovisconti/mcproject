@@ -70,6 +70,7 @@
         <Button Text="Create the event"
                 IsEnabled="{Binding AreInfoComplete}"
                 Command="{Binding CreateCommand}"
-                Style="{StaticResource BaseButton}"/>
+                Style="{StaticResource BaseButton}"
+                Margin="120,70,120,0"/>
     </StackLayout>
 </ContentPage>
