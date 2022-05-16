@@ -3,7 +3,6 @@ using mcproject.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Web;
 using Xamarin.Forms;
 using MvvmHelpers.Commands;
 
@@ -12,7 +11,8 @@ namespace mcproject.ViewModels
 
     public class ManageViewModel : ViewModelBase
     {
-
+        // TODO aggiungere un Reload (altrimenti non si vedono eventi appena creati rientrando nella pagina). c'è un metodo che viene chiamato quando si apre la pagina (OnAppearing o simili) che potrebbe aiutare
+        // TODO fix eventByuser
         #region BS
         // TODO GET RID OF THIS 
 
