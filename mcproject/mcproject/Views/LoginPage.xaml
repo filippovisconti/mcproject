@@ -42,7 +42,8 @@
                 Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
 
                 <StackLayout Spacing="3">
-                    <Entry Placeholder="Email" x:Name="UserName" IsEnabled="True" Text="{Binding Email}">
+                    <Entry Placeholder="Email" x:Name="UserName" IsEnabled="True" Text="{Binding Email}"
+                           Style="{StaticResource BaseLabel}">
                         <Entry.Behaviors>
                             <xct:EmailValidationBehavior
                                 x:Name="EmailValidator"
@@ -59,7 +60,8 @@
 
                 <StackLayout Spacing="3">
 
-                    <Entry Placeholder="Password" IsPassword="True" x:Name="UserPassword" Text="{Binding Password}">
+                    <Entry Placeholder="Password" IsPassword="True" x:Name="UserPassword" Text="{Binding Password}"
+                           Style="{StaticResource BaseLabel}">
 
                         <Entry.Behaviors>
                             <xct:CharactersValidationBehavior
@@ -68,7 +70,6 @@
                             CharacterType="Any"
                             MaximumCharacterCount="30"
                             MinimumCharacterCount="8"/>
-
                         </Entry.Behaviors>
                     </Entry>
 

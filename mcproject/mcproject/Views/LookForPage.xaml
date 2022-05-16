@@ -85,7 +85,7 @@
                             Orientation="Horizontal"
                             HorizontalOptions="Center" VerticalOptions="Center">
 
-                                        <Label Text="{Binding Sport}" Style="{StaticResource BaseLabel}" FontSize="Title"/>
+                                    <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
 
                                     </StackLayout>
                                     <Label Grid.Row="0"
