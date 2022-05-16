@@ -1,6 +1,8 @@
 ﻿using mcproject.Models;
+using mcproject.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Web;
 using Xamarin.Forms;
 
@@ -16,6 +18,10 @@ namespace mcproject.ViewModels
 
         //    get => Services.Constants.Sport;
         //}
+        //public ObservableCollection<string> CreateCity
+        //{
+        //    get => Services.Constants.City;
+        //}
 
         public IList<City> Cities
         {
@@ -23,10 +29,6 @@ namespace mcproject.ViewModels
             get => Services.Constants.cities;
         }
 
-        //public ObservableCollection<string> CreateCity
-        //{
-        //    get => Services.Constants.City;
-        //}
 
         public ManageViewModel()
         {
@@ -42,6 +44,14 @@ namespace mcproject.ViewModels
         {
             get => _SelectedCity;
             set => SetProperty(ref _SelectedCity, value);
+        }
+
+
+        private async Task<IList<EventoSportivo>> GetEventsByOwner()
+        {
+            User u = await DependencyService.Resolve<IAuthService>().RetrieveUserInfo();
+
+            return await FirebaseDB.Instance.GetEventoAsyncByOwner(u);
         }
 
     }

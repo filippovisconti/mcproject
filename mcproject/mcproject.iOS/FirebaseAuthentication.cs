@@ -50,12 +50,17 @@ namespace mcproject.iOS
             {
                 if (IsSignedIn())
                 {
-                    var currentUser = Auth.DefaultInstance.CurrentUser;
-                    return new Models.User(currentUser.DisplayName, currentUser.Email);
+                    Firebase.Auth.User currentUser = Auth.DefaultInstance.CurrentUser;
+                    return new Models.User()
+                    {
+                        Name = currentUser.DisplayName,
+                        Email = currentUser.Email
+                    };
 
                 }
                 else
                 {
+                    await Shell.Current.DisplayAlert("Login error", "You are not signed in.", "Fight me");
                     throw new Exception("You are not signed in.");
                 }
             }
