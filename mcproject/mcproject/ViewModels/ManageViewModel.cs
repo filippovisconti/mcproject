@@ -12,71 +12,25 @@ namespace mcproject.ViewModels
 
     public class ManageViewModel : ViewModelBase
     {
+
+        #region BS
         // TODO GET RID OF THIS 
-
-        //public Collection<string> AvailableSports
-        //{
-
-        //    get => Services.Constants.Sport;
-        //}
-        //public ObservableCollection<string> CreateCity
-        //{
-        //    get => Services.Constants.City;
-        //}
 
         public IList<City> Cities
         {
 
             get => Services.Constants.cities;
         }
+        #endregion
 
-
-        public ManageViewModel()
-        {
-
-            Title = "Manage your events";
-            LoadEvent();
-            SelectedCommand = new AsyncCommand(Selected);
-
-        }
-
-
-
-        private string _SelectedCity;
-        public string SelectedCity
-        {
-            get => _SelectedCity;
-            set => SetProperty(ref _SelectedCity, value);
-        }
-
-
- private async Task<IList<EventoSportivo>> GetEventsByOwner()
-        {
-            User u = await DependencyService.Resolve<IAuthService>().RetrieveUserInfo();
-
-            return await FirebaseDB.Instance.GetEventoAsyncByOwner(u);
-
+        #region constructor and properties
+        private readonly FirebaseDB db = FirebaseDB.Instance;
 
         private ObservableCollection<EventoSportivo> _Eventi;
         public ObservableCollection<EventoSportivo> Eventi
         {
             get => _Eventi;
             set => SetProperty(ref _Eventi, value);
-        }
-
-        private readonly FirebaseDB db = FirebaseDB.Instance;
-        private void LoadEvent()
-        {
-            //if (SelectedSport == null) throw new NullReferenceException();
-            _ = Task.Run(async () =>
-            {
-
-                Eventi = new ObservableCollection<EventoSportivo>(
-                    //await db.SearchBySportLevelCityAsync());
-                    await db.GetAllEventiAsync());
-                OnPropertyChanged(nameof(Eventi));
-
-            });
         }
 
         private EventoSportivo _SelectedEvent;
@@ -94,6 +48,40 @@ namespace mcproject.ViewModels
             await Shell.Current.GoToAsync($"ModifyEventPage?ID={SelectedEvent.ID}");
         }
 
+
+        public ManageViewModel()
+        {
+
+            Title = "Manage your events";
+            LoadEvent();
+            SelectedCommand = new AsyncCommand(Selected);
+
+        }
+        #endregion
+
+        #region helper methods
+        private async Task<IList<EventoSportivo>> GetEventsByOwner()
+        {
+            User u = await DependencyService.Resolve<IAuthService>().RetrieveUserInfo();
+
+            return await db.GetEventoAsyncByOwner(u);
+        }
+
+        private void LoadEvent()
+        {
+            //if (SelectedSport == null) throw new NullReferenceException();
+            _ = Task.Run(async () =>
+            {
+
+                Eventi = new ObservableCollection<EventoSportivo>(
+                    //await db.SearchBySportLevelCityAsync());
+                    await GetEventsByOwner()
+                    );
+                OnPropertyChanged(nameof(Eventi));
+
+            });
+        }
+        #endregion
 
     }
 
