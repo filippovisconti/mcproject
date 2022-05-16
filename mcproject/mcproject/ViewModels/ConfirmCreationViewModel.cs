@@ -103,6 +103,8 @@ namespace mcproject.ViewModels
 
         private async Task OnConfirm()
         {
+            User u = await DependencyService.Resolve<IAuthService>().RetrieveUserInfo();
+
             EventoSportivo e = new()
             {
                 Sport = Sport,
@@ -110,7 +112,8 @@ namespace mcproject.ViewModels
                 Level = Level,
                 TGUsername = TelegramUsername,
                 City = City,
-                Notes = Note
+                Notes = Note,
+                Owner = u.Email
             };
             FirebaseDB db = FirebaseDB.Instance;
 
