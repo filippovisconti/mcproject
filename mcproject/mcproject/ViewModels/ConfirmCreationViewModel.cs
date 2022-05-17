@@ -5,6 +5,7 @@ using System.Web;
 using mcproject.Models;
 using mcproject.Services;
 using MvvmHelpers.Commands;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace mcproject.ViewModels
@@ -113,7 +114,9 @@ namespace mcproject.ViewModels
                 TGUsername = TelegramUsername,
                 City = City,
                 Notes = Note,
-                Owner = u.Email
+                Owner = u.Email,
+                Icon = GetIcon(Sport.Name)
+                
             };
             FirebaseDB db = FirebaseDB.Instance;
 
@@ -125,6 +128,17 @@ namespace mcproject.ViewModels
             await Shell.Current
                         .GoToAsync("//JoinPage");
         }
+
+        private Image GetIcon(string name)
+        {
+            var image = new Image { Source = "xamarin_logo.png" };
+            if (name == "Padel")
+            image = new Image { Source = "padel_icon.jpg" };
+
+            return image;
+        }
+
+
         #endregion
     }
 }

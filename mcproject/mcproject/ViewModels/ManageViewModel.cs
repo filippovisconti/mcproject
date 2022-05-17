@@ -42,7 +42,6 @@ namespace mcproject.ViewModels
         }
 
 
-
         private string _SelectedCity;
         public string SelectedCity
         {
@@ -67,8 +66,8 @@ namespace mcproject.ViewModels
             {
 
                 Eventi = new ObservableCollection<EventoSportivo>(
-                    //await db.SearchBySportLevelCityAsync());
                     await db.GetAllEventiAsync());
+                    //await GetEventsByOwner()
                 OnPropertyChanged(nameof(Eventi));
 
             });

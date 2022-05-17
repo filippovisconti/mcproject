@@ -4,8 +4,6 @@
              xmlns:vm="clr-namespace:mcproject.ViewModels"
              x:DataType="vm:ModifyEventViewModel"
              x:Class="mcproject.Views.ModifyEventPage">
-
-    
     
     <ContentPage.Content>
         <StackLayout>
