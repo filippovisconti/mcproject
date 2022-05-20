@@ -3,13 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:vm="clr-namespace:mcproject.ViewModels"
              x:DataType="vm:ModifyEventViewModel"
-             x:Class="mcproject.Views.ModifyEventPage">
-    
+             x:Class="mcproject.Views.ModifyEventPage"
+             xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
+             xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ModifyEventViewModel/>
+    </ContentPage.BindingContext>
+
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="HELO">
-                
-            </Label>
+            <Picker
+                Title="Sport" 
+                ItemsSource="{Binding ModifySport, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedSport}"
+                Style="{StaticResource BasePicker}"/>
+
+            <!--<Label Text= "{Binding SelectedSport}" />-->
+
+            <DatePicker Date="{Binding SelectedData}"
+                    MinimumDate="{x:Static system:DateTime.Today}"
+                    Style="{StaticResource BaseDatePicker}"/>
+
+            <TimePicker Time="{Binding SelectedTime}"
+                    Style="{StaticResource BaseTimePicker}"/>
+
+
+
+            <Picker Title="Livello"
+                ItemsSource="{Binding ModifyLevel}"
+                SelectedItem="{Binding SelectedLevel}"
+                Style="{StaticResource BasePicker}"/>
+
+
+            <!--<Label Text="{Binding SelectedLevel}" />-->
+
+            <Entry Keyboard="Email"
+               Placeholder="Enter telegram username"
+               Text="{Binding SelectedTGusername}"
+               Style="{StaticResource BaseEntry}"/>
+
+
+            <Picker Title="City"
+                ItemsSource="{Binding ModifyCity}"
+                SelectedItem="{Binding SelectedCity}"
+                Style="{StaticResource BasePicker}"/>
+
+
+
+            <Editor Placeholder = "Enter a note"
+                Text="{Binding SelectedNote}"
+                Margin="30" />
+
+
+            <Button Text="Confirm"
+                IsEnabled="{Binding AreInfoComplete}"
+                Command="{Binding ModifyCommand}"
+                Style="{StaticResource BaseButton}"
+                Margin="120,70,120,0"/>
         </StackLayout>
     </ContentPage.Content>
 
