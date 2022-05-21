@@ -62,6 +62,14 @@
                 Command="{Binding ModifyCommand}"
                 Style="{StaticResource BaseButton}"
                 Margin="120,70,120,0"/>
+
+
+            <Button Text="Delete irreversibly"
+                IsEnabled="{Binding AreInfoComplete}"
+                Command="{Binding DeleteCommand}"
+                Style="{StaticResource BaseButton}"
+                Margin="120,70,120,0"/>
+
         </StackLayout>
     </ContentPage.Content>
 

@@ -15,6 +15,7 @@ namespace mcproject.ViewModels
 
     {
         public AsyncCommand ModifyCommand { get; }
+        public AsyncCommand DeleteCommand { get; }
         public IList<Sport> ModifySport { get; set; }
 
         private Sport _SelectedSport;
@@ -82,24 +83,44 @@ namespace mcproject.ViewModels
 
         public int ID { get; private set; }
 
-        public EventoSportivo eventoSportivo { get; private set; }
+        public EventoSportivo Evento { get; private set; }
 
 
         public ModifyEventViewModel()
         {
             PopulateThoseBitches();
             ModifyCommand = new AsyncCommand(ModifyMethod);
+            DeleteCommand = new AsyncCommand(DeleteMethod);
         }
+
+
+        private async Task DeleteMethod()
+        {
+
+            Delete();
+           
+             await Shell.Current.GoToAsync($"");
+              
+
+        }
+
+
+        private void Delete()
+        {
+            _ = Task.Run(async () => await db.DeleteEventoSportivoAsync(Evento));
+
+        }
+
 
         private async Task ModifyMethod()
         {
             
-            eventoSportivo.Sport = SelectedSport;
-            eventoSportivo.DateAndTime = SelectedData;
-            eventoSportivo.Level = SelectedLevel;
-            eventoSportivo.TGUsername = SelectedTGusername;
-            eventoSportivo.City = SelectedCity;
-            eventoSportivo.Notes = SelectedNote;
+            Evento.Sport = SelectedSport;
+            Evento.DateAndTime = SelectedData;
+            Evento.Level = SelectedLevel;
+            Evento.TGUsername = SelectedTGusername;
+            Evento.City = SelectedCity;
+            Evento.Notes = SelectedNote;
 
             Update();
 
@@ -120,7 +141,7 @@ namespace mcproject.ViewModels
 
         private void Update()
         {
-            _ = Task.Run(async () => await db.UpdateEventoSportivoAsync(eventoSportivo));
+            _ = Task.Run(async () => await db.UpdateEventoSportivoAsync(Evento));
 
         }
 
@@ -170,15 +191,15 @@ namespace mcproject.ViewModels
         {
             _ = Task.Run(async () =>
             {
-                eventoSportivo = (await db.GetEventoAsyncByID(ID));
-                OnPropertyChanged(nameof(eventoSportivo));
+                Evento = (await db.GetEventoAsyncByID(ID));
+                OnPropertyChanged(nameof(Evento));
 
-                SelectedSport = eventoSportivo.Sport;
-                SelectedData = eventoSportivo.DateAndTime;
-                SelectedLevel = eventoSportivo.Level;
-                SelectedTGusername = eventoSportivo.TGUsername;
-                SelectedCity = eventoSportivo.City;
-                SelectedNote = eventoSportivo.Notes;
+                SelectedSport = Evento.Sport;
+                SelectedData = Evento.DateAndTime;
+                SelectedLevel = Evento.Level;
+                SelectedTGusername = Evento.TGUsername;
+                SelectedCity = Evento.City;
+                SelectedNote = Evento.Notes;
             });
         }
 
