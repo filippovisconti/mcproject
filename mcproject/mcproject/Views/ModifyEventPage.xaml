@@ -16,23 +16,23 @@
         <StackLayout>
             <Picker
                 Title="Sport" 
+                Style="{StaticResource BasePicker}"
                 ItemsSource="{Binding ModifySport, Mode=TwoWay}"
-                SelectedItem="{Binding SelectedSport}"
-                Style="{StaticResource BasePicker}"/>
-
+                SelectedItem="{Binding SelectedSport, Mode=TwoWay}"
+                />
             <!--<Label Text= "{Binding SelectedSport}" />-->
 
-            <DatePicker Date="{Binding SelectedData}"
+            <DatePicker Date="{Binding SelectedData,Mode=TwoWay}"
                     MinimumDate="{x:Static system:DateTime.Today}"
                     Style="{StaticResource BaseDatePicker}"/>
 
-            <TimePicker Time="{Binding SelectedTime}"
+            <TimePicker Time="{Binding SelectedTime, Mode=TwoWay}"
                     Style="{StaticResource BaseTimePicker}"/>
 
 
             <Picker Title="Livello"
                 ItemsSource="{Binding ModifyLevel}"
-                SelectedItem="{Binding SelectedLevel}"
+                SelectedItem="{Binding SelectedLevel, Mode=TwoWay}"
                 Style="{StaticResource BasePicker}"/>
 
 
@@ -46,7 +46,7 @@
 
             <Picker Title="City"
                 ItemsSource="{Binding ModifyCity}"
-                SelectedItem="{Binding SelectedCity}"
+                SelectedItem="{Binding SelectedCity, Mode=TwoWay}"
                 Style="{StaticResource BasePicker}"/>
 
 

@@ -182,6 +182,7 @@ namespace mcproject.ViewModels
             ID = Convert.ToInt32(HttpUtility.UrlDecode(query["ID"]));
 
             GetEvento();
+            //OnPropertyChanged(nameof(SelectedCity));
         }
 
         private void GetEvento()
@@ -192,12 +193,21 @@ namespace mcproject.ViewModels
                 OnPropertyChanged(nameof(Evento));
 
                 SelectedSport = Evento.Sport;
+                OnPropertyChanged(nameof(SelectedSport));
+
                 SelectedData = Evento.DateAndTime;
+                OnPropertyChanged(nameof(SelectedData));
+
                 SelectedLevel = Evento.Level;
+                OnPropertyChanged(nameof(SelectedLevel));
+
                 SelectedTGusername = Evento.TGUsername;
+
                 SelectedCity = Evento.City;
+                OnPropertyChanged(nameof(SelectedCity));
+
                 SelectedNote = Evento.Notes;
-                OnPropertyChanged(nameof(Evento));
+
             });
         }
         #endregion
