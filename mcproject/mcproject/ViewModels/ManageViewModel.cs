@@ -62,7 +62,9 @@ namespace mcproject.ViewModels
         #region helper methods
         private async Task<IList<EventoSportivo>> GetEventsByOwner()
         {
-            User u = await DependencyService.Resolve<IAuthService>().RetrieveUserInfo();
+            var authService = DependencyService.Resolve<IAuthService>();
+            // check if user has signed in
+            User u = await authService.RetrieveUserInfo();
 
             return await db.GetEventoAsyncByOwner(u);
         }
