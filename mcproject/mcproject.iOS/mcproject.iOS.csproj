@@ -136,6 +136,8 @@
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="GoogleService-Info.plist" />
+    <BundleResource Include="Resources\padel_icon.jpg" />
+    <BundleResource Include="Resources\padel_icon2.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

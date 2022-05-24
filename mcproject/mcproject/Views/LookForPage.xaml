@@ -21,97 +21,114 @@
 
     <ContentPage.Content>
 
-        <!--ATTEMPT 1-->
+         <!--ATTEMPT 1-->
 
-        <!--CollectionView
-            ItemsSource="{Binding Eventi}"
-            SelectionMode="Single"
-            SelectedItem="{Binding SelectedEvent, Mode=TwoWay}">
+           <!--StackLayout>
 
-              <CollectionView.ItemTemplate>
-                <DataTemplate>
+                    <CollectionView
+                    ItemsSource="{Binding Eventi}"
+                    SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectedCommand}"
+                    SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:EventoSportivo">
 
-                    <Grid Padding="10">
-                    <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                                <Grid  HorizontalOptions="Center"
+                                       VerticalOptions="FillAndExpand">
 
-                       <Label Grid.Column="1"
-                       Text="{Binding SelectedSport}"
-                       FontAttributes="Bold" />
+                                    <Frame>
+                                        <StackLayout>
+                                            <StackLayout
+                                            Orientation="Horizontal"
+                                            HorizontalOptions="Center" VerticalOptions="Center">
 
-                    </Grid>
+                                            <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+
+                                            </StackLayout>
+                                            <Image Source="{Binding Icon}" WidthRequest="100"/>
+                                            <Label Grid.Row="0"
+                                            Grid.Column="1"
+                                            Text="{Binding DateAndTime}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+                                                <Label Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding City}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+                                                <Label Grid.Row="2"
+                                            Grid.Column="1"
+                                            Text="{Binding Level}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </StackLayout-->
+
+         <StackLayout>
+
+                    <CollectionView
+                    ItemsSource="{Binding Eventi}"
+                    SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectedCommand}"
+                    SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:EventoSportivo">
+
+                                <Grid  HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="FillAndExpand">
+
+                                    <Frame>
+                                        <StackLayout>
+                                            <StackLayout
+                                            Orientation="Horizontal"
+                                            HorizontalOptions="Center" VerticalOptions="Center">
+
+                                            <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+                                            </StackLayout>
+
+                                            <Grid>
+
+                                              <Grid.RowDefinitions>
+                                                <RowDefinition Height="40" />
+                                                <RowDefinition Height="40" />
+
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image  Grid.RowSpan="3" Source="padel_icon2.jpg" WidthRequest="100"/>
+                                            <Label Grid.Row="2"
+                                            Grid.Column="1"
+                                            Text="{Binding DateAndTime}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+
+                                            <Label Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding City}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+
+                                            <Label Grid.Row="0"
+                                            Grid.Column="1"
+                                            Text="{Binding Level}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+                                            </Grid>
+
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </StackLayout>
 
 
-                </DataTemplate>
-              </CollectionView.ItemTemplate>
-             
-            <CollectionView.Behaviors>
-                <xct:EventToCommandBehavior
-                EventName="ItemSelected"
-                Command="{Binding SelectedCommand}"
-                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"/>
-            </CollectionView.Behaviors>
 
-            </CollectionView!-->
-
-        <StackLayout>
-
-
-
-            <!--<StackLayout>
-                <Label Text="You selected:" Style="{StaticResource BaseLabel}" FontSize="Title"/>
-                <Label Text="{Binding SelectedSport}" Style="{StaticResource BaseLabel}" FontSize="Title"/>
-                <Label Text="{Binding SelectedLevel}"  Style="{StaticResource BaseLabel}" FontSize="Title"/>
-                <Label Text="{Binding SelectedCity}" Style="{StaticResource BaseLabel}" FontSize="Title"/>
-
-            </StackLayout>-->
-
-            <CollectionView
-            ItemsSource="{Binding Eventi}"
-            SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
-            SelectionChangedCommand="{Binding SelectedCommand}"
-            SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:EventoSportivo">
-
-                        <Grid  HorizontalOptions="Center"
-                               VerticalOptions="FillAndExpand">
-
-                            <Frame>
-                                <StackLayout>
-                                    <StackLayout
-                            Orientation="Horizontal"
-                            HorizontalOptions="Center" VerticalOptions="Center">
-
-                                    <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
-
-                                    </StackLayout>
-                                    <Label Grid.Row="0"
-                                Grid.Column="1"
-                                Text="{Binding DateAndTime}"
-                                Style="{StaticResource SecondaryLabel}"/>
-                                    <!--<Label Grid.Row="0"
-                                Grid.Column="1"
-                                Text="{Binding Sport}"
-                                Style="{StaticResource SecondaryLabel}"/>-->
-                                    <Label Grid.Row="1"
-                                Grid.Column="1"
-                                Text="{Binding City}"
-                                Style="{StaticResource SecondaryLabel}"/>
-                                    <Label Grid.Row="2"
-                                Grid.Column="1"
-                                Text="{Binding Level}"
-                                Style="{StaticResource SecondaryLabel}"/>
-
-                                </StackLayout>
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

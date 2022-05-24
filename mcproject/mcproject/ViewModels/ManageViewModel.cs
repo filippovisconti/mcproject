@@ -3,6 +3,8 @@ using mcproject.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using mcproject.Services;
+using System.Web;
 using Xamarin.Forms;
 using MvvmHelpers.Commands;
 
@@ -11,26 +13,64 @@ namespace mcproject.ViewModels
 
     public class ManageViewModel : ViewModelBase
     {
-        // TODO aggiungere un Reload (altrimenti non si vedono eventi appena creati rientrando nella pagina). c'è un metodo che viene chiamato quando si apre la pagina (OnAppearing o simili) che potrebbe aiutare
-        // TODO fix eventByuser
-        #region BS
-        // TODO GET RID OF THIS 
+        // TODO GET RID OF THIS
+
+        //public Collection<string> AvailableSports
+        //{
+
+        //    get => Services.Constants.Sport;
+        //}
+        //public ObservableCollection<string> CreateCity
+        //{
+        //    get => Services.Constants.City;
+        //}
 
         public IList<City> Cities
         {
 
             get => Services.Constants.cities;
         }
-        #endregion
 
-        #region constructor and properties
-        private readonly FirebaseDB db = FirebaseDB.Instance;
+
+        public ManageViewModel()
+        {
+
+            Title = "Manage your events";
+            LoadEvent();
+            SelectedCommand = new AsyncCommand(Selected);
+
+        }
+
+
+        private string _SelectedCity;
+        public string SelectedCity
+        {
+            get => _SelectedCity;
+            set => SetProperty(ref _SelectedCity, value);
+        }
+
+
 
         private ObservableCollection<EventoSportivo> _Eventi;
         public ObservableCollection<EventoSportivo> Eventi
         {
             get => _Eventi;
             set => SetProperty(ref _Eventi, value);
+        }
+
+        private readonly FirebaseDB db = FirebaseDB.Instance;
+        private void LoadEvent()
+        {
+            //if (SelectedSport == null) throw new NullReferenceException();
+            _ = Task.Run(async () =>
+            {
+
+                Eventi = new ObservableCollection<EventoSportivo>(
+                    await db.GetAllEventiAsync());
+                    //await GetEventsByOwner()
+                OnPropertyChanged(nameof(Eventi));
+
+            });
         }
 
         private EventoSportivo _SelectedEvent;
@@ -49,41 +89,12 @@ namespace mcproject.ViewModels
         }
 
 
-        public ManageViewModel()
-        {
-
-            Title = "Manage your events";
-            LoadEvent();
-            SelectedCommand = new AsyncCommand(Selected);
-
-        }
-        #endregion
-
-        #region helper methods
         private async Task<IList<EventoSportivo>> GetEventsByOwner()
         {
-            var authService = DependencyService.Resolve<IAuthService>();
-            // check if user has signed in
-            User u = await authService.RetrieveUserInfo();
+            User u = await DependencyService.Resolve<IAuthService>().RetrieveUserInfo();
 
-            return await db.GetEventoAsyncByOwner(u);
+            return await FirebaseDB.Instance.GetEventoAsyncByOwner(u);
         }
-
-        private void LoadEvent()
-        {
-            //if (SelectedSport == null) throw new NullReferenceException();
-            _ = Task.Run(async () =>
-            {
-
-                Eventi = new ObservableCollection<EventoSportivo>(
-                    //await db.SearchBySportLevelCityAsync());
-                    await GetEventsByOwner()
-                    );
-                OnPropertyChanged(nameof(Eventi));
-
-            });
-        }
-        #endregion
 
     }
 
