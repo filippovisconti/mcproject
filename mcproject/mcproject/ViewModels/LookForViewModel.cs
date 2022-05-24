@@ -44,6 +44,7 @@ namespace mcproject.ViewModels
         }
 
         public EventoSportivo PreviouslySelected;
+
         private EventoSportivo _SelectedEvent;
 
         public EventoSportivo SelectedEvent
@@ -56,10 +57,6 @@ namespace mcproject.ViewModels
         public AsyncCommand SelectedCommand { get; }
 
         private readonly FirebaseDB db = FirebaseDB.Instance;
-
-
-
-
 
 
         public LookForViewModel()

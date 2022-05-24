@@ -21,9 +21,9 @@
 
     <ContentPage.Content>
 
-         <!--ATTEMPT 1-->
+        <!--ATTEMPT 1-->
 
-           <!--StackLayout>
+        <!--StackLayout>
 
                     <CollectionView
                     ItemsSource="{Binding Eventi}"
@@ -68,65 +68,70 @@
 
                 </StackLayout-->
 
-         <StackLayout>
+        <StackLayout>
 
-                    <CollectionView
+            <CollectionView
                     ItemsSource="{Binding Eventi}"
                     SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
                     SelectionChangedCommand="{Binding SelectedCommand}"
                     SelectionMode="Single">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="model:EventoSportivo">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:EventoSportivo">
 
-                                <Grid  HorizontalOptions="FillAndExpand"
+                        <Grid  HorizontalOptions="FillAndExpand"
                                        VerticalOptions="FillAndExpand">
 
-                                    <Frame>
-                                        <StackLayout>
-                                            <StackLayout
+                            <Frame>
+                                <StackLayout>
+                                    <StackLayout
                                             Orientation="Horizontal"
                                             HorizontalOptions="Center" VerticalOptions="Center">
 
-                                            <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
-                                            </StackLayout>
+                                        <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+                                    </StackLayout>
 
-                                            <Grid>
+                                    <Grid>
 
-                                              <Grid.RowDefinitions>
-                                                <RowDefinition Height="40" />
-                                                <RowDefinition Height="40" />
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="40" />
 
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="2*" />
-                                            </Grid.ColumnDefinitions>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
 
-                                            <Image  Grid.RowSpan="3" Source="padel_icon2.jpg" WidthRequest="100"/>
-                                            <Label Grid.Row="2"
+                                        <!--<Image  Grid.RowSpan="3" Source="padel_icon2.jpg" WidthRequest="100"/>-->
+                                        <Image  Grid.RowSpan="3" WidthRequest="100">
+                                            <Image.Source>
+                                                <FileImageSource File="{Binding IconName}" />
+                                            </Image.Source>
+                                        </Image>
+                                        <Label Grid.Row="2"
                                             Grid.Column="1"
                                             Text="{Binding DateAndTime}"
                                             Style="{StaticResource SecondaryLabel}"/>
 
-                                            <Label Grid.Row="1"
+                                        <Label Grid.Row="1"
                                             Grid.Column="1"
                                             Text="{Binding City}"
                                             Style="{StaticResource SecondaryLabel}"/>
 
-                                            <Label Grid.Row="0"
+                                        <Label Grid.Row="0"
                                             Grid.Column="1"
                                             Text="{Binding Level}"
                                             Style="{StaticResource SecondaryLabel}"/>
-                                            </Grid>
+                                    </Grid>
 
-                                        </StackLayout>
-                                    </Frame>
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-                </StackLayout>
+        </StackLayout>
 
 
 

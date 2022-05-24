@@ -30,7 +30,6 @@
                     Style="{StaticResource BaseTimePicker}"/>
 
 
-
             <Picker Title="Livello"
                 ItemsSource="{Binding ModifyLevel}"
                 SelectedItem="{Binding SelectedLevel}"

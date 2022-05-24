@@ -43,7 +43,7 @@
 
                 <StackLayout Spacing="3">
                     <Entry Placeholder="Email" x:Name="UserName" IsEnabled="True" Text="{Binding Email}"
-                           Style="{StaticResource BaseLabel}">
+                           Style="{StaticResource BaseLabel}" Keyboard="Email">
                         <Entry.Behaviors>
                             <xct:EmailValidationBehavior
                                 x:Name="EmailValidator"

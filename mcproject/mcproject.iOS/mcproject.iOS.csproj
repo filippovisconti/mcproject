@@ -138,6 +138,13 @@
     <BundleResource Include="GoogleService-Info.plist" />
     <BundleResource Include="Resources\padel_icon.jpg" />
     <BundleResource Include="Resources\padel_icon2.jpg" />
+    <BundleResource Include="Resources\Lancio di Coriandoli_icon.png" />
+    <BundleResource Include="Resources\Suonare i citofoni_icon.png" />
+    <BundleResource Include="Resources\Soffio di minestrine_icon.png" />
+    <BundleResource Include="Resources\Pallavolo_icon.png" />
+    <BundleResource Include="Resources\Padel_icon.png" />
+    <BundleResource Include="Resources\Bocce_icon.png" />
+    <BundleResource Include="Resources\Calcetto_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

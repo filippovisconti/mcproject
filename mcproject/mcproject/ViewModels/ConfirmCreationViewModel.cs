@@ -106,36 +106,42 @@ namespace mcproject.ViewModels
         {
             User u = await DependencyService.Resolve<IAuthService>().RetrieveUserInfo();
 
-            EventoSportivo e = new()
+            if (u != null)
             {
-                Sport = Sport,
-                DateAndTime = Date,
-                Level = Level,
-                TGUsername = TelegramUsername,
-                City = City,
-                Notes = Note,
-                Owner = u.Email,
-                Icon = GetIcon(Sport.Name)
-                
-            };
-            FirebaseDB db = FirebaseDB.Instance;
+                EventoSportivo e = new()
+                {
+                    Sport = Sport,
+                    DateAndTime = Date,
+                    Level = Level,
+                    TGUsername = TelegramUsername,
+                    City = City,
+                    Notes = Note,
+                    Owner = u.Email,
+                    IconName = GetIcon(Sport.Name)
 
-            await db.AddNewEventoSportivoAsync(e);
+                };
+                FirebaseDB db = FirebaseDB.Instance;
 
-            await Shell.Current
-                        .DisplayAlert("Event created", "Everything went smoothly", "OK");
+                await db.AddNewEventoSportivoAsync(e);
 
-            await Shell.Current
-                        .GoToAsync("//JoinPage");
+                await Shell.Current
+                            .DisplayAlert("Event created", "Everything went smoothly", "OK");
+
+                await Shell.Current
+                            .GoToAsync("../JoinPage");
+            }
+            else
+                await Shell.Current
+                            .DisplayAlert("Failed", "Retrieval of user info failed.", "OK");
         }
 
-        private Image GetIcon(string name)
+        private string GetIcon(string name)
         {
-            var image = new Image { Source = "xamarin_logo.png" };
-            if (name == "Padel")
-            image = new Image { Source = "padel_icon.jpg" };
+            //var image = new Image { Source = "xamarin_logo.png" };
+            //if (name == "Padel")
+            //    image = new Image { Source = "padel_icon.jpg" };
 
-            return image;
+            return $"{name}_icon.png";
         }
 
 

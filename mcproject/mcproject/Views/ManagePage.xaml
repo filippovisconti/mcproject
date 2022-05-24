@@ -3,11 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:vm="clr-namespace:mcproject.ViewModels" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:model="clr-namespace:mcproject.Models"
              x:DataType="vm:ManageViewModel"
-             x:Class="mcproject.Views.ManagePage">
+             x:Class="mcproject.Views.ManagePage"
+             Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:ManageViewModel/>
     </ContentPage.BindingContext>
+
+    <!--<ContentPage.Behaviors>
+        <xct:EventToCommandBehavior
+                EventName="Appearing"
+                Command="{Binding PageAppearingCommand}" />
+    </ContentPage.Behaviors>-->
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -17,46 +24,48 @@
 
     <ContentPage.Content>
         <StackLayout>
-         
-            <CollectionView
+            <RefreshView IsRefreshing="{Binding IsRefreshing}"
+             Command="{Binding RefreshCommand}">
+                <CollectionView
             ItemsSource="{Binding Eventi}"
             SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
             SelectionChangedCommand="{Binding SelectedCommand}"
             SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:EventoSportivo">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:EventoSportivo">
 
-                        <Grid  HorizontalOptions="Center"
+                            <Grid  HorizontalOptions="Center"
                                VerticalOptions="FillAndExpand">
 
-                            <Frame>
-                                <StackLayout>
-                                    <StackLayout
+                                <Frame>
+                                    <StackLayout>
+                                        <StackLayout
                             Orientation="Horizontal"
                             HorizontalOptions="Center" VerticalOptions="Center">
 
-                                        <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+                                            <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
 
-                                    </StackLayout>
-                                    <Label Grid.Row="0"
+                                        </StackLayout>
+                                        <Label Grid.Row="0"
                                 Grid.Column="1"
                                 Text="{Binding DateAndTime}"
                                 Style="{StaticResource SecondaryLabel}"/>
-                                     <Label Grid.Row="1"
+                                        <Label Grid.Row="1"
                                 Grid.Column="1"
                                 Text="{Binding City}"
                                 Style="{StaticResource SecondaryLabel}"/>
-                                    <Label Grid.Row="2"
+                                        <Label Grid.Row="2"
                                 Grid.Column="1"
                                 Text="{Binding Level}"
                                 Style="{StaticResource SecondaryLabel}"/>
 
-                                </StackLayout>
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

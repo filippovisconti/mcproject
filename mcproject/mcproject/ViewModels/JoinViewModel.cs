@@ -38,6 +38,7 @@ namespace mcproject.ViewModels
         public ICommand Search { get; }
         public JoinViewModel()
         {
+            Title = "Join an event";
             Search = new AsyncCommand(OnSearch);
             PopulateThoseBitches();
         }

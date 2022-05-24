@@ -14,9 +14,18 @@ namespace mcproject.ViewModels
     class ModifyEventViewModel : ViewModelBase, IQueryAttributable
 
     {
+        #region class properties
+        private readonly FirebaseDB db = FirebaseDB.Instance;
+        public int ID { get; private set; }
+
+        public EventoSportivo Evento { get; private set; }
+
         public AsyncCommand ModifyCommand { get; }
         public AsyncCommand DeleteCommand { get; }
         public IList<Sport> ModifySport { get; set; }
+        #endregion
+
+        #region event fields
 
         private Sport _SelectedSport;
         public Sport SelectedSport
@@ -79,11 +88,7 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedNote, value);
         }
 
-        private readonly FirebaseDB db = FirebaseDB.Instance;
-
-        public int ID { get; private set; }
-
-        public EventoSportivo Evento { get; private set; }
+        #endregion
 
 
         public ModifyEventViewModel()
@@ -94,27 +99,30 @@ namespace mcproject.ViewModels
         }
 
 
-        private async Task DeleteMethod()
-        {
-
-            Delete();
-           
-             await Shell.Current.GoToAsync($"");
-              
-
-        }
-
-
+        #region delete event
         private void Delete()
         {
             _ = Task.Run(async () => await db.DeleteEventoSportivoAsync(Evento));
 
         }
+        private async Task DeleteMethod()
+        {
+            Delete();
+            await Shell.Current.GoToAsync($"//ManagePage");
+            Evento = null;
+            ID = 0;
+        }
+        #endregion
 
+        #region update event
+        private void Update()
+        {
+            _ = Task.Run(async () => await db.UpdateEventoSportivoAsync(Evento));
+        }
 
         private async Task ModifyMethod()
         {
-            
+
             Evento.Sport = SelectedSport;
             Evento.DateAndTime = SelectedData;
             Evento.Level = SelectedLevel;
@@ -122,14 +130,19 @@ namespace mcproject.ViewModels
             Evento.City = SelectedCity;
             Evento.Notes = SelectedNote;
 
-            Update();
+            //Update();
 
             try
             {
                 if (InfoComplete())
-                    await Shell.Current.GoToAsync($"");
+                {
+                    Update();
+                    await Shell.Current.DisplayAlert("Modify Sporting Event", "Event updated correctly", "OK");
+                    await Shell.Current.GoToAsync($"..");
+                }
+
                 else
-                    await Shell.Current.DisplayAlert("Modify Sporting Event", "An error occured: info non complete", "OK");
+                    await Shell.Current.DisplayAlert("Modify Sporting Event", "An error occured: info not complete", "OK");
             }
             catch (Exception ex)
             {
@@ -138,13 +151,9 @@ namespace mcproject.ViewModels
             }
 
         }
+        #endregion
 
-        private void Update()
-        {
-            _ = Task.Run(async () => await db.UpdateEventoSportivoAsync(Evento));
-
-        }
-
+        #region populate fields
         private void PopulateThoseBitches()
         {
             _ = Task.Run(async () =>
@@ -167,18 +176,6 @@ namespace mcproject.ViewModels
             });
         }
 
-        // used in the viewmodel
-        public bool InfoComplete()
-        {
-            return
-            SelectedSport != null &&
-            SelectedLevel != null &&
-            SelectedTGusername != null;
-        }
-
-
-        // used in the view
-        public bool AreInfoComplete => InfoComplete();
 
         public void ApplyQueryAttributes(IDictionary<string, string> query)
         {
@@ -200,9 +197,24 @@ namespace mcproject.ViewModels
                 SelectedTGusername = Evento.TGUsername;
                 SelectedCity = Evento.City;
                 SelectedNote = Evento.Notes;
+                OnPropertyChanged(nameof(Evento));
             });
+        }
+        #endregion
+
+        #region validation
+        // used in the viewmodel
+        public bool InfoComplete()
+        {
+            return
+            SelectedSport != null &&
+            SelectedLevel != null &&
+            SelectedTGusername != null;
         }
 
 
+        // used in the view
+        public bool AreInfoComplete => InfoComplete();
+        #endregion
     }
 }

@@ -16,7 +16,8 @@ namespace mcproject.Models
         public DateTime DateAndTime { get; set; }
         public string Notes { get; set; }
         public string TGUsername { get; set; }
-        public Image Icon { get; set; }
+        //public Image IconName { get; set; }
+        public string IconName { get; set; }
         public IList<EventoSportivo> Object { get; internal set; }
 
         public EventoSportivo()

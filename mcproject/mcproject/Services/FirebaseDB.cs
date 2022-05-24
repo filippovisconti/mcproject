@@ -62,7 +62,7 @@ namespace mcproject.Services
                 DateAndTime = item.DateAndTime,
                 Notes = item.Notes,
                 TGUsername = item.TGUsername,
-                Icon = item.Icon
+                IconName = item.IconName
             });
         }
         public async Task UpdateEventoSportivoAsync(EventoSportivo item)
@@ -80,7 +80,7 @@ namespace mcproject.Services
                     DateAndTime = item.DateAndTime,
                     Notes = item.Notes,
                     TGUsername = item.TGUsername,
-                    Icon = item.Icon
+                    IconName = item.IconName
                 });
         }
         public async Task DeleteEventoSportivoAsync(EventoSportivo item)
@@ -126,7 +126,7 @@ namespace mcproject.Services
                        DateAndTime = item.Object.DateAndTime,
                        Notes = item.Object.Notes,
                        TGUsername = item.Object.TGUsername,
-                       Icon = item.Object.Icon
+                       IconName = item.Object.IconName
                    }).ToList();
         }
 
@@ -144,7 +144,7 @@ namespace mcproject.Services
                     DateAndTime = item.Object.DateAndTime,
                     Notes = item.Object.Notes,
                     TGUsername = item.Object.TGUsername,
-                    Icon = item.Object.Icon
+                    IconName = item.Object.IconName
                 }).ToList();
 
             return events;
