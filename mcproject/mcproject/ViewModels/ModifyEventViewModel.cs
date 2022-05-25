@@ -138,7 +138,9 @@ namespace mcproject.ViewModels
                 {
                     Update();
                     await Shell.Current.DisplayAlert("Modify Sporting Event", "Event updated correctly", "OK");
-                    await Shell.Current.GoToAsync($"..");
+                    //await Shell.Current.GoToAsync($"ModifyEventReviewPage?ID={ID}");
+                    await Shell.Current.GoToAsync($"ModifyEventReviewPage?sport={SelectedSport}&data={SelectedData}&level={SelectedLevel}&tg={SelectedTGusername}&city={SelectedCity}&note={SelectedNote}");
+                 
                 }
 
                 else

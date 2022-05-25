@@ -65,6 +65,7 @@ namespace mcproject.ViewModels
             //IsRefreshing = false;
         }
 
+        private readonly FirebaseDB db = FirebaseDB.Instance;
         private void LoadEvent()
         {
             //if (SelectedSport == null) throw new NullReferenceException();
@@ -72,8 +73,8 @@ namespace mcproject.ViewModels
             {
 
                 Eventi = new ObservableCollection<EventoSportivo>(
-                //    await db.GetAllEventiAsync());
-                    await GetEventsByOwner());
+                    await db.GetAllEventiAsync());
+                    //await GetEventsByOwner());
                 OnPropertyChanged(nameof(Eventi));
                 IsRefreshing = false;
             });

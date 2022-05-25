@@ -19,8 +19,8 @@ namespace mcproject
             Routing.RegisterRoute(nameof(LookForPage), typeof(LookForPage));
             Routing.RegisterRoute(nameof(ModifyEventPage), typeof(ModifyEventPage));
             Routing.RegisterRoute(nameof(ConfirmCreationPage), typeof(ConfirmCreationPage));
-
- Routing.RegisterRoute(nameof(SumUpPage), typeof(SumUpPage));
+            Routing.RegisterRoute(nameof(ModifyEventReviewPage), typeof(ModifyEventReviewPage));
+            Routing.RegisterRoute(nameof(SumUpPage), typeof(SumUpPage));
         }
 
     }

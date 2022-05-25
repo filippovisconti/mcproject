@@ -22,6 +22,9 @@
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <AndroidLinkSkip></AndroidLinkSkip>
+    <AndroidStoreUncompressedFileExtensions></AndroidStoreUncompressedFileExtensions>
+    <JavaOptions></JavaOptions>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -74,7 +77,6 @@
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
-    <AndroidSupportedAbis />
     <IntermediateOutputPath></IntermediateOutputPath>
     <ConsolePause>true</ConsolePause>
     <ExternalConsole>false</ExternalConsole>
@@ -82,27 +84,18 @@
     <RunWithWarnings>true</RunWithWarnings>
     <AndroidManagedSymbols>false</AndroidManagedSymbols>
     <MandroidExtraArgs></MandroidExtraArgs>
-    <AndroidLinkSkip></AndroidLinkSkip>
-    <AndroidStoreUncompressedFileExtensions></AndroidStoreUncompressedFileExtensions>
     <AndroidHttpClientHandlerType></AndroidHttpClientHandlerType>
     <JavaMaximumHeapSize></JavaMaximumHeapSize>
-    <JavaOptions></JavaOptions>
     <AndroidKeyStore></AndroidKeyStore>
     <AndroidSigningKeyStore></AndroidSigningKeyStore>
     <AndroidSigningStorePass></AndroidSigningStorePass>
     <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
     <AndroidSigningKeyPass></AndroidSigningKeyPass>
     <AndroidEnableSGenConcurrent></AndroidEnableSGenConcurrent>
-    <EnableProguard>false</EnableProguard>
     <AndroidEnableMultiDex></AndroidEnableMultiDex>
     <AndroidFastDeploymentType></AndroidFastDeploymentType>
     <AndroidManifest></AndroidManifest>
     <AndroidDexTool></AndroidDexTool>
-    <AssemblyName></AssemblyName>
-    <SignAssembly>false</SignAssembly>
-    <DelaySign>false</DelaySign>
-    <PublicSign>false</PublicSign>
-    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
     <NoWarn></NoWarn>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -131,15 +124,12 @@
     <RunWithWarnings>true</RunWithWarnings>
     <AndroidManagedSymbols></AndroidManagedSymbols>
     <MandroidExtraArgs></MandroidExtraArgs>
-    <AndroidLinkSkip></AndroidLinkSkip>
     <AndroidLinkMode></AndroidLinkMode>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <BundleAssemblies></BundleAssemblies>
-    <AndroidStoreUncompressedFileExtensions></AndroidStoreUncompressedFileExtensions>
     <MandroidI18n></MandroidI18n>
     <AndroidHttpClientHandlerType></AndroidHttpClientHandlerType>
     <JavaMaximumHeapSize></JavaMaximumHeapSize>
-    <JavaOptions></JavaOptions>
     <AndroidKeyStore></AndroidKeyStore>
     <AndroidSigningKeyStore></AndroidSigningKeyStore>
     <AndroidSigningStorePass></AndroidSigningStorePass>
@@ -150,17 +140,11 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableSGenConcurrent></AndroidEnableSGenConcurrent>
-    <EnableProguard>false</EnableProguard>
     <AndroidUseAapt2></AndroidUseAapt2>
     <AndroidEnableMultiDex></AndroidEnableMultiDex>
     <AndroidFastDeploymentType></AndroidFastDeploymentType>
     <AndroidManifest></AndroidManifest>
     <AndroidDexTool></AndroidDexTool>
-    <AssemblyName></AssemblyName>
-    <SignAssembly>false</SignAssembly>
-    <DelaySign>false</DelaySign>
-    <PublicSign>false</PublicSign>
-    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
     <NoWarn></NoWarn>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -168,7 +152,6 @@
     <WarningsNotAsErrors></WarningsNotAsErrors>
     <Nullable></Nullable>
     <EmbedAssembliesIntoApk></EmbedAssembliesIntoApk>
-    <AndroidSupportedAbis></AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
