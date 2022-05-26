@@ -114,6 +114,7 @@ namespace mcproject.ViewModels
             {
                 Name = HttpUtility.UrlDecode(query["sport"])
             };
+            IconName = GetIcon(Sport.Name);
             Date = Convert.ToDateTime(HttpUtility.UrlDecode(query["data"]));
             Level = new Difficulty()
             {
@@ -124,7 +125,7 @@ namespace mcproject.ViewModels
                 Name = HttpUtility.UrlDecode(query["city"])
             };
             Note = HttpUtility.UrlDecode(query["note"]);
-            IconName = GetIcon(Sport.Name);
+            
         }
 
         public void GetAttributes()

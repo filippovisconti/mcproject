@@ -59,7 +59,8 @@
                  Style="{StaticResource SecondaryLabel}"/>
 
                     <Label Grid.Row="5" Grid.Column="1" Text="{Binding Note}"
-                 Style="{StaticResource SecondaryLabel}"/>
+                    Style="{StaticResource SecondaryLabel}"/>
+
 
                 </Grid>
               </StackLayout>

@@ -18,6 +18,8 @@ namespace mcproject.ViewModels
             ConfirmCommand = new AsyncCommand(OnConfirm);
         }
 
+        public string IconName { get; set; }
+
         #region properties
         private Sport _sport;
         public Sport Sport
@@ -69,6 +71,7 @@ namespace mcproject.ViewModels
             {
                 Name = HttpUtility.UrlDecode(query["sport"])
             };
+            IconName = GetIcon(Sport.Name);
             Date = Convert.ToDateTime(HttpUtility.UrlDecode(query["data"]));
             Level = new Difficulty()
             {
