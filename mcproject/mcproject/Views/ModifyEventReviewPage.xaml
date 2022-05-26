@@ -23,7 +23,7 @@
                                         <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
                                     </StackLayout>
 
-                                    <Grid>
+                                    <Grid Padding="0,0,0,20">
 
                                          <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
