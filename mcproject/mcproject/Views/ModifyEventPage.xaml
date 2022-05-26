@@ -20,6 +20,7 @@
                 ItemsSource="{Binding ModifySport, Mode=TwoWay}"
                 SelectedItem="{Binding SelectedSport, Mode=TwoWay}"
                 />
+            <!--DEBUG LABEL-->
             <Label Text= "{Binding SelectedSport}" />
 
             <DatePicker 
@@ -36,9 +37,6 @@
                 ItemsSource="{Binding ModifyLevel}"
                 Style="{StaticResource BasePicker}"
                 SelectedItem="{Binding SelectedLevel, Mode=TwoWay}"/>
-
-
-            <Label Text="{Binding SelectedLevel}" />
 
             <Entry Keyboard="Email"
                Placeholder="Enter telegram username"
