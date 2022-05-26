@@ -18,7 +18,12 @@ namespace mcproject.ViewModels
             ConfirmCommand = new AsyncCommand(OnConfirm);
         }
 
-        public string IconName { get; set; }
+        private string _iconName;
+        public string IconName
+        {
+            get => _iconName;
+            set => SetProperty(ref _iconName, value);
+        }
 
         #region properties
         private Sport _sport;
@@ -71,7 +76,7 @@ namespace mcproject.ViewModels
             {
                 Name = HttpUtility.UrlDecode(query["sport"])
             };
-            IconName = GetIcon(Sport.Name);
+
             Date = Convert.ToDateTime(HttpUtility.UrlDecode(query["data"]));
             Level = new Difficulty()
             {
@@ -82,6 +87,9 @@ namespace mcproject.ViewModels
                 Name = HttpUtility.UrlDecode(query["city"])
             };
             Note = HttpUtility.UrlDecode(query["note"]);
+
+            //IconName = GetIcon(Sport.Name);
+            IconName = GetIcon(HttpUtility.UrlDecode(query["sport"]));
         }
 
         public void GetAttributes()

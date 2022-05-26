@@ -17,7 +17,12 @@ namespace mcproject.ViewModels
 
         /* NEED TO FIX: L'ICON NON VIENE VISUALIZZATA */
 
-        public string IconName { get; set; }
+        private string _iconName;
+        public string IconName
+        {
+            get => _iconName;
+            set => SetProperty(ref _iconName, value);
+        }
 
         private int _ID;
         public int ID
@@ -70,6 +75,7 @@ namespace mcproject.ViewModels
 
         public ModifyEventReviewViewModel()
         {
+            Title = "Recap";
         }
 
 
@@ -86,6 +92,7 @@ namespace mcproject.ViewModels
                 TG = Evento.TGUsername;
                 City = Evento.City;
                 Note = Evento.Notes;
+                IconName = Evento.IconName;
 
             });
         }
@@ -97,9 +104,9 @@ namespace mcproject.ViewModels
             GetEvento();
         }
 
-        
 
-        
+
+
         /*
         public void ApplyQueryAttributes(IDictionary<string, string> query)
         {
