@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Xamarin.Forms;
@@ -131,6 +130,7 @@ namespace mcproject.ViewModels
 
         private async Task ModifyMethod()
         {
+            SelectedData = SelectedData.AddHours(SelectedTime.Hours).AddMinutes(SelectedTime.Minutes);
 
             Evento.Sport = SelectedSport;
             Evento.DateAndTime = SelectedData;
@@ -150,7 +150,7 @@ namespace mcproject.ViewModels
                     await Shell.Current.DisplayAlert("Modify Sporting Event", "Event updated correctly", "OK");
                     await Shell.Current.GoToAsync($"ModifyEventReviewPage?ID={ID}");
                     //await Shell.Current.GoToAsync($"ModifyEventReviewPage?sport={SelectedSport}&data={SelectedData}&level={SelectedLevel}&tg={SelectedTGusername}&city={SelectedCity}&note={SelectedNote}");
-                 
+
                 }
 
                 else

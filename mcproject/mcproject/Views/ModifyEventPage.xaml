@@ -20,23 +20,25 @@
                 ItemsSource="{Binding ModifySport, Mode=TwoWay}"
                 SelectedItem="{Binding SelectedSport, Mode=TwoWay}"
                 />
-            <!--<Label Text= "{Binding SelectedSport}" />-->
+            <Label Text= "{Binding SelectedSport}" />
 
-            <DatePicker Date="{Binding SelectedData,Mode=TwoWay}"
+            <DatePicker 
                     MinimumDate="{x:Static system:DateTime.Today}"
-                    Style="{StaticResource BaseDatePicker}"/>
+                    Style="{StaticResource BaseDatePicker}"
+                    Date="{Binding SelectedData,Mode=TwoWay}"/>
 
-            <TimePicker Time="{Binding SelectedTime, Mode=TwoWay}"
-                    Style="{StaticResource BaseTimePicker}"/>
+            <TimePicker 
+                    Style="{StaticResource BaseTimePicker}"
+                    Time="{Binding SelectedTime, Mode=TwoWay}"/>
 
 
             <Picker Title="Livello"
                 ItemsSource="{Binding ModifyLevel}"
-                SelectedItem="{Binding SelectedLevel, Mode=TwoWay}"
-                Style="{StaticResource BasePicker}"/>
+                Style="{StaticResource BasePicker}"
+                SelectedItem="{Binding SelectedLevel, Mode=TwoWay}"/>
 
 
-            <!--<Label Text="{Binding SelectedLevel}" />-->
+            <Label Text="{Binding SelectedLevel}" />
 
             <Entry Keyboard="Email"
                Placeholder="Enter telegram username"
@@ -46,8 +48,8 @@
 
             <Picker Title="City"
                 ItemsSource="{Binding ModifyCity}"
-                SelectedItem="{Binding SelectedCity, Mode=TwoWay}"
-                Style="{StaticResource BasePicker}"/>
+                Style="{StaticResource BasePicker}"
+                SelectedItem="{Binding SelectedCity, Mode=TwoWay}"/>
 
 
 

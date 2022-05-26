@@ -18,7 +18,7 @@ namespace mcproject.Services
         readonly string SportsList = "SportsList";
         readonly string LevelsList = "LevelsList";
         readonly string UserInfoList = "UserInfoList";
-        readonly string CitiesList = "CitiesList";      // TODO to be implemented
+        //readonly string CitiesList = "CitiesList";      // TODO to be implemented
         #endregion
 
         #region DB init and dispose

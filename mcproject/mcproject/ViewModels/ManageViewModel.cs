@@ -59,7 +59,8 @@ namespace mcproject.ViewModels
         void ExecuteRefreshCommand()
         {
             SelectedEvent = null;
-            Eventi.Clear();
+            if (Eventi != null)
+                Eventi.Clear();
             LoadEvent();
             // Stop refreshing
             //IsRefreshing = false;
@@ -74,7 +75,7 @@ namespace mcproject.ViewModels
 
                 Eventi = new ObservableCollection<EventoSportivo>(
                     await db.GetAllEventiAsync());
-                    //await GetEventsByOwner());
+                //await GetEventsByOwner());
                 OnPropertyChanged(nameof(Eventi));
                 IsRefreshing = false;
             });
