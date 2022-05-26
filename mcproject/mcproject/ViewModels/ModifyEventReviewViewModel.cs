@@ -15,6 +15,8 @@ namespace mcproject.ViewModels
 
         private readonly FirebaseDB db = FirebaseDB.Instance;
 
+        /* NEED TO FIX: L'ICON NON VIENE VISUALIZZATA */
+
         public string IconName { get; set; }
 
         private int _ID;
@@ -70,7 +72,6 @@ namespace mcproject.ViewModels
         {
         }
 
-        /*
 
         private void GetEvento()
         {
@@ -96,17 +97,10 @@ namespace mcproject.ViewModels
             GetEvento();
         }
 
-        */
+        
 
-        private string GetIcon(string name)
-        {
-            //var image = new Image { Source = "xamarin_logo.png" };
-            //if (name == "Padel")
-            //    image = new Image { Source = "padel_icon.jpg" };
-
-            return $"{name}_icon.png";
-        }
-
+        
+        /*
         public void ApplyQueryAttributes(IDictionary<string, string> query)
         {
             TG = HttpUtility.UrlDecode(query["tg"]);
@@ -144,5 +138,6 @@ namespace mcproject.ViewModels
 
 
         }
+        */
     }
 }

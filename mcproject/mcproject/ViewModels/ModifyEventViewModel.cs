@@ -114,6 +114,15 @@ namespace mcproject.ViewModels
         }
         #endregion
 
+        private string GetIcon(string name)
+        {
+            //var image = new Image { Source = "xamarin_logo.png" };
+            //if (name == "Padel")
+            //    image = new Image { Source = "padel_icon.jpg" };
+
+            return $"{name}_icon.png";
+        }
+
         #region update event
         private void Update()
         {
@@ -129,6 +138,7 @@ namespace mcproject.ViewModels
             Evento.TGUsername = SelectedTGusername;
             Evento.City = SelectedCity;
             Evento.Notes = SelectedNote;
+            Evento.IconName = GetIcon(Evento.Sport.Name);
 
             //Update();
 
@@ -138,8 +148,8 @@ namespace mcproject.ViewModels
                 {
                     Update();
                     await Shell.Current.DisplayAlert("Modify Sporting Event", "Event updated correctly", "OK");
-                    //await Shell.Current.GoToAsync($"ModifyEventReviewPage?ID={ID}");
-                    await Shell.Current.GoToAsync($"ModifyEventReviewPage?sport={SelectedSport}&data={SelectedData}&level={SelectedLevel}&tg={SelectedTGusername}&city={SelectedCity}&note={SelectedNote}");
+                    await Shell.Current.GoToAsync($"ModifyEventReviewPage?ID={ID}");
+                    //await Shell.Current.GoToAsync($"ModifyEventReviewPage?sport={SelectedSport}&data={SelectedData}&level={SelectedLevel}&tg={SelectedTGusername}&city={SelectedCity}&note={SelectedNote}");
                  
                 }
 
