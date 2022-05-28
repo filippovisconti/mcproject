@@ -25,6 +25,22 @@ namespace mcproject.ViewModels
             //bottone t.me/nomeutente
         }
 
+        private string _iconName;
+        public string IconName
+        {
+            get => _iconName;
+            set => SetProperty(ref _iconName, value);
+        }
+
+        private string GetIcon(string name)
+        {
+            //var image = new Image { Source = "xamarin_logo.png" };
+            //if (name == "Padel")
+            //    image = new Image { Source = "padel_icon.jpg" };
+
+            return $"{name}_icon.png";
+        }
+
         private async Task OnOpenTelegram()
         {
             Uri uri = new("https://t.me/" + TG);
@@ -51,6 +67,7 @@ namespace mcproject.ViewModels
                 TG = eventoSportivo.TGUsername;
                 City = eventoSportivo.City;
                 Note = eventoSportivo.Notes;
+                IconName = GetIcon(Sport.Name);
 
             });
         }

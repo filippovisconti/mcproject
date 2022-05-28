@@ -93,8 +93,9 @@
                                     <Grid>
 
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="40" />
-                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
 
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
@@ -103,7 +104,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <!--<Image  Grid.RowSpan="3" Source="padel_icon2.jpg" WidthRequest="100"/>-->
-                                        <Image  Grid.RowSpan="3" WidthRequest="100">
+                                        <Image Grid.Row="0" Grid.RowSpan="3" WidthRequest="100">
                                             <Image.Source>
                                                 <FileImageSource File="{Binding IconName}" />
                                             </Image.Source>

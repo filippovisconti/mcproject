@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
     x:DataType="viewmodels:ModifyEventReviewViewModel"
-    x:Class="mcproject.Views.ModifyEventReviewPage"
-        Title="{Binding Title}">
+    x:Class="mcproject.Views.ModifyEventReviewPage">
 
     <ContentPage.BindingContext>
         <viewmodels:ModifyEventReviewViewModel/>
@@ -39,7 +38,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         
-                                        <Image  Grid.RowSpan="3" WidthRequest="100">
+                                        <Image Grid.Row="2" Grid.RowSpan="3" WidthRequest="100">
                                             <Image.Source>
                                                 <FileImageSource File="{Binding IconName}" />
                                             </Image.Source>
