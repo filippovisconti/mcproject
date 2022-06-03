@@ -13,7 +13,7 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
-    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <AndroidManifest></AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
@@ -184,7 +184,7 @@
       <Version>1.8.116</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials.Interfaces">
-      <Version>1.7.3</Version>
+      <Version>1.7.3.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens">
       <Version>6.17.0</Version>
