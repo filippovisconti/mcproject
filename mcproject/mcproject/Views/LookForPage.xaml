@@ -7,7 +7,8 @@
     xmlns:model="clr-namespace:mcproject.Models"
     x:Class="mcproject.Views.LookForPage"
     x:DataType="viewmodels:LookForViewModel"
-    Title="{Binding Title}">
+    Title="{Binding Title}"
+      Style="{StaticResource BaseContentPage}">
 
     <ContentPage.BindingContext>
         <viewmodels:LookForViewModel/>

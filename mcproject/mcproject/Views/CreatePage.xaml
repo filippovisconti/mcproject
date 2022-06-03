@@ -5,7 +5,8 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              x:DataType="viewmodels:CreateViewModel"
              x:Class="mcproject.Views.CreatePage"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+               Style="{StaticResource BaseContentPage}">
 
     <ContentPage.BindingContext>
         <viewmodels:CreateViewModel/>

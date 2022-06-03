@@ -6,7 +6,8 @@
     xmlns:vm="clr-namespace:mcproject.ViewModels"
     x:Class="mcproject.Views.SumUpPage"
     x:DataType="viewmodels:SumUpViewModel"
-    Title="{Binding Title}">
+    Title="{Binding Title}"
+      Style="{StaticResource BaseContentPage}">
 
     <ContentPage.BindingContext>
         <vm:SumUpViewModel/>

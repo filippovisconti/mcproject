@@ -5,7 +5,8 @@
              x:DataType="vm:ModifyEventViewModel"
              x:Class="mcproject.Views.ModifyEventPage"
              xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
-             xmlns:system="clr-namespace:System;assembly=mscorlib">
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+               Style="{StaticResource BaseContentPage}">
 
     <ContentPage.BindingContext>
         <viewmodels:ModifyEventViewModel/>
