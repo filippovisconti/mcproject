@@ -28,7 +28,7 @@
 
 
             <Frame>
-                <StackLayout>
+                <!--StackLayout>
 
                     <StackLayout
                         Orientation="Horizontal"
@@ -36,22 +36,19 @@
 
                         <Label Text="Review:" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
 
-                    </StackLayout>
-                                          <Grid>
+                    </StackLayout-->
+                                         <Grid>
                                          <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
+                                            
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="2*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <Image  Grid.RowSpan="3" WidthRequest="100">
+                 <Label Grid.ColumnSpan="2" HorizontalTextAlignment="Center" Text="Review:" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+
+                                        <Image Grid.Row="2" Grid.RowSpan="3">
                                             <Image.Source>
                                                 <FileImageSource File="{Binding IconName}" />
                                             </Image.Source>
@@ -75,15 +72,21 @@
                     <Label Grid.Row="6" Grid.Column="1" Text="{Binding Note}"
                  Style="{StaticResource SecondaryLabel}"/>
 
+                    <Button Grid.Row="7" Grid.ColumnSpan="2" Text="Confirm"
+                        Style="{StaticResource ThirdButton}"
+                        Command="{Binding ConfirmCommand}"
+                         Margin="100,0,100,10"/>
+
+
                    </Grid>
 
 
-                        <Button Text="Confirm"
+                        <!--Button Text="Confirm"
                         Style="{StaticResource ThirdButton}"
                         Command="{Binding ConfirmCommand}"
-                         Margin="120,10,120,0"/>
+                         Margin="100,0,100,10"/>
 
-                </StackLayout>
+                </StackLayout-->
             </Frame>
         </Grid>
     </ContentPage.Content>

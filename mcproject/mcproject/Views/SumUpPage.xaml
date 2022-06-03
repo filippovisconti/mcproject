@@ -16,54 +16,70 @@
 
     <ContentPage.Content>
 
-        <Grid>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
+        <Grid HorizontalOptions="Fill"
+               VerticalOptions="Start">
 
             <Frame>
-                <StackLayout
 
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="Center">
+                <!--StackLayout-->
 
-                    <StackLayout
+                    <!--StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Center" VerticalOptions="Center">
 
                         <Label Text="Event Details" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
 
-                    </StackLayout>
+                    </StackLayout-->
 
-                    <Label Text="{Binding Sport}"
+                                        <Grid>
+                                         <Grid.RowDefinitions>
+                                            
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                  <Label Grid.ColumnSpan="2" HorizontalTextAlignment="Center" Text="Event Details" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+
+                                        <Image Grid.Row="2" Grid.RowSpan="4">
+                                            <Image.Source>
+                                                <FileImageSource File="{Binding IconName}" />
+                                            </Image.Source>
+                                        </Image>
+
+                 <Label Grid.Row="2" Grid.Column="1"  Text="{Binding Sport}"
                  Style="{StaticResource SecondaryLabel}"/>
 
-                    <Label Text="{Binding Level}"
+                    <Label Grid.Row="1"  Grid.Column="1" Text="{Binding Level}"
                  Style="{StaticResource SecondaryLabel}"/>
 
-                    <Label Text="{Binding Date}"
+                    <Label Grid.Row="3" Grid.Column="1"  Text="{Binding Date}"
                  Style="{StaticResource SecondaryLabel}"/>
 
-                    <Label Text="{Binding TG}"
+                    <Label Grid.Row="4" Grid.Column="1" Text="{Binding TG}"
                  Style="{StaticResource SecondaryLabel}"/>
 
-                    <Label Text="{Binding City}"
+                    <Label Grid.Row="5" Grid.Column="1" Text="{Binding City}"
                  Style="{StaticResource SecondaryLabel}"/>
 
-                    <Label Text="{Binding Note}"
+                    <Label Grid.Row="6" Grid.Column="1" Text="{Binding Note}"
                  Style="{StaticResource SecondaryLabel}"/>
 
-                    <Label FlexLayout.Grow="1" />
-
-
-                    <Button Text="Contact"
+                 <Button  Grid.Row="7" Grid.ColumnSpan="2"  Text="Contact"
                     Command="{Binding OpenTelegramCommand}"
-                Style="{StaticResource ThirdButton}"/>
-                </StackLayout>
+                    Style="{StaticResource ThirdButton}"
+                    Margin="100,10,100,0" />
+
+                 </Grid>
+
+
+                <!--Button Text="Contact"
+                    Command="{Binding OpenTelegramCommand}"
+                Style="{StaticResource ThirdButton}"
+                Margin="100,0,100,10"/>
+
+                </StackLayou-->
             </Frame>
 
         </Grid>

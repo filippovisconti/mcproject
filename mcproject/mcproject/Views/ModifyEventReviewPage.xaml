@@ -40,7 +40,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         
-                                        <Image  Grid.RowSpan="3" WidthRequest="100">
+                                        <Image Grid.Row="2" Grid.RowSpan="3" WidthRequest="100">
                                             <Image.Source>
                                                 <FileImageSource File="{Binding IconName}" />
                                             </Image.Source>
