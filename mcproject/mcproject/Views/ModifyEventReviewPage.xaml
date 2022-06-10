@@ -60,7 +60,7 @@
                     <Label Grid.Row="4" Grid.Column="1" Text="{Binding City}"
                  Style="{StaticResource SecondaryLabel}"/>
 
-                    <Label Grid.Row="5" Grid.Column="1" Text="{Binding Note}"
+                    <Label Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0"  Text="{Binding Note}"
                     Style="{StaticResource SecondaryLabel}"/>
 
 
