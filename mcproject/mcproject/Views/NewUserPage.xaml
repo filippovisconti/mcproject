@@ -59,20 +59,20 @@
                         </Entry.Behaviors>
                     </Entry>
 
-                    <Entry Placeholder="Telegram Username" Text="{Binding TelegramUsername}">
+                    <!--<Entry Placeholder="Telegram Username" Text="{Binding TelegramUsername}">
                         <Entry.Behaviors>
                             <xct:CharactersValidationBehavior
                             InvalidStyle="{StaticResource InvalidEntryStyle}"
                             CharacterType="Alphanumeric"
                             MaximumCharacterCount="30"/>
                         </Entry.Behaviors>
-                    </Entry>
+                    </Entry>-->
 
                 </StackLayout>
 
                 <StackLayout Spacing="3">
 
-                    <Entry Placeholder="Email" x:Name="UserName" Text="{Binding Email}">
+                    <Entry Placeholder="Email" x:Name="UserName" Text="{Binding Email}" Keyboard="Email">
                         <Entry.Behaviors>
                             <xct:EmailValidationBehavior
                                 x:Name="EmailValidator"

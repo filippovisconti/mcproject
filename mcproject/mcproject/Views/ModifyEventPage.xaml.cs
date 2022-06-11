@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace mcproject.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TestPage : ContentPage
+    public partial class ModifyEventPage : ContentPage
     {
-        public TestPage()
+        public ModifyEventPage()
         {
             InitializeComponent();
         }

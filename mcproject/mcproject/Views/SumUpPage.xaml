@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
+    xmlns:vm="clr-namespace:mcproject.ViewModels"
+    x:Class="mcproject.Views.SumUpPage"
+    x:DataType="viewmodels:SumUpViewModel"
+    Title="{Binding Title}"
+      Style="{StaticResource BaseContentPage}">
+
+    <ContentPage.BindingContext>
+        <vm:SumUpViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Content>
+
+        <Grid VerticalOptions="Start">
+
+            <Frame>
+
+                <!--StackLayout-->
+
+                    <!--StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center" VerticalOptions="Center">
+
+                        <Label Text="Event Details" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+
+                    </StackLayout-->
+
+                                        <Grid RowSpacing="0">
+                                         <Grid.RowDefinitions>
+                                              <RowDefinition Height="40" />
+                                              <RowDefinition Height="40" />
+                                              <RowDefinition Height="70" />
+                                              <RowDefinition Height="40" />
+                                              <RowDefinition Height="40" />
+                                              <RowDefinition Height="Auto" />
+                                              <RowDefinition Height="50" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                  <Label Grid.Row="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+
+                                        <Image Grid.Row="2" Grid.RowSpan="3">
+                                            <Image.Source>
+                                                <FileImageSource File="{Binding IconName}" />
+                                            </Image.Source>
+                                        </Image>
+
+
+                    <Label Grid.Row="1"  Grid.Column="1" Text="{Binding Level}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="2" Grid.Column="1"  Text="{Binding Date}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding TG}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="4" Grid.Column="1" Text="{Binding City}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="5"  Grid.ColumnSpan="2" Grid.Column="0" Text="{Binding Note}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                 <Button  Grid.Row="6" Grid.ColumnSpan="2"  Text="Contact"
+                    Command="{Binding OpenTelegramCommand}"
+                    Style="{StaticResource ThirdButton}"
+                    Margin="100,10,100,0" />
+
+                 </Grid>
+
+
+                <!--Button Text="Contact"
+                    Command="{Binding OpenTelegramCommand}"
+                Style="{StaticResource ThirdButton}"
+                Margin="100,0,100,10"/>
+
+                </StackLayou-->
+            </Frame>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

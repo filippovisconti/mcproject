@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mcproject.Android", "mcproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mcproject.iOS", "mcproject.iOS\mcproject.iOS.csproj", "{977B7F4C-EEB5-4CA9-9EEA-69DDAD5D5099}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mcproject", "mcproject\mcproject.csproj", "{211C94EE-07D3-44DA-9DA1-B666AC6AC823}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mcproject", "mcproject\mcproject.csproj", "{211C94EE-07D3-44DA-9DA1-B666AC6AC823}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

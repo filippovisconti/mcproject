@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
+using Firebase.Database.Query;
 using mcproject.Models;
 using mcproject.Services;
 
@@ -28,30 +28,25 @@ namespace mcproject.ViewModels
         {
             _ = Task.Run(async () =>
               {
-
                   CreateLevel = new ObservableCollection<Difficulty>(await db.GetAvailableLevelsListAsync());
                   OnPropertyChanged(nameof(CreateLevel));
-
-                  //QUESTO FUNZIONA
-                  //IEnumerable<Difficulty> lev = await db.GetAvailableLevelsListAsync();
-                  //var cl = new ObservableCollection<Difficulty>(lev);
-                  //CreateLevel = cl;
-                  //OnPropertyChanged(nameof(CreateLevel));
-
               });
             _ = Task.Run(async () =>
               {
-
                   CreateSport = new ObservableCollection<Sport>(await db.GetAvailableSportsListAsync());
                   OnPropertyChanged(nameof(CreateSport));
-
-                  //QUESTO FUNZIONA
-                  //IEnumerable<Sport> sp = await db.GetAvailableSportsListAsync();
-                  //var cs = new ObservableCollection<Sport>(sp);
-                  //CreateSport = cs;
-                  //OnPropertyChanged(nameof(CreateSport));
-
               });
+
+            _ = Task.Run(async () =>
+            {
+                //await db.client.Child("CitiesList").PostAsync(new City()
+                //{
+                //    Name = "Roma"
+                //});
+                CreateCity = new ObservableCollection<City>(Constants.cities);
+                OnPropertyChanged(nameof(CreateCity));
+
+            });
         }
 
 
@@ -60,12 +55,6 @@ namespace mcproject.ViewModels
         #region Commands
 
         public AsyncCommand CreateCommand { get; }
-
-        private async Task CreateMethod()
-        {
-
-            await Shell.Current.GoToAsync("TestPage");
-        }
 
         #endregion
 
@@ -87,6 +76,13 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedData, value);
         }
 
+        private TimeSpan _SelectedTime;
+        public TimeSpan SelectedTime
+        {
+            get => _SelectedTime;
+            set => SetProperty(ref _SelectedTime, value);
+        }
+
         public IList<Difficulty> CreateLevel { get; set; }
 
         private Difficulty _SelectedLevel;
@@ -104,14 +100,16 @@ namespace mcproject.ViewModels
             set => SetProperty(ref _SelectedTGusername, value);
         }
 
-        public ObservableCollection<string> CreateCity
+        private IList<City> _CreateCity;
+        public IList<City> CreateCity
         {
-            get => Services.Constants.City;
+            get => _CreateCity;
+            set => SetProperty(ref _CreateCity, value);
         }
 
 
-        private string _SelectedCity;
-        public string SelectedCity
+        private City _SelectedCity;
+        public City SelectedCity
         {
             get => _SelectedCity;
             set => SetProperty(ref _SelectedCity, value);
@@ -127,19 +125,58 @@ namespace mcproject.ViewModels
 
 
 
+        //public EventoSportivo Create()
+        //{
+
+
+        //    EventoSportivo CreateEvento = new()
+        //    {
+        //        Sport = SelectedSport,
+        //        DateAndTime = SelectedData,
+        //        Level = SelectedLevel,
+        //        TGUsername = SelectedTGusername,
+        //        City = SelectedCity,
+        //        Notes = SelectedNote
+        //    };
+        //    return CreateEvento;
+
+        //}
+
+        // used in the viewmodel
         public bool InfoComplete()
         {
-            return SelectedSport != null &&
-                   SelectedLevel != null &&
-                   SelectedCity != null &&
-                   SelectedNote != null &&
-                   SelectedTGusername != null;
+            return
+                SelectedSport != null &&
+                SelectedLevel != null &&
+                SelectedTGusername != null;
         }
 
-        public bool AreInfoComplete { get => InfoComplete(); }
+        // used in the view
+        public bool AreInfoComplete => InfoComplete();
 
         #endregion
 
+        private async Task CreateMethod()
+        {
+            //await Shell.Current.GoToAsync("TestPage");
+            SelectedData = SelectedData.AddHours(SelectedTime.Hours).AddMinutes(SelectedTime.Minutes);
+            try
+            {
+                if (InfoComplete())
+                    await Shell.Current
+                        .GoToAsync($"ConfirmCreationPage?sport={SelectedSport}&data={SelectedData}&level={SelectedLevel}&tg={SelectedTGusername}&city={SelectedCity}&note={SelectedNote}");
+                else
+                    await Shell.Current
+                        .DisplayAlert("Create Sporting Event", "An error occured: info non complete", "OK");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                await Shell.Current
+                    .DisplayAlert("Create Sporting Event", "An error occured: " + ex.Message, "OK");
+            }
+        }
         public EventoSportivo CreateEventFromProperties()
         {
             EventoSportivo CreateEvento;
@@ -160,10 +197,20 @@ namespace mcproject.ViewModels
 
         }
 
-
-
-
-
     }
 
 }
+
+//_ = Task.Run(async () =>
+//{
+
+//    CreateLevel = new ObservableCollection<Difficulty>(await db.GetAvailableLevelsListAsync());
+//    OnPropertyChanged(nameof(CreateLevel));
+
+//    //QUESTO FUNZIONA
+//    //IEnumerable<Difficulty> lev = await db.GetAvailableLevelsListAsync();
+//    //var cl = new ObservableCollection<Difficulty>(lev);
+//    //CreateLevel = cl;
+//    //OnPropertyChanged(nameof(CreateLevel));
+
+//});

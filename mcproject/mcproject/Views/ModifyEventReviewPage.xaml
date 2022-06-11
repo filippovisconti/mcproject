@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
+    x:DataType="viewmodels:ModifyEventReviewViewModel"
+    x:Class="mcproject.Views.ModifyEventReviewPage"
+        Title="{Binding Title}"
+          Style="{StaticResource BaseContentPage}">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ModifyEventReviewViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+                        <Grid  HorizontalOptions="Fill"
+                                       VerticalOptions="Start">
+
+                            <Frame>
+                                <StackLayout>
+                                    <StackLayout
+                                            Orientation="Horizontal"
+                                            HorizontalOptions="Center" VerticalOptions="Center">
+
+                                        <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+                                    </StackLayout>
+
+                                    <Grid Padding="0,0,0,20">
+
+                                         <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        
+                                        <Image Grid.Row="2" Grid.RowSpan="3" WidthRequest="100">
+                                            <Image.Source>
+                                                <FileImageSource File="{Binding IconName}" />
+                                            </Image.Source>
+                                        </Image>
+
+
+                                    
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding Date}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="1"  Grid.Column="1" Text="{Binding Level}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding TG}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="4" Grid.Column="1" Text="{Binding City}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0"  Text="{Binding Note}"
+                    Style="{StaticResource SecondaryLabel}"/>
+
+
+                </Grid>
+              </StackLayout>
+             </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

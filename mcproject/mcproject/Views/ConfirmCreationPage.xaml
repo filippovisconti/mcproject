@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
+    x:Class="mcproject.Views.ConfirmCreationPage"
+    x:DataType="viewmodels:ConfirmCreationViewModel"
+    Title="{Binding Title}"
+      Style="{StaticResource BaseContentPage}">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ConfirmCreationViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Content>
+        <!--FlexLayout>
+
+         <Frame WidthRequest="350"
+                HeightRequest="350">
+
+         <FlexLayout Direction="Column"
+                     AlignItems="Center"
+                     JustifyContent="SpaceEvenly"-->
+    <StackLayout>
+
+   <!--Label HorizontalTextAlignment="Center" Text="Review" Style="{StaticResource ThirdLabel}" FontSize="Title"/-->
+        <Grid  VerticalOptions="Start">
+
+
+
+            <Frame>
+                <!--StackLayout>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HorizontalOptions="Center" VerticalOptions="Center">
+
+                        <Label Text="Review:" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+
+                    </StackLayout-->
+                                         <Grid RowSpacing="0">
+                                         <Grid.RowDefinitions>
+                                              <RowDefinition Height="40" />
+                                              <RowDefinition Height="70" />
+                                              <RowDefinition Height="40" />
+                                              <RowDefinition Height="40" />
+                                              <RowDefinition Height="40" />
+                                              <RowDefinition Height="Auto" />
+                                              <RowDefinition Height="Auto" />
+                                              
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                 <Label Grid.ColumnSpan="2" HorizontalTextAlignment="Center" Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+
+                                        <Image Grid.Row="1" Grid.RowSpan="3">
+                                            <Image.Source>
+                                                <FileImageSource File="{Binding IconName}" />
+                                            </Image.Source>
+                                        </Image>
+
+                    <Label Grid.Row="1"  Grid.Column="1" Text="{Binding Date}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding Level}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding TelegramUsername}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="4" Grid.Column="1" Text="{Binding City}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Label Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" Text="{Binding Note}"
+                 Style="{StaticResource SecondaryLabel}"/>
+
+                    <Button Grid.Row="7" Grid.ColumnSpan="2" Text="Confirm"
+                        Style="{StaticResource ThirdButton}"
+                        Command="{Binding ConfirmCommand}"
+
+                         Margin="100,20,100,20"/>
+
+           
+                   </Grid>
+
+
+                        <!--Button Text="Confirm"
+                        Style="{StaticResource ThirdButton}"
+                        Command="{Binding ConfirmCommand}"
+                         Margin="100,0,100,10"/>
+
+                </StackLayout-->
+            </Frame>
+        </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

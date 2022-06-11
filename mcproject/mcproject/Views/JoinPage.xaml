@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:maps="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials" 
              xmlns:vm="clr-namespace:mcproject.ViewModels"
-             x:Class="mcproject.Views.JoinPage">
+             x:Class="mcproject.Views.JoinPage"
+             Style="{StaticResource BaseContentPage}"
+             Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:JoinViewModel/>
@@ -36,14 +38,15 @@
                      Style="{StaticResource BasePicker}"/>
 
 
-            <Picker  ItemsSource="{Binding City}" 
+            <Picker  ItemsSource="{Binding Cities}" 
                      SelectedItem="{Binding SelectedCity}"
                      Title="City" 
                      Style="{StaticResource BasePicker}"/>
 
-            <Button Text="Search" Style="{StaticResource BaseButton}"
-                     Command="{Binding Search}"
-                     Margin="120,70,120,0"/>
+            <Button Text="Search" 
+                    Command="{Binding Search}"
+                    Style="{StaticResource BaseButton}"
+                    Margin="120,70,120,0"/>
 
         </StackLayout>
     </ContentPage.Content>

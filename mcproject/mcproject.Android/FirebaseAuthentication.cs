@@ -1,12 +1,7 @@
-﻿using Firebase.Auth;
+﻿using System;
 using mcproject.Droid;
-using mcproject.Models;
-using mcproject.Services;
-using System;
-using System.Threading.Tasks;
-using Xamarin.Forms;
 
-[assembly: Xamarin.Forms.Dependency(typeof(FirebaseAuthentication))]
+//[assembly: Xamarin.Forms.Dependency(typeof(FirebaseAuthentication))]
 namespace mcproject.Droid
 {
     public class FirebaseAuthentication : IAuthService

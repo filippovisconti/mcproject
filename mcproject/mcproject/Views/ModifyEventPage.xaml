@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:mcproject.ViewModels"
+             x:DataType="vm:ModifyEventViewModel"
+             x:Class="mcproject.Views.ModifyEventPage"
+             xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+               Style="{StaticResource BaseContentPage}">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ModifyEventViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Picker
+                Title="Sport" 
+                Style="{StaticResource BasePicker}"
+                ItemsSource="{Binding ModifySport, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedSport, Mode=TwoWay}"
+                />
+            <!--DEBUG LABEL
+            <Label Text= "{Binding SelectedSport}" />-->
+
+            <DatePicker 
+                    MinimumDate="{x:Static system:DateTime.Today}"
+                    Style="{StaticResource BaseDatePicker}"
+                    Date="{Binding SelectedData,Mode=TwoWay}"/>
+
+            <TimePicker 
+                    Style="{StaticResource BaseTimePicker}"
+                    Time="{Binding SelectedTime, Mode=TwoWay}"/>
+
+
+            <Picker Title="Livello"
+                ItemsSource="{Binding ModifyLevel}"
+                Style="{StaticResource BasePicker}"
+                SelectedItem="{Binding SelectedLevel, Mode=TwoWay}"/>
+
+            <Entry Keyboard="Email"
+               Placeholder="Enter telegram username"
+               Text="{Binding SelectedTGusername}"
+               Style="{StaticResource BaseEntry}"/>
+
+
+            <Picker Title="City"
+                ItemsSource="{Binding ModifyCity}"
+                Style="{StaticResource BasePicker}"
+                SelectedItem="{Binding SelectedCity, Mode=TwoWay}"/>
+
+
+
+            <Editor Placeholder = "Enter a note"
+                Text="{Binding SelectedNote}"
+                Margin="30" />
+
+
+            <Button Text="Confirm"
+                IsEnabled="{Binding AreInfoComplete}"
+                Command="{Binding ModifyCommand}"
+                Style="{StaticResource BaseButton}"
+                Margin="120,70,120,0"/>
+
+
+            <Button Text="Delete irreversibly"
+                IsEnabled="{Binding AreInfoComplete}"
+                Command="{Binding DeleteCommand}"
+                Style="{StaticResource BaseButton}"
+                Margin="120,70,120,0"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

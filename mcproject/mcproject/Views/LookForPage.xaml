@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:model="clr-namespace:mcproject.Models"
+    x:Class="mcproject.Views.LookForPage"
+    x:DataType="viewmodels:LookForViewModel"
+    Title="{Binding Title}"
+      Style="{StaticResource BaseContentPage}">
+
+    <ContentPage.BindingContext>
+        <viewmodels:LookForViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <!--ATTEMPT 1-->
+
+        <!--StackLayout>
+
+                    <CollectionView
+                    ItemsSource="{Binding Eventi}"
+                    SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectedCommand}"
+                    SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:EventoSportivo">
+
+                                <Grid  HorizontalOptions="Center"
+                                       VerticalOptions="FillAndExpand">
+
+                                    <Frame>
+                                        <StackLayout>
+                                            <StackLayout
+                                            Orientation="Horizontal"
+                                            HorizontalOptions="Center" VerticalOptions="Center">
+
+                                            <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+
+                                            </StackLayout>
+                                            <Image Source="{Binding Icon}" WidthRequest="100"/>
+                                            <Label Grid.Row="0"
+                                            Grid.Column="1"
+                                            Text="{Binding DateAndTime}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+                                                <Label Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding City}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+                                                <Label Grid.Row="2"
+                                            Grid.Column="1"
+                                            Text="{Binding Level}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </StackLayout-->
+
+        <StackLayout>
+
+            <CollectionView
+                    ItemsSource="{Binding Eventi}"
+                    SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectedCommand}"
+                    SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:EventoSportivo">
+
+                        <Grid  HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="FillAndExpand">
+
+                            <Frame>
+                                <StackLayout>
+                                    <StackLayout
+                                            Orientation="Horizontal"
+                                            HorizontalOptions="Center" VerticalOptions="Center">
+
+                                        <Label Text="{Binding Sport}" Style="{StaticResource ThirdLabel}" FontSize="Title"/>
+                                    </StackLayout>
+
+                                    <Grid>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--<Image  Grid.RowSpan="3" Source="padel_icon2.jpg" WidthRequest="100"/>-->
+                                        <Image Grid.Row="0" Grid.RowSpan="3" WidthRequest="100">
+                                            <Image.Source>
+                                                <FileImageSource File="{Binding IconName}" />
+                                            </Image.Source>
+                                        </Image>
+                                        <Label Grid.Row="2"
+                                            Grid.Column="1"
+                                            Text="{Binding DateAndTime}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+
+                                        <Label Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding City}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+
+                                        <Label Grid.Row="0"
+                                            Grid.Column="1"
+                                            Text="{Binding Level}"
+                                            Style="{StaticResource SecondaryLabel}"/>
+                                    </Grid>
+
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+
+
+
+    </ContentPage.Content>
+</ContentPage>

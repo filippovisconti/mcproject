@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:mcproject.ViewModels"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:DataType="viewmodels:CreateViewModel"
              x:Class="mcproject.Views.CreatePage"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+               Style="{StaticResource BaseContentPage}">
 
     <ContentPage.BindingContext>
         <viewmodels:CreateViewModel/>
@@ -25,17 +25,21 @@
 
 
         ItemDisplayBinding="{Binding ..}"-->
-        <Picker x:Name="myPicker"
+        <Picker
                 Title="Sport" 
                 ItemsSource="{Binding CreateSport, Mode=TwoWay}"
                 SelectedItem="{Binding SelectedSport}"
                 Style="{StaticResource BasePicker}"/>
 
-        <Label Text= "{Binding SelectedSport}" />
+        <!--<Label Text= "{Binding SelectedSport}" />-->
 
         <DatePicker Date="{Binding SelectedData}"
                     MinimumDate="{x:Static system:DateTime.Today}"
                     Style="{StaticResource BaseDatePicker}"/>
+
+        <TimePicker Time="{Binding SelectedTime}"
+                    Style="{StaticResource BaseTimePicker}"/>
+
 
 
         <Picker Title="Livello"
@@ -44,12 +48,13 @@
                 Style="{StaticResource BasePicker}"/>
 
 
-        <Label Text="{Binding SelectedLevel}" />
+        <!--<Label Text="{Binding SelectedLevel}" />-->
 
-        <Entry Keyboard="Email"
+        <Entry Keyboard="Url"
                Placeholder="Enter telegram username"
                Text="{Binding SelectedTGusername}"
                Style="{StaticResource BaseEntry}"/>
+
 
         <Picker Title="City"
                 ItemsSource="{Binding CreateCity}"
@@ -60,13 +65,13 @@
 
         <Editor Placeholder = "Enter a note"
                 Text="{Binding SelectedNote}"
-                Margin="50" />
+                Margin="30" />
 
 
         <Button Text="Create the event"
                 IsEnabled="{Binding AreInfoComplete}"
                 Command="{Binding CreateCommand}"
-                Style="{StaticResource BaseButton}"/>
-
+                Style="{StaticResource BaseButton}"
+                Margin="120,70,120,0"/>
     </StackLayout>
 </ContentPage>

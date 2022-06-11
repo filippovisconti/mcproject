@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace mcproject.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TestPage : ContentPage
+    public partial class SumUpPage : ContentPage
     {
-        public TestPage()
+        public SumUpPage()
         {
             InitializeComponent();
         }

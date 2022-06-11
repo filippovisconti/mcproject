@@ -11,7 +11,10 @@
             <Thickness x:Key="PageMargin">20</Thickness>
 
             <!-- Colors -->
-            <Color x:Key="Primary">#D36135</Color>
+            <Color x:Key="Primary">#8e77c9</Color>
+            <Color x:Key="SystemRedDark">#c6bae3</Color>
+
+
             <Color x:Key="Background">#233D4D</Color>
             <Color x:Key="Accent1">#481620</Color>
             <Color x:Key="WhiteBackground">#F8FFF4</Color>
@@ -49,7 +52,6 @@
             <Color x:Key="SystemOrangeDark">#FF9F0A</Color>
             <Color x:Key="SystemPinkDark">#FF375F</Color>
             <Color x:Key="SystemPurpleDark">#BF5AF2</Color>
-            <Color x:Key="SystemRedDark">#FF453A</Color>
             <Color x:Key="SystemTealDark">#64D2FF</Color>
             <Color x:Key="SystemYellowDark">#FFD60A</Color>
 
@@ -62,13 +64,27 @@
 
             <!-- Implicit styles -->
 
-            <Style x:Key="BaseButton" TargetType="Button">
+            <!--Style x:Key="BaseButton" TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+            </Style-->
+
+            <Style x:Key="BaseButton" TargetType="Button">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="{StaticResource Primary}" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource SystemRedDark}" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="FontSize" Value="16" />
             </Style>
 
-            <Style TargetType="Button" x:Key="SecondaryButton" >
-<<<<<<< HEAD
+            <Style TargetType="Button" x:Key="SecondaryButton">
                 <Setter Property="TextColor"
                         Value="{AppThemeBinding
                             Dark={StaticResource TextColorDark},
@@ -76,10 +92,64 @@
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
 
-            <Style TargetType="Picker" x:Key="BasePicker" >
-                <Setter Property="TitleColor" Value="{AppThemeBinding
+            
+            <Style TargetType="Button" x:Key="ThirdButton">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                            Dark={StaticResource TextColorDark},
+                            Light={StaticResource TextColor}}" />
+                <Setter Property="TextColor" Value="{StaticResource SystemRedDark}"/>
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <Style x:Key="BaseLabel" TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
                             Dark={StaticResource TextColorDark},
                             Light={StaticResource TextColor}}"/>
+            </Style>
+
+            
+            <Style x:Key="SecondaryLabel" TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                            Dark={StaticResource TextColorDark},
+                            Light={StaticResource TextColor}}"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Margin" Value="50,20,50,0"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+
+            </Style>
+
+            <Style x:Key="ThirdLabel" TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                            Dark={StaticResource TextColorDark},
+                            Light={StaticResource TextColor}}"/>
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+
+            
+            <Style TargetType="Frame">
+                <Setter Property="BorderColor" Value="Transparent" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="CornerRadius" Value="20" />
+                  <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="{StaticResource Primary}" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource SystemRedDark}" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            <Style TargetType="Picker" x:Key="BasePicker" > 
                 <Setter Property="TextColor"
                         Value="{AppThemeBinding
                             Dark={StaticResource TextColorDark},
@@ -90,17 +160,8 @@
                 <Setter Property="Margin" Value="50,20,50,0"/>
 
             </Style>
-=======
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
-                    Light={StaticResource TextColor}}" />
-                <Setter Property="BackgroundColor" Value="Transparent" />
-            </Style>
 
-            <Style x:Key="BaseEntry" TargetType="Entry">
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
-                    Light={StaticResource TextColor}}"></Setter>
->>>>>>> RemoteRepo/master
-
+          
             <Style TargetType="DatePicker" x:Key="BaseDatePicker" >
                 <Setter Property="MaximumDate" Value="12/31/2025"/>
                 <Setter Property="TextColor"
@@ -111,26 +172,52 @@
                 <Setter Property="Margin" Value="50,20,50,0"/>
                 <Setter Property="HorizontalOptions" Value="Fill"/>
                 <Setter Property="Format" Value="D"/>
-
             </Style>
 
-            <Style x:Key="BaseEntry" TargetType="Entry">
+            <Style TargetType="TimePicker" x:Key="BaseTimePicker" >
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                            Dark={StaticResource TextColorDark},
+                            Light={StaticResource TextColor}}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Margin" Value="50,20,50,0"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="Format" Value="t"/>
+            </Style>
+
+            <!--Style x:Key="BaseEntry" TargetType="Entry">
                 <Setter Property="TextColor"
                         Value="{AppThemeBinding
                             Dark={StaticResource TextColorDark},
                             Light={StaticResource TextColor}}"/>
-
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Margin" Value="50,20,50,0"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
                 <Setter Property="BackgroundColor"
                         Value="Transparent"/>
                 <Setter Property="Margin" Value="50,20,50,0"/>
-            </Style>
+            </Style-->
 
-            <Style x:Key="BaseLabel" TargetType="Label">
+            
+             <Style x:Key="BaseEntry" TargetType="Entry">
                 <Setter Property="TextColor"
                         Value="{AppThemeBinding
                             Dark={StaticResource TextColorDark},
                             Light={StaticResource TextColor}}"/>
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Margin" Value="50,20,50,0"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+
             </Style>
+
+            <!--Style TargetType="Frame">
+
+
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="FontSize" Value="16" />
+            </Style-->
 
             <Style x:Key="BaseContentPage" TargetType="ContentPage">
                 <Setter Property="BackgroundColor"
@@ -143,9 +230,7 @@
                 <Setter Property="TextColor" Value="Red"/>
             </Style>
 
-            <Style x:Key="InvalidEntryStyle" TargetType="Entry">
-                <Setter Property="TextColor" Value="Red"/>
-            </Style>
+
 
         </ResourceDictionary>
     </Application.Resources>

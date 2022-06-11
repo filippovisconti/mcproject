@@ -21,7 +21,7 @@
 
                 <Setter Property="Shell.BackgroundColor"
                         Value="{AppThemeBinding Dark={StaticResource DarkBackground},
-                                                Light={StaticResource Primary}}" />
+                                                Light={StaticResource WhiteBackground}}" />
 
                 <Setter Property="Shell.ForegroundColor"
                         Value="{AppThemeBinding Dark={StaticResource WhiteBackground},

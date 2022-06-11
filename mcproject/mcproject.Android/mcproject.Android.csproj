@@ -22,6 +22,9 @@
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <AndroidLinkSkip></AndroidLinkSkip>
+    <AndroidStoreUncompressedFileExtensions></AndroidStoreUncompressedFileExtensions>
+    <JavaOptions></JavaOptions>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,7 +42,7 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
-<LangVersion>latestmajor</LangVersion>
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,17 +53,21 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-<LangVersion>latestmajor</LangVersion>
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
+    <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <DebugType>portable</DebugType>
+    <Optimize></Optimize>
     <PlatformTarget>x64</PlatformTarget>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <LangVersion>latestmajor</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <WarningLevel></WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DocumentationFile></DocumentationFile>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
@@ -70,17 +77,81 @@
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
-    <AndroidSupportedAbis />
+    <IntermediateOutputPath></IntermediateOutputPath>
+    <ConsolePause>true</ConsolePause>
+    <ExternalConsole>false</ExternalConsole>
+    <Commandlineparameters></Commandlineparameters>
+    <RunWithWarnings>true</RunWithWarnings>
+    <AndroidManagedSymbols>false</AndroidManagedSymbols>
+    <MandroidExtraArgs></MandroidExtraArgs>
+    <AndroidHttpClientHandlerType></AndroidHttpClientHandlerType>
+    <JavaMaximumHeapSize></JavaMaximumHeapSize>
+    <AndroidKeyStore></AndroidKeyStore>
+    <AndroidSigningKeyStore></AndroidSigningKeyStore>
+    <AndroidSigningStorePass></AndroidSigningStorePass>
+    <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass></AndroidSigningKeyPass>
+    <AndroidEnableSGenConcurrent></AndroidEnableSGenConcurrent>
+    <AndroidEnableMultiDex></AndroidEnableMultiDex>
+    <AndroidFastDeploymentType></AndroidFastDeploymentType>
+    <AndroidManifest></AndroidManifest>
+    <AndroidDexTool></AndroidDexTool>
+    <NoWarn></NoWarn>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <NoStdLib>false</NoStdLib>
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+    <Nullable></Nullable>
+    <EmbedAssembliesIntoApk></EmbedAssembliesIntoApk>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Release\</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants></DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>portable</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <LangVersion>latestmajor</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <WarningLevel></WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DocumentationFile></DocumentationFile>
+    <IntermediateOutputPath></IntermediateOutputPath>
+    <ConsolePause>true</ConsolePause>
+    <ExternalConsole>false</ExternalConsole>
+    <Commandlineparameters></Commandlineparameters>
+    <RunWithWarnings>true</RunWithWarnings>
+    <AndroidManagedSymbols></AndroidManagedSymbols>
+    <MandroidExtraArgs></MandroidExtraArgs>
+    <AndroidLinkMode></AndroidLinkMode>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <BundleAssemblies></BundleAssemblies>
+    <MandroidI18n></MandroidI18n>
+    <AndroidHttpClientHandlerType></AndroidHttpClientHandlerType>
+    <JavaMaximumHeapSize></JavaMaximumHeapSize>
+    <AndroidKeyStore></AndroidKeyStore>
+    <AndroidSigningKeyStore></AndroidSigningKeyStore>
+    <AndroidSigningStorePass></AndroidSigningStorePass>
+    <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass></AndroidSigningKeyPass>
+    <AndroidPackageFormat></AndroidPackageFormat>
+    <AotAssemblies></AotAssemblies>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableSGenConcurrent></AndroidEnableSGenConcurrent>
+    <AndroidUseAapt2></AndroidUseAapt2>
+    <AndroidEnableMultiDex></AndroidEnableMultiDex>
+    <AndroidFastDeploymentType></AndroidFastDeploymentType>
+    <AndroidManifest></AndroidManifest>
+    <AndroidDexTool></AndroidDexTool>
+    <NoWarn></NoWarn>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <NoStdLib>false</NoStdLib>
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+    <Nullable></Nullable>
+    <EmbedAssembliesIntoApk></EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -93,12 +164,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
-      <Version>2.0.1</Version>
+      <Version>2.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Linq">
       <Version>4.3.0</Version>
@@ -113,7 +184,7 @@
       <Version>1.8.116</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials.Interfaces">
-      <Version>1.7.1</Version>
+      <Version>1.7.3.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens">
       <Version>6.17.0</Version>
@@ -165,6 +236,42 @@
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
     <AndroidResource Include="Resources\drawable\icon_about.png" />
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
+    <AndroidResource Include="Resources\drawable\padel_icon.jpg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\padel_icon2.jpg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Lancio di Coriandoli_icon.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Suonare i citofoni_icon.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Soffio di minestrine_icon.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Pallavolo_icon.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Padel_icon.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Bocce_icon.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Calcetto_icon.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mcproject\mcproject.csproj">

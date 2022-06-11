@@ -325,3 +325,4 @@ $RECYCLE.BIN/
 #Credentials files
 credentials.cs
 
+*.orig
