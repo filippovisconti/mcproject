@@ -139,7 +139,7 @@ namespace mcproject.ViewModels
                             .DisplayAlert("Event created", "Everything went smoothly", "OK");
 
                 await Shell.Current
-                            .GoToAsync("../JoinPage");
+                            .GoToAsync("//JoinPage");
             }
             else
                 await Shell.Current

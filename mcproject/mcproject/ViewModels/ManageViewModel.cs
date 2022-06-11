@@ -74,18 +74,18 @@ namespace mcproject.ViewModels
             {
 
                 Eventi = new ObservableCollection<EventoSportivo>(
-                    await db.GetAllEventiAsync());
-                //await GetEventsByOwner());
+                // await db.GetAllEventiAsync());
+                await GetEventsByOwner());
                 OnPropertyChanged(nameof(Eventi));
                 IsRefreshing = false;
             });
         }
         public Xamarin.Forms.Command PageAppearingCommand { get; set; }
 
-        public void OnAppearing()
-        {
-            SelectedEvent = null;
-        }
+        //public void OnAppearing()
+        //{
+        //    SelectedEvent = null;
+        //}
 
 
         public AsyncCommand SelectedCommand { get; }

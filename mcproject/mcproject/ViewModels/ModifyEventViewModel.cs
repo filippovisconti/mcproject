@@ -115,10 +115,6 @@ namespace mcproject.ViewModels
 
         private string GetIcon(string name)
         {
-            //var image = new Image { Source = "xamarin_logo.png" };
-            //if (name == "Padel")
-            //    image = new Image { Source = "padel_icon.jpg" };
-
             return $"{name}_icon.png";
         }
 
@@ -139,6 +135,7 @@ namespace mcproject.ViewModels
             Evento.City = SelectedCity;
             Evento.Notes = SelectedNote;
             Evento.IconName = GetIcon(Evento.Sport.Name);
+            Evento.ID = ID; //
 
             //Update();
 
@@ -208,6 +205,9 @@ namespace mcproject.ViewModels
                 OnPropertyChanged(nameof(SelectedSport));
 
                 SelectedData = Evento.DateAndTime;
+                OnPropertyChanged(nameof(SelectedData));
+
+                SelectedTime = new TimeSpan(Evento.DateAndTime.Hour, Evento.DateAndTime.Minute, 0);
                 OnPropertyChanged(nameof(SelectedData));
 
                 SelectedLevel = Evento.Level;

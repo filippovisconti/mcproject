@@ -21,8 +21,8 @@
                 ItemsSource="{Binding ModifySport, Mode=TwoWay}"
                 SelectedItem="{Binding SelectedSport, Mode=TwoWay}"
                 />
-            <!--DEBUG LABEL-->
-            <Label Text= "{Binding SelectedSport}" />
+            <!--DEBUG LABEL
+            <Label Text= "{Binding SelectedSport}" />-->
 
             <DatePicker 
                     MinimumDate="{x:Static system:DateTime.Today}"

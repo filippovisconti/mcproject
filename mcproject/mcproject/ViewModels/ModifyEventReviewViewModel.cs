@@ -15,8 +15,6 @@ namespace mcproject.ViewModels
 
         private readonly FirebaseDB db = FirebaseDB.Instance;
 
-        /* NEED TO FIX: L'ICON NON VIENE VISUALIZZATA */
-
         private string _iconName;
         public string IconName
         {
@@ -87,12 +85,27 @@ namespace mcproject.ViewModels
                 OnPropertyChanged(nameof(Evento));
 
                 Sport = Evento.Sport;
+                OnPropertyChanged(nameof(Sport));
+
                 Date = Evento.DateAndTime;
+                OnPropertyChanged(nameof(Date));
+
                 Level = Evento.Level;
+                OnPropertyChanged(nameof(Level));
+
                 TG = Evento.TGUsername;
+                OnPropertyChanged(nameof(TG));
+
                 City = Evento.City;
+                OnPropertyChanged(nameof(City));
+
                 Note = Evento.Notes;
+                OnPropertyChanged(nameof(Note));
+
                 IconName = Evento.IconName;
+                OnPropertyChanged(nameof(IconName));
+
+
 
             });
         }
