@@ -1,6 +1,6 @@
 # mcproject
 
-##Description in Italian
+## Description in Italian
 “FillYourTeam” è un’applicazione in grado di connettere persone interessate all’organizzazione e alla partecipazione di eventi sportivi. Infatti, oltre all’autenticazione, l’applicazione presenta all’utente tre azioni possibili: “Create”, “Join” e “Manage”, tra le quali ci si può spostare facilmente nella parte bassa dello schermo.
 
 
